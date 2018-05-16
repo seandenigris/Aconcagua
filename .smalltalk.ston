@@ -9,7 +9,7 @@ SmalltalkCISpec {
   ],
   #testing : {
     #coverage : {
-       #packages : [ 'Aconcagua-Model' ]
+       #packages : [ 'Aconcagua-Core' ]
     },
     #include : {  
        #packages : [ 'Aconcagua-Tests*' ]
