@@ -15,25 +15,22 @@ BaselineOfAconcagua >> baseline: spec [
 
 	<baseline>
 	spec
-		for: #common
-		do: [ self setUpDependencies: spec.
-			
-			spec
-				package: 'Aconcagua-Core' with: [ spec requires: 'Mole' ];
+		for: #pharo
+		do: [ spec
+				package: 'Aconcagua-Core';
 				package: 'Aconcagua-Tests' with: [ spec requires: 'Aconcagua-Core' ].
 
 			spec
-				group: 'Deployment' with: #('Aconcagua-Core');
-				group: 'Development' with: #('Aconcagua-Tests');
-				group: 'default' with: #('Development') ]
+				group: 'Deployment' with: 'Aconcagua-Core';
+				group: 'Tests' with: 'Aconcagua-Tests';
+				group: 'CI' with: 'Tests';
+				group: 'Development' with: 'Tests'
+			]
 ]
 
 { #category : #baselines }
-BaselineOfAconcagua >> setUpDependencies: spec [
+BaselineOfAconcagua >> projectClass [
 
-	spec
-		baseline: 'Mole'
-		with: [ spec
-				repository: 'github://ba-st/Mole:v1/source';
-				loads: #('Deployment') ]
+	^ MetacelloCypressBaselineProject
+
 ]

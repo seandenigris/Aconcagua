@@ -148,12 +148,6 @@ ArithmeticObject >> convertTo: aUnit [
 	self subclassResponsibility
 ]
 
-{ #category : #'converting - private' }
-ArithmeticObject >> convertTo: aTargetUnit using: aMeasureConverter [
-
-	self subclassResponsibility.
-]
-
 { #category : #converting }
 ArithmeticObject >> convertToBaseUnit [
 

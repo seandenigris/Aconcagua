@@ -127,15 +127,6 @@ MeasureBag >> convertAmountToBaseUnit [
 	^self unit convertAmountToBaseUnit: self amount
 ]
 
-{ #category : #'converting - private' }
-MeasureBag >> convertTo: aTargetUnit using: aMeasureConverter [
-	"NOT TO USE. Use the message convert:to:  of MeasureConverter.
-	This message is here by a question of double-dispatch.
-	If this message is used, the exceptions will not be correctly handleds."
-	
-	^aMeasureConverter convertMeasureBag: self to: aTargetUnit
-]
-
 { #category : #accessing }
 MeasureBag >> denominator [
 
