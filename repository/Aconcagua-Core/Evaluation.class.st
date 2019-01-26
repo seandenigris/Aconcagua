@@ -140,12 +140,6 @@ Evaluation >> convertTo: aUnit [
 	^self value convertTo: aUnit
 ]
 
-{ #category : #'converting - private' }
-Evaluation >> convertTo: aTargetUnit using: aMeasureConverter [
-
-	^self value convertTo: aTargetUnit using: aMeasureConverter
-]
-
 { #category : #converting }
 Evaluation >> convertToBaseUnit [
 
