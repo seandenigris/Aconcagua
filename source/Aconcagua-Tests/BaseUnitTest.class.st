@@ -1,7 +1,7 @@
 Class {
 	#name : #BaseUnitTest,
 	#superclass : #TestCase,
-	#category : #'Aconcagua-Tests-MeasureModel'
+	#category : 'Aconcagua-Tests-MeasureModel'
 }
 
 { #category : #'test accessing' }
@@ -496,6 +496,16 @@ BaseUnitTest >> testNumerator [
 	unit := BaseUnit nameForOne: 'peso' nameForMany: 'pepe'.
 
 	self assert: unit numerator = unit
+]
+
+{ #category : #'test printing' }
+BaseUnitTest >> testPrintingCustomization [
+
+	| unit measure |
+	
+	unit := DummyDollarUnit named: 'dollar'.
+	measure := Measure amount: 5 unit: unit.
+	self assert: measure printString equals: '$5.00'.
 ]
 
 { #category : #'test accessing' }

@@ -460,9 +460,7 @@ Measure >> positive [
 { #category : #printing }
 Measure >> printOn: aStream [
 
-	amount printOn: aStream.
-	aStream space.
-	aStream nextPutAll: (self unit nameFor: self amount) asString
+	self unit printMeasure: self on: aStream
 ]
 
 { #category : #'arithmetic operations - private' }
