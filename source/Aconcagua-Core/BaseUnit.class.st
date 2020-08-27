@@ -92,6 +92,15 @@ BaseUnit >> nothingAmount [
 	^0
 ]
 
+{ #category : #printing }
+BaseUnit >> printMeasure: aMeasure on: aStream [
+	"If you need more flexibility, override in subclasses. E.g. '10 dollars' might want to print as '$10'"
+
+	aMeasure amount printOn: aStream.
+	aStream space.
+	aStream nextPutAll: (aMeasure unit nameFor: self amount) asString
+]
+
 { #category : #accessing }
 BaseUnit >> sign [
 
