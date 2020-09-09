@@ -1,7 +1,7 @@
 Class {
 	#name : #SimpleUnit,
 	#superclass : #UnitBehavior,
-	#category : 'Aconcagua-Core-MeasureModel'
+	#category : #'Aconcagua-Core-MeasureModel'
 }
 
 { #category : #'mathematic operations' }
@@ -63,6 +63,15 @@ SimpleUnit >> multiplyMultipliedUnit: aMultipliedUnit [
 SimpleUnit >> multiplySimpleUnit: aUnit [
 
 	^MultipliedUnit simpleUnit: self simpleUnit: aUnit
+]
+
+{ #category : #printing }
+SimpleUnit >> printMeasure: aMeasure on: aStream [
+	"If you need more flexibility, override in subclasses. E.g. '10 dollars' might want to print as '$10'"
+
+	aMeasure amount printOn: aStream.
+	aStream space.
+	aStream nextPutAll: (aMeasure unit nameFor: aMeasure amount) asString
 ]
 
 { #category : #'measurement creation' }

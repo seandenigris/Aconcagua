@@ -5,7 +5,7 @@ Class {
 		'peso',
 		'centavo'
 	],
-	#category : 'Aconcagua-Tests-MeasureModel'
+	#category : #'Aconcagua-Tests-MeasureModel'
 }
 
 { #category : #initialization }
@@ -297,6 +297,16 @@ ProportionalDerivedUnitTest >> testNumerator [
 	
 	unit := ProportionalDerivedUnit baseUnit: peso conversionFactor: 1/100 named: 'centavo'.
 	self assert: unit numerator = unit
+]
+
+{ #category : #'test printing' }
+ProportionalDerivedUnitTest >> testPrintingCustomization [
+
+	| unit measure |
+	
+	unit := DummyCentUnit baseUnit: DummyDollarUnit new conversionFactor: 1/100 named: 'cent'.
+	measure := Measure amount: 5 unit: unit.
+	self assert: measure printString equals: '5c USD'.
 ]
 
 { #category : #'test accessing' }
