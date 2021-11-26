@@ -12,7 +12,7 @@ Class {
 { #category : #'instance creation' }
 BaseUnit class >> nameForOne: aString nameForMany: anotherString [
 
-	^self new initializeNameForOne: aString nameForMany: anotherString sign: self defaultSign
+	^self nameForOne: aString nameForMany: anotherString sign: self defaultSign
 ]
 
 { #category : #'instance creation' }
