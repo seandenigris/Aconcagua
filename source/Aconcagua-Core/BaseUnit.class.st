@@ -12,13 +12,13 @@ Class {
 { #category : #'instance creation' }
 BaseUnit class >> nameForOne: aString nameForMany: anotherString [
 
-	^self new initializeNameFomOne: aString nameForMany: anotherString sign: self defaultSign
+	^self nameForOne: aString nameForMany: anotherString sign: self defaultSign
 ]
 
 { #category : #'instance creation' }
 BaseUnit class >> nameForOne: aString nameForMany: anotherString sign: aSignString [
 
-	^self new initializeNameFomOne: aString nameForMany: anotherString sign: aSignString
+	^self new initializeNameForOne: aString nameForMany: anotherString sign: aSignString
 ]
 
 { #category : #'instance creation' }
@@ -67,7 +67,7 @@ BaseUnit >> convertToBaseUnit: aMeasure [
 ]
 
 { #category : #initialization }
-BaseUnit >> initializeNameFomOne: aString nameForMany: anotherString sign: aSignString [
+BaseUnit >> initializeNameForOne: aString nameForMany: anotherString sign: aSignString [
 
 	nameForOne := aString.
 	nameForMany := anotherString.
