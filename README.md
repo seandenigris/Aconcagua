@@ -13,6 +13,7 @@ encapsulates a number with its unit.
 [![GitHub release](https://img.shields.io/github/release/ba-st/Aconcagua.svg)](https://github.com/ba-st/Aconcagua/releases/latest)
 [![Pharo 8.0](https://img.shields.io/badge/Pharo-8.0-informational)](https://pharo.org)
 [![Pharo 9.0](https://img.shields.io/badge/Pharo-9.0-informational)](https://pharo.org)
+[![Pharo 10](https://img.shields.io/badge/Pharo-10-informational)](https://pharo.org)
 
 > *Named after [Aconcagua](https://en.wikipedia.org/wiki/Aconcagua), the highest
 > mountain in both the southern and western hemispheres. It is located in the
@@ -25,7 +26,7 @@ See [Arithmetic with measurements on dynamically-typed object-oriented languages
 or [download the article PDF](http://stephane.ducasse.free.fr/Teaching/CoursAnnecy/0506-M1-COO/aconcagua-p292-wilkinson.pdf)
 for more about this.
 
-Quick links
+## Quick links
 
 - [**Explore the docs**](docs/)
 - [Report a defect](https://github.com/ba-st/Aconcagua/issues/new?labels=Type%3A+Defect)
