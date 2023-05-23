@@ -14,6 +14,7 @@ encapsulates a number with its unit.
 [![Pharo 8.0](https://img.shields.io/badge/Pharo-8.0-informational)](https://pharo.org)
 [![Pharo 9.0](https://img.shields.io/badge/Pharo-9.0-informational)](https://pharo.org)
 [![Pharo 10](https://img.shields.io/badge/Pharo-10-informational)](https://pharo.org)
+[![Pharo 11](https://img.shields.io/badge/Pharo-11-informational)](https://pharo.org)
 
 > *Named after [Aconcagua](https://en.wikipedia.org/wiki/Aconcagua), the highest
 > mountain in both the southern and western hemispheres. It is located in the
@@ -46,7 +47,7 @@ for more about this.
 ## Installation
 
 To load the project in a Pharo image, or declare it as a dependency of your own
-project follow this [instructions](docs/Installation.md).
+project follow these [instructions](docs/Installation.md).
 
 ## Contributing
 
