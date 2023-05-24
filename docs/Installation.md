@@ -46,7 +46,8 @@ baseline: spec
 - `Deployment` will load all the packages needed in a deployed application
 - `Tests` will load the test cases
 - `CI` is the group loaded in the continuous integration setup
-- `Development` will load all the needed packages to develop and contribute to the project
+- `Development` will load all the needed packages to develop and contribute to
+  the project
 
 ## Platform Compatibility
 
