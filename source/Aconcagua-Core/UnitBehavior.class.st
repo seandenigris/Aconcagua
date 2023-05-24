@@ -1,7 +1,7 @@
 Class {
 	#name : #UnitBehavior,
 	#superclass : #Object,
-	#category : 'Aconcagua-Core-MeasureModel'
+	#category : #'Aconcagua-Core-MeasureModel'
 }
 
 { #category : #accessing }
@@ -234,6 +234,15 @@ UnitBehavior >> numerator [
 UnitBehavior >> numeratorOf: aNumber [
 
 	^self numerator with: aNumber numerator
+]
+
+{ #category : #printing }
+UnitBehavior >> printMeasure: aMeasure on: aStream [
+	"If you need more flexibility, override in subclasses. E.g. '10 dollars' might want to print as '$10'"
+
+	aMeasure amount printOn: aStream.
+	aStream space.
+	aStream nextPutAll: (aMeasure unit nameFor: aMeasure amount) asString
 ]
 
 { #category : #printing }

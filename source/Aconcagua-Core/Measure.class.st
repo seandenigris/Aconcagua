@@ -5,7 +5,7 @@ Class {
 		'amount',
 		'unit'
 	],
-	#category : 'Aconcagua-Core-MeasureModel'
+	#category : #'Aconcagua-Core-MeasureModel'
 }
 
 { #category : #'instance creation' }
@@ -541,12 +541,6 @@ Measure >> subtractInfinity: anInfinity [
 Measure >> subtractMinusInfinity: aMinusInfinity [
 
 	^aMinusInfinity
-]
-
-{ #category : #enumerating }
-Measure >> timesRepeat: aBlock [
-
-	amount timesRepeat: aBlock
 ]
 
 { #category : #'interval protocol' }
