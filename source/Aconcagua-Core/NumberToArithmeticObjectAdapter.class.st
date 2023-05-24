@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'number'
 	],
-	#category : 'Aconcagua-Core-ArithmeticModel'
+	#category : #'Aconcagua-Core-ArithmeticModel'
 }
 
 { #category : #'instance creation' }
@@ -42,28 +42,46 @@ NumberToArithmeticObjectAdapter >> // anArithmeticObject [
 	^anArithmeticObject quoFrom: number
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : #comparing }
 NumberToArithmeticObjectAdapter >> < anArithmeticObject [
+
+	^anArithmeticObject > number
+]
+
+{ #category : #comparing }
+NumberToArithmeticObjectAdapter >> <= anArithmeticObject [
 
 	^anArithmeticObject >= number
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : #comparing }
 NumberToArithmeticObjectAdapter >> = anArithmeticObject [ 
 
 	^anArithmeticObject = number
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : #comparing }
 NumberToArithmeticObjectAdapter >> > anArithmeticObject [
 
-	^anArithmeticObject <= number
+	^anArithmeticObject < number
+]
+
+{ #category : #comparing }
+NumberToArithmeticObjectAdapter >> >= anArithmeticObject [
+
+	^ anArithmeticObject <= number
 ]
 
 { #category : #'arithmetic operations' }
 NumberToArithmeticObjectAdapter >> \\ anArithmeticObject [
 
 	^anArithmeticObject remFrom: number
+]
+
+{ #category : #comparing }
+NumberToArithmeticObjectAdapter >> hash [
+
+	^ number hash
 ]
 
 { #category : #initialization }
@@ -83,4 +101,10 @@ NumberToArithmeticObjectAdapter >> printOn: aStream [
 NumberToArithmeticObjectAdapter >> quo: anArithmeticObject [
 
 	^anArithmeticObject quoFrom: number
+]
+
+{ #category : #'arithmetic operations' }
+NumberToArithmeticObjectAdapter >> rem: anArithmeticObject [
+
+	^ anArithmeticObject remFrom: number
 ]

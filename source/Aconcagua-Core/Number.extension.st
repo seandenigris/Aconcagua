@@ -25,6 +25,12 @@ Number >> addMinusInfinity: aMinusInfinity [
 ]
 
 { #category : #'*Aconcagua-Core-ArithmeticModel' }
+Number >> addSameDomainMeasure: aMeasure [
+
+	^ self + aMeasure amount
+]
+
+{ #category : #'*Aconcagua-Core-ArithmeticModel' }
 Number >> amount [
 
 	^self
@@ -129,7 +135,8 @@ Number >> divideMinusInfinity: aMinusInfinity [
 { #category : #'*Aconcagua-Core-ArithmeticModel' }
 Number >> equalsMeasure: aMeasure [
 
-	^self isNothing and: [aMeasure isNothing]
+	^ ( self isNothing and: [ aMeasure isNothing ] ) or: [
+		  ( self unit sameDomainAs: aMeasure unit ) and: [ self = aMeasure amount ] ]
 ]
 
 { #category : #'*Aconcagua-Core-ArithmeticModel' }
@@ -250,6 +257,18 @@ Number >> multiplyMinusInfinity: aMinusInfinity [
 Number >> numerator [
 
 	^self
+]
+
+{ #category : #'*Aconcagua-Core' }
+Number >> quoFrom: aNumber [
+
+	^ aNumber quo: self
+]
+
+{ #category : #'*Aconcagua-Core' }
+Number >> remFrom: aNumber [
+
+	^ aNumber rem: self
 ]
 
 { #category : #'*Aconcagua-Core-ArithmeticModel' }
