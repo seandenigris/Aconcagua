@@ -1,0 +1,19 @@
+RwSimpleProjectLoadComponentV2 {
+  #name : 'Tests',
+  #condition : 'tests',
+  #componentNames : [
+    'Deployment'
+  ],
+  #packageNames : [
+    'Aconcagua-Tests'
+  ],
+  #conditionalPackageMapSpecs : {
+    'gemstone' : {
+      'allusers' : {
+        #packageNameToPlatformPropertiesMap : {
+          'Aconcagua-Tests' : { 'symbolDictName' : 'Aconcagua' }
+        }
+      }
+    }
+  }
+}
