@@ -2,15 +2,16 @@
 This class is used to load Aconcagua from github repository
 "
 Class {
-	#name : #BaselineOfAconcagua,
-	#superclass : #BaselineOf,
+	#name : 'BaselineOfAconcagua',
+	#superclass : 'BaselineOf',
 	#instVars : [
 		'repositories'
 	],
-	#category : 'BaselineOfAconcagua'
+	#category : 'BaselineOfAconcagua',
+	#package : 'BaselineOfAconcagua'
 }
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfAconcagua >> baseline: spec [
 
 	<baseline>
@@ -18,17 +19,19 @@ BaselineOfAconcagua >> baseline: spec [
 		for: #pharo
 		do: [ spec
 				package: 'Aconcagua-Core';
+				package: 'Aconcagua-Extensions' with: [ spec requires: 'Aconcagua-Core' ];
 				package: 'Aconcagua-Tests' with: [ spec requires: 'Aconcagua-Core' ].
 
 			spec
 				group: 'Deployment' with: 'Aconcagua-Core';
+				group: 'Deployment' with: 'Aconcagua-Extensions';
 				group: 'Tests' with: 'Aconcagua-Tests';
 				group: 'CI' with: 'Tests';
 				group: 'Development' with: 'Tests'
 			]
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfAconcagua >> projectClass [
 
 	^ MetacelloCypressBaselineProject
