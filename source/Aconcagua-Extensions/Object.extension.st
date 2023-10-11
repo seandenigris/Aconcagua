@@ -1,18 +1,18 @@
 Extension { #name : 'Object' }
 
-{ #category : '*Aconcagua-Core-ArithmeticModel' }
+{ #category : '*Aconcagua-Extensions' }
 Object >> equalsMeasure: aMeasure [
 
 	^false
 ]
 
-{ #category : '*Aconcagua-Core-ArithmeticModel' }
+{ #category : '*Aconcagua-Extensions' }
 Object >> equalsMeasureBag: aMeasureBag [
 
 	^false
 ]
 
-{ #category : '*Aconcagua-Core-ArithmeticModel' }
+{ #category : '*Aconcagua-Extensions' }
 Object >> isNothing [
 
 	^false
