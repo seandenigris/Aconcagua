@@ -1,44 +1,46 @@
 Class {
-	#name : #InfinityIntervalStrategy,
-	#superclass : #IntervalStrategy,
+	#name : 'InfinityIntervalStrategy',
+	#superclass : 'IntervalStrategy',
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : 'Aconcagua-Core-MeasureModel'
+	#category : 'Aconcagua-Core-MeasureModel',
+	#package : 'Aconcagua-Core',
+	#tag : 'MeasureModel'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 InfinityIntervalStrategy class >> initialize [
 
 	self initializeUniqueInstance
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 InfinityIntervalStrategy class >> initializeUniqueInstance [
 
 	uniqueInstance := self basicNew
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 InfinityIntervalStrategy class >> new [
 
 	^uniqueInstance
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 InfinityIntervalStrategy >> advanceFrom: from by: by [
 
 	^from + by
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 InfinityIntervalStrategy >> advanceFrom: from steps: steps by: by [
 
 	^from + (steps * by)
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 InfinityIntervalStrategy >> stepsFrom: from to: to by: by [
 
-	^Infinity
+	^ArithmeticObject infinity
 ]

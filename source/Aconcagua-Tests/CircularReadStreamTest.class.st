@@ -1,21 +1,23 @@
 Class {
-	#name : #CircularReadStreamTest,
-	#superclass : #TestCase,
+	#name : 'CircularReadStreamTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'stream',
 		'streamStaringInThirdElement'
 	],
-	#category : 'Aconcagua-Tests-MeasureModel'
+	#category : 'Aconcagua-Tests-MeasureModel',
+	#package : 'Aconcagua-Tests',
+	#tag : 'MeasureModel'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CircularReadStreamTest >> setUp [
 
 	stream := CircularReadStream on: #(1 2 3 4 5) moving: NullUnit new.
 	streamStaringInThirdElement := CircularReadStream on: #(1 2 3 4 5) moving: NullUnit new startingCircleAt: 3
 ]
 
-{ #category : #'test testing' }
+{ #category : 'test testing' }
 CircularReadStreamTest >> testAtBegin [
 
 	self assert: stream atBegin.
@@ -34,7 +36,7 @@ CircularReadStreamTest >> testAtBegin [
 	self assert: streamStaringInThirdElement current = 3
 ]
 
-{ #category : #'test testing' }
+{ #category : 'test testing' }
 CircularReadStreamTest >> testAtEnd [
 
 	self deny: stream atEnd.
@@ -53,7 +55,7 @@ CircularReadStreamTest >> testAtEnd [
 	self deny: streamStaringInThirdElement current = 2
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 CircularReadStreamTest >> testCurrent [
 
 	self assert: stream current = 1.
@@ -69,7 +71,7 @@ CircularReadStreamTest >> testCurrent [
 	self assert: streamStaringInThirdElement current = 2
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 CircularReadStreamTest >> testDistanceFrom [
 
 	self assert: (stream distanceFrom: 1) = 0.
@@ -79,7 +81,7 @@ CircularReadStreamTest >> testDistanceFrom [
 	self assert: (stream distanceFrom: 5) = 1
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 CircularReadStreamTest >> testDistanceFromTo [
 
 	self assert: (stream distanceFrom: 1 to: 1) = 0.
@@ -89,7 +91,7 @@ CircularReadStreamTest >> testDistanceFromTo [
 	self assert: (stream distanceFrom: 1 to: 5) = 4
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 CircularReadStreamTest >> testDistanceTo [
 
 	self assert: (stream distanceTo: 1) = 0.
@@ -99,7 +101,7 @@ CircularReadStreamTest >> testDistanceTo [
 	self assert: (stream distanceTo: 5) = 4
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 CircularReadStreamTest >> testDistanceToFrom [
 
 	self assert: (stream distanceTo: 1 from: 1) = 0.
@@ -109,7 +111,7 @@ CircularReadStreamTest >> testDistanceToFrom [
 	self assert: (stream distanceTo: 5 from: 1) = 4
 ]
 
-{ #category : #'test enumerating' }
+{ #category : 'test enumerating' }
 CircularReadStreamTest >> testNext [
 
 	self assert: stream next = 2.
@@ -119,7 +121,7 @@ CircularReadStreamTest >> testNext [
 	self assert: stream next = 1
 ]
 
-{ #category : #'test enumerating' }
+{ #category : 'test enumerating' }
 CircularReadStreamTest >> testNextANumberOfSomething [
 
 	self assert: (stream next: 1) = 2.
@@ -135,7 +137,7 @@ CircularReadStreamTest >> testNextANumberOfSomething [
 	self assert: (stream next: -5) = 1
 ]
 
-{ #category : #'test enumerating' }
+{ #category : 'test enumerating' }
 CircularReadStreamTest >> testPrevious [
 
 	self assert: stream previous = 5.
@@ -146,7 +148,7 @@ CircularReadStreamTest >> testPrevious [
 	self assert: stream previous = 5
 ]
 
-{ #category : #'test enumerating' }
+{ #category : 'test enumerating' }
 CircularReadStreamTest >> testPreviousANumberOfSomething [
 
 	self assert: (stream previous: 1) = 5.
@@ -162,7 +164,7 @@ CircularReadStreamTest >> testPreviousANumberOfSomething [
 	self assert: (stream previous: -5) = 1
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 CircularReadStreamTest >> testRelativeDistanceFromTo [
 
 	self assert: (stream relativeDistanceFrom: 1 to: 1) = 0.

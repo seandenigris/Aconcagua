@@ -1,10 +1,24 @@
 Class {
-	#name : #BaseUnitTest,
-	#superclass : #TestCase,
-	#category : 'Aconcagua-Tests-MeasureModel'
+	#name : 'BaseUnitTest',
+	#superclass : 'TestCase',
+	#category : 'Aconcagua-Tests-MeasureModel',
+	#package : 'Aconcagua-Tests',
+	#tag : 'MeasureModel'
 }
 
-{ #category : #'test accessing' }
+{ #category : 'test arithmetic operations' }
+BaseUnitTest >> infinity [
+
+	^ ArithmeticObject infinity
+]
+
+{ #category : 'test arithmetic operations' }
+BaseUnitTest >> minusInfinity [
+
+	^ ArithmeticObject minusInfinity
+]
+
+{ #category : 'test accessing' }
 BaseUnitTest >> testBaseUnit [
 
 	| unit |
@@ -13,7 +27,7 @@ BaseUnitTest >> testBaseUnit [
 	self assert: (unit baseUnit) = unit
 ]
 
-{ #category : #'test converting' }
+{ #category : 'test converting' }
 BaseUnitTest >> testConvertAmountToBaseUnit [
 
 	| unit |
@@ -23,7 +37,7 @@ BaseUnitTest >> testConvertAmountToBaseUnit [
 	self assert: (unit convertAmountToBaseUnit: 10) = 10
 ]
 
-{ #category : #'test converting' }
+{ #category : 'test converting' }
 BaseUnitTest >> testConvertToBaseUnit [
 
 	| unit measure |
@@ -33,7 +47,7 @@ BaseUnitTest >> testConvertToBaseUnit [
 	self assert: (unit convertToBaseUnit: measure) == measure
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 BaseUnitTest >> testDenominator [
 
 	| unit |
@@ -43,7 +57,7 @@ BaseUnitTest >> testDenominator [
 	self assert: unit denominator = NullUnit new
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testDivideByDifferentBaseUnit [
 
 	| numerator denominator |
@@ -54,7 +68,7 @@ BaseUnitTest >> testDivideByDifferentBaseUnit [
 	self assert: (numerator / denominator) denominator = denominator
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testDivideByDifferentDomainDerivedUnit [
 
 	| numerator denominator hour |
@@ -67,7 +81,7 @@ BaseUnitTest >> testDivideByDifferentDomainDerivedUnit [
 	self assert: (numerator / denominator) denominator = denominator
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testDivideByDivideUnitSameBaseUnitNumerator [
 
 	| numerator denominator hour |
@@ -78,7 +92,7 @@ BaseUnitTest >> testDivideByDivideUnitSameBaseUnitNumerator [
 	self assert: (numerator / (numerator / denominator)) = denominator
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testDivideByDivideUnitSameDomainDerivedUnitNumerator [
 
 	| meter hour centimeter |
@@ -91,43 +105,43 @@ BaseUnitTest >> testDivideByDivideUnitSameDomainDerivedUnitNumerator [
 	self assert: (meter / (centimeter / hour)) denominator = centimeter
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testDivideByInfinity [
 
 	| kelvin |
-
 	kelvin := BaseUnit named: 'kelvin'.
-	self assert: kelvin / Infinity = (kelvin with: 1 / Infinity).
-	self assert: (kelvin / Infinity) numerator = 0.
-	self assert: (kelvin / Infinity) denominator = 1.
+	self assert:
+		kelvin / self infinity = (kelvin with: 1 / self infinity).
+	self assert: (kelvin / self infinity) numerator = 0.
+	self assert: (kelvin / self infinity) denominator = 1.
 	self
-		should: [Infinity / kelvin]
+		should: [ self infinity / kelvin ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Division operation is indeterminate between Infinity and kelvin']
+		withExceptionDo: [ :anException |
+			self assert: anException description
+				=
+				'The Division operation is indeterminate between Infinity and kelvin' ]
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testDivideByMinusInfinity [
 
 	| kelvin |
-
 	kelvin := BaseUnit named: 'kelvin'.
-	self assert: kelvin / MinusInfinity = (kelvin with: 1 / MinusInfinity).
-	self assert: (kelvin / MinusInfinity) numerator = 0.
-	self assert: (kelvin / MinusInfinity) denominator = 1.
+	self assert:
+		kelvin / self minusInfinity = (kelvin with: 1 / self minusInfinity).
+	self assert: (kelvin / self minusInfinity) numerator = 0.
+	self assert: (kelvin / self minusInfinity) denominator = 1.
 	self
-		should: [MinusInfinity / kelvin]
+		should: [ self minusInfinity / kelvin ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Division operation is indeterminate between Minus Infinity and kelvin']
+		withExceptionDo: [ :anException |
+			self assert: anException description
+				=
+				'The Division operation is indeterminate between Minus Infinity and kelvin' ]
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testDivideByMultipliedUnit [
 
 	| numerator denominator hour |
@@ -143,7 +157,7 @@ BaseUnitTest >> testDivideByMultipliedUnit [
 
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testDivideByNullUnit [
 
 	| meter |
@@ -152,7 +166,7 @@ BaseUnitTest >> testDivideByNullUnit [
 	self assert: meter / NullUnit new = meter
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testDivideByNumber [
 
 	| kelvin |
@@ -168,7 +182,7 @@ BaseUnitTest >> testDivideByNumber [
 	self assert: (kelvin / 5.5) denominator = (kelvin with: 1/5.5) denominator
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testDivideBySameBaseUnit [
 
 	| numerator |
@@ -177,7 +191,7 @@ BaseUnitTest >> testDivideBySameBaseUnit [
 	self assert: numerator / numerator = NullUnit new
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testDivideBySameDomainDerivedUnit [
 
 	| numerator denominator |
@@ -190,7 +204,7 @@ BaseUnitTest >> testDivideBySameDomainDerivedUnit [
 	
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 BaseUnitTest >> testEqualDerivedSameBaseUnit [
 
 	| meter centimeter |
@@ -201,7 +215,7 @@ BaseUnitTest >> testEqualDerivedSameBaseUnit [
 	self deny: meter = centimeter
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 BaseUnitTest >> testEqualDifferentBaseUnit [
 
 	| meter hour |
@@ -211,7 +225,7 @@ BaseUnitTest >> testEqualDifferentBaseUnit [
 	self deny: meter = hour
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 BaseUnitTest >> testEqualDividedUnit [
 
 	| meter hour |
@@ -221,7 +235,7 @@ BaseUnitTest >> testEqualDividedUnit [
 	self deny: meter = (meter / hour)
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 BaseUnitTest >> testEqualMultipliedUnit [
 
 	| meter hour |
@@ -231,7 +245,7 @@ BaseUnitTest >> testEqualMultipliedUnit [
 	self deny: meter = (meter * hour)
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 BaseUnitTest >> testEqualNullUnit [
 
 	| meter |
@@ -240,7 +254,7 @@ BaseUnitTest >> testEqualNullUnit [
 	self deny: meter = NullUnit new
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 BaseUnitTest >> testEqualSameBaseUnit [
 
 	| meter |
@@ -249,7 +263,7 @@ BaseUnitTest >> testEqualSameBaseUnit [
 	self assert: meter = meter
 ]
 
-{ #category : #'test measurement creation' }
+{ #category : 'test measurement creation' }
 BaseUnitTest >> testMeasureCreation [
 
 	| meter |
@@ -258,7 +272,7 @@ BaseUnitTest >> testMeasureCreation [
 	self assert: (meter with: 10) = (Measure amount: 10 unit: meter)
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testMultiplyByDividedUnit [
 
 	| meter second kelvin |
@@ -271,31 +285,33 @@ BaseUnitTest >> testMultiplyByDividedUnit [
 	self assert: (meter * (second / kelvin)) denominator = kelvin
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testMultiplyByInfinity [
 
 	| kelvin |
-
 	kelvin := BaseUnit named: 'kelvin'.
-	self assert: kelvin * Infinity = (kelvin with: Infinity).
-	self assert: Infinity * kelvin = (kelvin with: Infinity).
-	self assert: (kelvin * Infinity) numerator = (kelvin with: Infinity).
-	self assert: (kelvin * Infinity) denominator = 1
+	self assert: kelvin * self infinity = (kelvin with: self infinity).
+	self assert: self infinity * kelvin = (kelvin with: self infinity).
+	self assert:
+		(kelvin * self infinity) numerator = (kelvin with: self infinity).
+	self assert: (kelvin * self infinity) denominator = 1
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testMultiplyByMinusInfinity [
 
 	| kelvin |
-
 	kelvin := BaseUnit named: 'kelvin'.
-	self assert: kelvin * MinusInfinity = (kelvin with: MinusInfinity).
-	self assert: MinusInfinity * kelvin = (kelvin with: MinusInfinity).
-	self assert: (kelvin * MinusInfinity) numerator = (kelvin with: MinusInfinity).
-	self assert: (kelvin * MinusInfinity) denominator = 1
+	self assert:
+		kelvin * self minusInfinity = (kelvin with: self minusInfinity).
+	self assert:
+		self minusInfinity * kelvin = (kelvin with: self minusInfinity).
+	self assert: (kelvin * self minusInfinity) numerator
+		= (kelvin with: self minusInfinity).
+	self assert: (kelvin * self minusInfinity) denominator = 1
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testMultiplyByMultipliedUnit [
 
 	| meter second kelvin |
@@ -310,7 +326,7 @@ BaseUnitTest >> testMultiplyByMultipliedUnit [
 	self assert: ((meter * (second * kelvin)) factors includes: kelvin)
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testMultiplyByNullUnit [
 
 	| meter |
@@ -321,7 +337,7 @@ BaseUnitTest >> testMultiplyByNullUnit [
 
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testMultiplyByNumber [
 
 	| kelvin |
@@ -338,7 +354,7 @@ BaseUnitTest >> testMultiplyByNumber [
 	self assert: (kelvin * 5.5) denominator = (kelvin with: 5.5) denominator
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testMultiplyBySimpleUnit [
 
 	| meter second|
@@ -351,13 +367,13 @@ BaseUnitTest >> testMultiplyBySimpleUnit [
 	self assert: ((meter * second) factors includes: second)
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 BaseUnitTest >> testName [
 
 	self assert: (BaseUnit named: 'peso') name = 'peso'
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 BaseUnitTest >> testNameFor [
 
 	| unit |
@@ -372,7 +388,7 @@ BaseUnitTest >> testNameFor [
 		assert: (unit nameFor: 0.11) = unit nameForMany
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 BaseUnitTest >> testNameForMany [
 
 	self assert: (BaseUnit named: 'peso') nameForMany = 'pesos'.
@@ -381,7 +397,7 @@ BaseUnitTest >> testNameForMany [
 	self assert: (BaseUnit nameForOne: 'peso' nameForMany: 'pepe' sign: '$') nameForMany = 'pepe'.	
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 BaseUnitTest >> testNameForOne [
 
 	| unit |
@@ -390,7 +406,7 @@ BaseUnitTest >> testNameForOne [
 	self assert: unit name = unit nameForOne.
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 BaseUnitTest >> testNameForUndefinedAmount [
 
 	| baseUnit |
@@ -399,14 +415,14 @@ BaseUnitTest >> testNameForUndefinedAmount [
 	self assert: baseUnit nameForUndefinedAmount = baseUnit nameForMany
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 BaseUnitTest >> testNothingAmount [
 
 	self assert: (BaseUnit named: 'peso') nothingAmount = 0.
 
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 BaseUnitTest >> testNullMeasure [
 
 	| unit |
@@ -417,7 +433,7 @@ BaseUnitTest >> testNullMeasure [
 
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testNumberDividedByUnit [
 
 	| kelvin |
@@ -436,7 +452,7 @@ BaseUnitTest >> testNumberDividedByUnit [
 	self assert: (5.5 / kelvin) denominator = (kelvin with: 1)
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testNumberDividedByUnitTwice [
 
 	| kelvin meter |
@@ -453,7 +469,7 @@ BaseUnitTest >> testNumberDividedByUnitTwice [
 	self assert: (5.5 / kelvin / meter) denominator = (kelvin * meter with: 1)
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testNumberMultipliedByUnit [
 
 	| kelvin |
@@ -471,7 +487,7 @@ BaseUnitTest >> testNumberMultipliedByUnit [
 	self assert: (5.5 * kelvin) denominator = (kelvin with: 5.5) denominator
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 BaseUnitTest >> testNumberMultipliedByUnitTwice [
 
 	| kelvin meter |
@@ -488,7 +504,7 @@ BaseUnitTest >> testNumberMultipliedByUnitTwice [
 	self assert: (5.5 * kelvin * meter) denominator = (kelvin * meter with: 5.5) denominator
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 BaseUnitTest >> testNumerator [
 
 	| unit |
@@ -498,7 +514,7 @@ BaseUnitTest >> testNumerator [
 	self assert: unit numerator = unit
 ]
 
-{ #category : #'test printing' }
+{ #category : 'test printing' }
 BaseUnitTest >> testPrintingCustomization [
 
 	| unit measure |
@@ -508,7 +524,7 @@ BaseUnitTest >> testPrintingCustomization [
 	self assert: measure printString equals: '$5.00'.
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 BaseUnitTest >> testReciprocal [
 
 	| peso |
@@ -516,7 +532,7 @@ BaseUnitTest >> testReciprocal [
 	self assert: peso reciprocal = (NullUnit new / peso)
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 BaseUnitTest >> testSameDomainAsDerivedUnit [
 
 	| meter centimeter |
@@ -530,7 +546,7 @@ BaseUnitTest >> testSameDomainAsDerivedUnit [
 
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 BaseUnitTest >> testSameDomainAsDerivedUnitOfOtherDomain [
 
 	| meter hour minute|
@@ -544,7 +560,7 @@ BaseUnitTest >> testSameDomainAsDerivedUnitOfOtherDomain [
 	
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 BaseUnitTest >> testSameDomainAsDifferentBaseUnit [
 
 	| unit metro |
@@ -557,7 +573,7 @@ BaseUnitTest >> testSameDomainAsDifferentBaseUnit [
 
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 BaseUnitTest >> testSameDomainAsDividedUnit [
 
 	| meter hour |
@@ -570,7 +586,7 @@ BaseUnitTest >> testSameDomainAsDividedUnit [
 	
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 BaseUnitTest >> testSameDomainAsMultipliedUnit [
 
 	| meter hour |
@@ -583,7 +599,7 @@ BaseUnitTest >> testSameDomainAsMultipliedUnit [
 	
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 BaseUnitTest >> testSameDomainAsNullUnit [
 
 	| meter |
@@ -594,7 +610,7 @@ BaseUnitTest >> testSameDomainAsNullUnit [
 	
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 BaseUnitTest >> testSameDomainAsSameBaseUnit [
 
 	| unit |
@@ -607,7 +623,7 @@ BaseUnitTest >> testSameDomainAsSameBaseUnit [
 
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 BaseUnitTest >> testSign [
 
 	self assert: (BaseUnit named: 'peso') sign=BaseUnit defaultSign.

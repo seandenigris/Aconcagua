@@ -1,10 +1,12 @@
 Class {
-	#name : #ArithmeticObjectIntervalTest,
-	#superclass : #TestCase,
-	#category : 'Aconcagua-Tests-ArithmeticModel'
+	#name : 'ArithmeticObjectIntervalTest',
+	#superclass : 'TestCase',
+	#category : 'Aconcagua-Tests-ArithmeticModel',
+	#package : 'Aconcagua-Tests',
+	#tag : 'ArithmeticModel'
 }
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 ArithmeticObjectIntervalTest >> testAccessing [
 
 	| interval |
@@ -17,7 +19,7 @@ ArithmeticObjectIntervalTest >> testAccessing [
 	
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 ArithmeticObjectIntervalTest >> testAdd [
 
 	self 
@@ -25,7 +27,7 @@ ArithmeticObjectIntervalTest >> testAdd [
 		raise: Exception
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 ArithmeticObjectIntervalTest >> testAt [
 
 	| interval |
@@ -40,7 +42,7 @@ ArithmeticObjectIntervalTest >> testAt [
 	self should: [interval at: 11] raise: IndexOutOfRangeException
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 ArithmeticObjectIntervalTest >> testComparing [
 
 	| interval1 interval2 |
@@ -54,7 +56,7 @@ ArithmeticObjectIntervalTest >> testComparing [
 	
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 ArithmeticObjectIntervalTest >> testCopyAndGrowBy [
 
 	| original copy |
@@ -68,7 +70,7 @@ ArithmeticObjectIntervalTest >> testCopyAndGrowBy [
 
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 ArithmeticObjectIntervalTest >> testDeepCopy [
 
 	| original copy |
@@ -80,7 +82,7 @@ ArithmeticObjectIntervalTest >> testDeepCopy [
 	self deny: original == copy.
 ]
 
-{ #category : #'test enumerating' }
+{ #category : 'test enumerating' }
 ArithmeticObjectIntervalTest >> testDo [
 
 	| interval number |
@@ -95,7 +97,7 @@ ArithmeticObjectIntervalTest >> testDo [
 
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 ArithmeticObjectIntervalTest >> testFirst [
 
 	| interval |
@@ -106,14 +108,14 @@ ArithmeticObjectIntervalTest >> testFirst [
 
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 ArithmeticObjectIntervalTest >> testHash [
 
 	self assert: (ArithmeticObjectInterval from: 1 to: 5 by: 2) hash=(ArithmeticObjectInterval from: 1 to: 5 by: 2) hash
 
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 ArithmeticObjectIntervalTest >> testIncludes [
 
 	| interval |
@@ -132,7 +134,7 @@ ArithmeticObjectIntervalTest >> testIncludes [
 
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 ArithmeticObjectIntervalTest >> testInvalidAt [
 
 	| interval |
@@ -150,7 +152,7 @@ ArithmeticObjectIntervalTest >> testInvalidAt [
 	self should: [ interval at: interval size + 1 ] raise: IndexOutOfRangeException
 ]
 
-{ #category : #'test instance creation' }
+{ #category : 'test instance creation' }
 ArithmeticObjectIntervalTest >> testInvalidCreation [
 
 	self 
@@ -168,7 +170,7 @@ ArithmeticObjectIntervalTest >> testInvalidCreation [
 	self should: [ ArithmeticObjectInterval from: 1 to: 2 by: 0] raise: InvalidIntervalException
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 ArithmeticObjectIntervalTest >> testLast [
 
 	| interval |
@@ -179,13 +181,13 @@ ArithmeticObjectIntervalTest >> testLast [
 
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 ArithmeticObjectIntervalTest >> testPrintOn [
 
 	self assert: (ArithmeticObjectInterval from: 1 to: 10 by: 1) printString = 'Interval from: 1 to: 10 by: 1'
 ]
 
-{ #category : #'test enumerating' }
+{ #category : 'test enumerating' }
 ArithmeticObjectIntervalTest >> testReject [
 
 	| interval |
@@ -195,7 +197,7 @@ ArithmeticObjectIntervalTest >> testReject [
 
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 ArithmeticObjectIntervalTest >> testRemoveIfAbsent [
 
 	self 
@@ -204,7 +206,7 @@ ArithmeticObjectIntervalTest >> testRemoveIfAbsent [
 
 ]
 
-{ #category : #'test enumerating' }
+{ #category : 'test enumerating' }
 ArithmeticObjectIntervalTest >> testReverse [
 
 	| interval |
@@ -214,7 +216,7 @@ ArithmeticObjectIntervalTest >> testReverse [
 
 ]
 
-{ #category : #'test enumerating' }
+{ #category : 'test enumerating' }
 ArithmeticObjectIntervalTest >> testReverseDo [
 
 	| interval number |
@@ -228,7 +230,7 @@ ArithmeticObjectIntervalTest >> testReverseDo [
 	self assert: number = -1
 ]
 
-{ #category : #'test enumerating' }
+{ #category : 'test enumerating' }
 ArithmeticObjectIntervalTest >> testSelect [
 
 	| interval |
@@ -238,7 +240,7 @@ ArithmeticObjectIntervalTest >> testSelect [
 
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 ArithmeticObjectIntervalTest >> testShallowCopy [
 
 	| original copy |
@@ -250,7 +252,7 @@ ArithmeticObjectIntervalTest >> testShallowCopy [
 	self deny: original == copy.
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 ArithmeticObjectIntervalTest >> testSize [
 
 	self assert: (ArithmeticObjectInterval from: 1 to: 10 by: 2) size=5.
@@ -263,7 +265,7 @@ ArithmeticObjectIntervalTest >> testSize [
 	
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 ArithmeticObjectIntervalTest >> testStoreOn [
 
 	| stream |

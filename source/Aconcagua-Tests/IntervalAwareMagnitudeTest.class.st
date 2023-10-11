@@ -1,10 +1,12 @@
 Class {
-	#name : #IntervalAwareMagnitudeTest,
-	#superclass : #TestCase,
-	#category : 'Aconcagua-Tests-ArithmeticModel'
+	#name : 'IntervalAwareMagnitudeTest',
+	#superclass : 'TestCase',
+	#category : 'Aconcagua-Tests-ArithmeticModel',
+	#package : 'Aconcagua-Tests',
+	#tag : 'ArithmeticModel'
 }
 
-{ #category : #test }
+{ #category : 'test' }
 IntervalAwareMagnitudeTest >> testBetweenAndNotInclusive [
 
 	self assert: ((TestIntervalAwareMagnitude with: 1) between: (TestIntervalAwareMagnitude with: 0) andNotInclusive: (TestIntervalAwareMagnitude with: 2)).
@@ -12,13 +14,13 @@ IntervalAwareMagnitudeTest >> testBetweenAndNotInclusive [
 	self deny: ((TestIntervalAwareMagnitude with: 1) between: (TestIntervalAwareMagnitude with: 0) andNotInclusive: (TestIntervalAwareMagnitude with: 1))
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 IntervalAwareMagnitudeTest >> testHash [
 
 	self assert: (TestIntervalAwareMagnitude with: 10) hash = (TestIntervalAwareMagnitude with: 10) hash
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 IntervalAwareMagnitudeTest >> testMax [
 
 	self assert: ((TestIntervalAwareMagnitude with: 10) max: (TestIntervalAwareMagnitude with: 11)) = (TestIntervalAwareMagnitude with: 11).
@@ -26,7 +28,7 @@ IntervalAwareMagnitudeTest >> testMax [
 	self assert: ((TestIntervalAwareMagnitude with: 10) max: (TestIntervalAwareMagnitude with: 10)) = (TestIntervalAwareMagnitude with: 10)
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 IntervalAwareMagnitudeTest >> testMin [
 
 	self assert: ((TestIntervalAwareMagnitude with: 10) min: (TestIntervalAwareMagnitude with: 11)) = (TestIntervalAwareMagnitude with: 10).
@@ -34,7 +36,7 @@ IntervalAwareMagnitudeTest >> testMin [
 	self assert: ((TestIntervalAwareMagnitude with: 10) min: (TestIntervalAwareMagnitude with: 10)) = (TestIntervalAwareMagnitude with: 10)
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 IntervalAwareMagnitudeTest >> testNotInclusiveBetweenAnd [
 
 	self assert: ((TestIntervalAwareMagnitude with: 1) notInclusiveBetween: (TestIntervalAwareMagnitude with: 0) and: (TestIntervalAwareMagnitude with: 1)).
@@ -42,7 +44,7 @@ IntervalAwareMagnitudeTest >> testNotInclusiveBetweenAnd [
 	self deny: ((TestIntervalAwareMagnitude with: 1) notInclusiveBetween: (TestIntervalAwareMagnitude with: 1) and: (TestIntervalAwareMagnitude with: 1))
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 IntervalAwareMagnitudeTest >> testNotInclusiveBetweenAndNotInclusive [
 
 	self assert: ((TestIntervalAwareMagnitude with: 1) notInclusiveBetween: (TestIntervalAwareMagnitude with: 0) andNotInclusive: (TestIntervalAwareMagnitude with: 2)).
@@ -50,7 +52,7 @@ IntervalAwareMagnitudeTest >> testNotInclusiveBetweenAndNotInclusive [
 	self deny: ((TestIntervalAwareMagnitude with: 1) notInclusiveBetween: (TestIntervalAwareMagnitude with: 0) andNotInclusive: (TestIntervalAwareMagnitude with: 1))
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 IntervalAwareMagnitudeTest >> testTo [
 
 	| interval |
@@ -62,7 +64,7 @@ IntervalAwareMagnitudeTest >> testTo [
 	self assert: interval by = (TestIntervalAwareMagnitude with: 1)
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 IntervalAwareMagnitudeTest >> testToBy [
 
 	| interval |
@@ -74,7 +76,7 @@ IntervalAwareMagnitudeTest >> testToBy [
 	self assert: interval by = (TestIntervalAwareMagnitude with: 5)
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 IntervalAwareMagnitudeTest >> testToByDo [
 
 	| number |
@@ -90,7 +92,7 @@ IntervalAwareMagnitudeTest >> testToByDo [
 	self assert: number = 22
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 IntervalAwareMagnitudeTest >> testToNegativeBy [
 
 	| interval number |
@@ -104,7 +106,7 @@ IntervalAwareMagnitudeTest >> testToNegativeBy [
 	self assert: number = 8
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 IntervalAwareMagnitudeTest >> testToReverse [
 
 	| coll number |

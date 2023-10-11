@@ -1,22 +1,24 @@
 Class {
-	#name : #DerivedUnit,
-	#superclass : #SimpleUnit,
-	#category : 'Aconcagua-Core-MeasureModel'
+	#name : 'DerivedUnit',
+	#superclass : 'SimpleUnit',
+	#category : 'Aconcagua-Core-MeasureModel',
+	#package : 'Aconcagua-Core',
+	#tag : 'MeasureModel'
 }
 
-{ #category : #'converting - private' }
+{ #category : 'converting - private' }
 DerivedUnit >> convertAmountFromBaseUnit: aNumber [
 
 	self subclassResponsibility
 ]
 
-{ #category : #'converting - private' }
+{ #category : 'converting - private' }
 DerivedUnit >> convertFromBaseUnit: aMeasure [ 
 
 	^Measure amount: (self convertAmountFromBaseUnit: aMeasure amount) unit: self
 ]
 
-{ #category : #'converting - private' }
+{ #category : 'converting - private' }
 DerivedUnit >> convertToBaseUnit: aMeasure [ 
 	
 	^Measure 
@@ -24,7 +26,7 @@ DerivedUnit >> convertToBaseUnit: aMeasure [
 		unit: self baseUnit
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DerivedUnit >> nothingAmount [
 
 	^self convertAmountFromBaseUnit: self baseUnit nothingAmount

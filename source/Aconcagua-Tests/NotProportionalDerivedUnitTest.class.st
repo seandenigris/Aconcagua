@@ -1,19 +1,21 @@
 Class {
-	#name : #NotProportionalDerivedUnitTest,
-	#superclass : #TestCase,
+	#name : 'NotProportionalDerivedUnitTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'kelvin'
 	],
-	#category : 'Aconcagua-Tests-MeasureModel'
+	#category : 'Aconcagua-Tests-MeasureModel',
+	#package : 'Aconcagua-Tests',
+	#tag : 'MeasureModel'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 NotProportionalDerivedUnitTest >> setUp [
 
 	kelvin := BaseUnit named: 'kelvin'
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 NotProportionalDerivedUnitTest >> testBaseUnit [
 
 	| unit |
@@ -28,7 +30,7 @@ NotProportionalDerivedUnitTest >> testBaseUnit [
 	self assert: unit baseUnit = kelvin
 ]
 
-{ #category : #'test converting' }
+{ #category : 'test converting' }
 NotProportionalDerivedUnitTest >> testConvertAmountToBaseUnit [
 
 	| unit |
@@ -44,7 +46,7 @@ NotProportionalDerivedUnitTest >> testConvertAmountToBaseUnit [
 	self assert: (unit convertAmountToBaseUnit: 100) = (7463/20)
 ]
 
-{ #category : #'test converting' }
+{ #category : 'test converting' }
 NotProportionalDerivedUnitTest >> testConvertToBaseUnit [
 
 	| unit measure |
@@ -64,7 +66,7 @@ NotProportionalDerivedUnitTest >> testConvertToBaseUnit [
 
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 NotProportionalDerivedUnitTest >> testDenominator [
 
 	| unit |
@@ -79,7 +81,7 @@ NotProportionalDerivedUnitTest >> testDenominator [
 	self assert: unit denominator = NullUnit new
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 NotProportionalDerivedUnitTest >> testName [
 
 	self assert: ( NotProportionalDerivedUnit 
@@ -89,7 +91,7 @@ NotProportionalDerivedUnitTest >> testName [
 		named: 'celcius') name = 'celcius'
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 NotProportionalDerivedUnitTest >> testNameForMany [
 
 	self assert: (NotProportionalDerivedUnit 
@@ -112,7 +114,7 @@ NotProportionalDerivedUnitTest >> testNameForMany [
 		sign: '¦Ç¬¨¦Ç¬ù') nameForMany = 'celcius'
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 NotProportionalDerivedUnitTest >> testNameForOne [
 
 	self assert: ( NotProportionalDerivedUnit 
@@ -122,7 +124,7 @@ NotProportionalDerivedUnitTest >> testNameForOne [
 		named: 'celcius') nameForOne = 'celcius'
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 NotProportionalDerivedUnitTest >> testNothingAmount [
 
 	| unit |
@@ -138,7 +140,7 @@ NotProportionalDerivedUnitTest >> testNothingAmount [
 
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 NotProportionalDerivedUnitTest >> testNullMeasure [
 
 	| unit |
@@ -155,7 +157,7 @@ NotProportionalDerivedUnitTest >> testNullMeasure [
 
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 NotProportionalDerivedUnitTest >> testNumerator [
 
 	| unit |
@@ -170,7 +172,7 @@ NotProportionalDerivedUnitTest >> testNumerator [
 	self assert: unit numerator = unit
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 NotProportionalDerivedUnitTest >> testReciprocal [
 
 	| unit |
@@ -186,7 +188,7 @@ NotProportionalDerivedUnitTest >> testReciprocal [
 
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 NotProportionalDerivedUnitTest >> testSameDomainAs [
 
 	| unit metro |
@@ -211,7 +213,7 @@ NotProportionalDerivedUnitTest >> testSameDomainAs [
 			sign: '¦Ç¬¨¦Ç¬ù'))
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 NotProportionalDerivedUnitTest >> testSign [
 
 	self assert: (NotProportionalDerivedUnit 

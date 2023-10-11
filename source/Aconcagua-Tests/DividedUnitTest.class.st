@@ -1,15 +1,29 @@
 Class {
-	#name : #DividedUnitTest,
-	#superclass : #TestCase,
+	#name : 'DividedUnitTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'meter',
 		'second',
 		'meterOverSecond'
 	],
-	#category : 'Aconcagua-Tests-MeasureModel'
+	#category : 'Aconcagua-Tests-MeasureModel',
+	#package : 'Aconcagua-Tests',
+	#tag : 'MeasureModel'
 }
 
-{ #category : #initialization }
+{ #category : 'test arithmetic operations' }
+DividedUnitTest >> infinity [
+
+	^ ArithmeticObject infinity
+]
+
+{ #category : 'test arithmetic operations' }
+DividedUnitTest >> minusInfinity [
+
+	^ ArithmeticObject minusInfinity
+]
+
+{ #category : 'initialization' }
 DividedUnitTest >> setUp [
 
 	meter := BaseUnit named: 'meter' sign: 'm'.
@@ -17,21 +31,21 @@ DividedUnitTest >> setUp [
 	meterOverSecond := meter / second
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 DividedUnitTest >> testBaseUnit [
 
 	self assert: (meterOverSecond baseUnit) = meterOverSecond
 
 ]
 
-{ #category : #'test converting' }
+{ #category : 'test converting' }
 DividedUnitTest >> testConvertAmountToBaseUnit [
 
 	self assert: (meterOverSecond convertAmountToBaseUnit: 0) = 0.
 	self assert: (meterOverSecond convertAmountToBaseUnit: 10) = 10
 ]
 
-{ #category : #'test converting' }
+{ #category : 'test converting' }
 DividedUnitTest >> testConvertToBaseUnit [
 
 	| measure |
@@ -40,13 +54,13 @@ DividedUnitTest >> testConvertToBaseUnit [
 	self assert: (meterOverSecond convertToBaseUnit: measure) == measure
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 DividedUnitTest >> testDenominator [
 
 	self assert: meterOverSecond denominator = second
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 DividedUnitTest >> testDivideByDividedUnit [
 
 	|  kelvin liter |
@@ -59,37 +73,44 @@ DividedUnitTest >> testDivideByDividedUnit [
 	self assert: (meterOverSecond / (kelvin / liter)) denominator = (second * kelvin)
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 DividedUnitTest >> testDivideByInfinity [
 
-	self assert: meterOverSecond / Infinity = (meterOverSecond with: 0).
-	self assert: (meterOverSecond / Infinity) numerator = (meter with: 0).
-	self assert: (meterOverSecond / Infinity) denominator = (second with: 1).
+	self assert:
+		meterOverSecond / self infinity = (meterOverSecond with: 0).
+	self assert:
+		(meterOverSecond / self infinity) numerator = (meter with: 0).
+	self assert:
+		(meterOverSecond / self infinity) denominator = (second with: 1).
 	self
-		should: [Infinity / meterOverSecond]
+		should: [ self infinity / meterOverSecond ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Division operation is indeterminate between Infinity and meter/second']
+		withExceptionDo: [ :anException |
+			self assert: anException description
+				=
+				'The Division operation is indeterminate between Infinity and meter/second' ]
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 DividedUnitTest >> testDivideByMinusInfinity [
 
-	self assert: meterOverSecond / MinusInfinity = (meterOverSecond with: 0).
-	self assert: (meterOverSecond / MinusInfinity) numerator = (meter with: 0).
-	self assert: (meterOverSecond / MinusInfinity) denominator = (second with: 1).
+	self assert:
+		meterOverSecond / self minusInfinity = (meterOverSecond with: 0).
+	self assert:
+		(meterOverSecond / self minusInfinity) numerator = (meter with: 0).
+	self assert:
+		(meterOverSecond / self minusInfinity) denominator
+		= (second with: 1).
 	self
-		should: [MinusInfinity / meterOverSecond]
+		should: [ self minusInfinity / meterOverSecond ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Division operation is indeterminate between Minus Infinity and meter/second']
+		withExceptionDo: [ :anException |
+			self assert: anException description
+				=
+				'The Division operation is indeterminate between Minus Infinity and meter/second' ]
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 DividedUnitTest >> testDivideByNumber [
 
 	self assert: (meterOverSecond / 5) = (meterOverSecond with: 1/5).
@@ -101,7 +122,7 @@ DividedUnitTest >> testDivideByNumber [
 	self assert: (meterOverSecond / 5.5) denominator = (second with: 1)
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 DividedUnitTest >> testDivideBySimpleUnit [
 
 	| kelvin |
@@ -115,7 +136,7 @@ DividedUnitTest >> testDivideBySimpleUnit [
 
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 DividedUnitTest >> testDividedByMultipliedUnit [
 
 	|  kelvin liter |
@@ -130,14 +151,14 @@ DividedUnitTest >> testDividedByMultipliedUnit [
 
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 DividedUnitTest >> testDividedByNullUnit [
 
 	self assert: (meterOverSecond / NullUnit new) = meterOverSecond.
 
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 DividedUnitTest >> testEqualDividedUnit [
 
 	| kelvin liter |
@@ -153,19 +174,19 @@ DividedUnitTest >> testEqualDividedUnit [
 	self deny: meterOverSecond = (kelvin / liter)
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 DividedUnitTest >> testEqualMultipliedUnit [
 
 	self deny: meterOverSecond = (meter * second)
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 DividedUnitTest >> testEqualNullUnit [
 
 	self deny: meterOverSecond = NullUnit new
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 DividedUnitTest >> testEqualSimpleUnit [
 
 	| kelvin |
@@ -174,13 +195,13 @@ DividedUnitTest >> testEqualSimpleUnit [
 	self deny: meterOverSecond = kelvin
 ]
 
-{ #category : #'test measurement creation' }
+{ #category : 'test measurement creation' }
 DividedUnitTest >> testMeasureCreation [
 
 	self assert: (meterOverSecond with: 10) = (Measure amount: 10 unit: meterOverSecond)
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 DividedUnitTest >> testMultiplyByDividedUnit [
 
 	|  kelvin liter |
@@ -195,25 +216,34 @@ DividedUnitTest >> testMultiplyByDividedUnit [
 	self assert: (meterOverSecond * (kelvin / liter)) denominator = (second * liter)
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 DividedUnitTest >> testMultiplyByInfinity [
 
-	self assert: meterOverSecond * Infinity = (meterOverSecond with: Infinity).
-	self assert: Infinity * meterOverSecond = (meterOverSecond with: Infinity).
-	self assert: (meterOverSecond * Infinity) numerator = (meter with: Infinity).
-	self assert: (meterOverSecond * Infinity) denominator = (second with: 1)
+	self assert: meterOverSecond * self infinity
+		= (meterOverSecond with: self infinity).
+	self assert: self infinity * meterOverSecond
+		= (meterOverSecond with: self infinity).
+	self assert: (meterOverSecond * self infinity) numerator
+		= (meter with: self infinity).
+	self assert:
+		(meterOverSecond * self infinity) denominator = (second with: 1)
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 DividedUnitTest >> testMultiplyByMinusInfinity [
 
-	self assert: meterOverSecond * MinusInfinity = (meterOverSecond with: MinusInfinity).
-	self assert: MinusInfinity * meterOverSecond = (meterOverSecond with: MinusInfinity).
-	self assert: (meterOverSecond * MinusInfinity) numerator = (meter with: MinusInfinity).
-	self assert: (meterOverSecond * MinusInfinity) denominator = (second with: 1)
+	self assert: meterOverSecond * self minusInfinity
+		= (meterOverSecond with: self minusInfinity).
+	self assert: self minusInfinity * meterOverSecond
+		= (meterOverSecond with: self minusInfinity).
+	self assert: (meterOverSecond * self minusInfinity) numerator
+		= (meter with: self minusInfinity).
+	self assert:
+		(meterOverSecond * self minusInfinity) denominator
+		= (second with: 1)
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 DividedUnitTest >> testMultiplyByMultipliedUnit [
 
 	| kelvin |
@@ -226,14 +256,14 @@ DividedUnitTest >> testMultiplyByMultipliedUnit [
 
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 DividedUnitTest >> testMultiplyByNullUnit [
 
 	self assert: (meterOverSecond * NullUnit new) = meterOverSecond.
 
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 DividedUnitTest >> testMultiplyByNumber [
 
 	self assert: (meterOverSecond * 5) = (meterOverSecond with: 5).
@@ -245,7 +275,7 @@ DividedUnitTest >> testMultiplyByNumber [
 	self assert: (meterOverSecond * 5.5) denominator = (second with: 1)
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 DividedUnitTest >> testMultiplyBySimpleUnit [
 
 	| kelvin |
@@ -260,31 +290,31 @@ DividedUnitTest >> testMultiplyBySimpleUnit [
 	self assert: (meterOverSecond * kelvin) denominator = second
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 DividedUnitTest >> testName [
 
 	self assert: meterOverSecond name = 'meter/second'
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 DividedUnitTest >> testNameForMany [
 
 	self assert: meterOverSecond nameForMany = 'meters/seconds'
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 DividedUnitTest >> testNameForOne [
 
 	self assert: meterOverSecond name = 'meter/second'
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 DividedUnitTest >> testNothingAmount [
 
 	self assert: meterOverSecond nothingAmount = 0
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 DividedUnitTest >> testNullMeasure [
 
 	self assert: meterOverSecond nullMeasure amount = 0.
@@ -292,7 +322,7 @@ DividedUnitTest >> testNullMeasure [
 
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 DividedUnitTest >> testNumberDividedByUnit [
 
 	| secondOverMeter |
@@ -307,7 +337,7 @@ DividedUnitTest >> testNumberDividedByUnit [
 	self assert: (5.5 / meterOverSecond) denominator = (meter with: 1)
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 DividedUnitTest >> testNumberDividedByUnitTwice [
 
 	| secondOverMeter kelvin |
@@ -323,7 +353,7 @@ DividedUnitTest >> testNumberDividedByUnitTwice [
 	self assert: (5.5 / kelvin / meterOverSecond) denominator = (kelvin * meter with: 1)
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 DividedUnitTest >> testNumberMultipliedByUnit [
 
 	self assert: (5 * meterOverSecond) = (meterOverSecond with: 5).
@@ -335,7 +365,7 @@ DividedUnitTest >> testNumberMultipliedByUnit [
 	self assert: (5.5 * meterOverSecond) denominator = (second with: 1)
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 DividedUnitTest >> testNumberMultipliedByUnitTwice [
 
 	| kelvin |
@@ -350,13 +380,13 @@ DividedUnitTest >> testNumberMultipliedByUnitTwice [
 	self assert: (5.5 * kelvin * meterOverSecond) denominator = (second with: 1)
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 DividedUnitTest >> testNumerator [
 
 	self assert: meterOverSecond numerator = meter
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 DividedUnitTest >> testReciprocal [
 
 	| secondOverMeter |
@@ -364,7 +394,7 @@ DividedUnitTest >> testReciprocal [
 	self assert: meterOverSecond reciprocal = secondOverMeter
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 DividedUnitTest >> testSameDomainAsDividedUnit [
 
 	self assert: (meterOverSecond sameDomainAs: meterOverSecond).
@@ -373,13 +403,13 @@ DividedUnitTest >> testSameDomainAsDividedUnit [
 	
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 DividedUnitTest >> testSameDomainAsMultipliedUnit [
 
 	self deny: (meterOverSecond sameDomainAs: (meter * second))
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 DividedUnitTest >> testSameDomainAsNullUnit [
 
 	self deny: (meterOverSecond sameDomainAs: NullUnit new)
@@ -387,7 +417,7 @@ DividedUnitTest >> testSameDomainAsNullUnit [
 	
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 DividedUnitTest >> testSameDomainAsSameSimpleUnit [
 
 	self deny: (meterOverSecond sameDomainAs: meter).
@@ -397,7 +427,7 @@ DividedUnitTest >> testSameDomainAsSameSimpleUnit [
 
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 DividedUnitTest >> testSign [
 
 	self assert: meterOverSecond sign = 'm/s'

@@ -1,45 +1,47 @@
 Class {
-	#name : #NullUnitTest,
-	#superclass : #TestCase,
+	#name : 'NullUnitTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'nullUnit'
 	],
-	#category : 'Aconcagua-Tests-MeasureModel'
+	#category : 'Aconcagua-Tests-MeasureModel',
+	#package : 'Aconcagua-Tests',
+	#tag : 'MeasureModel'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 NullUnitTest >> setUp [
 
 	nullUnit := NullUnit new
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 NullUnitTest >> testBaseUnit [
 
 	self assert: (nullUnit baseUnit) = nullUnit
 
 ]
 
-{ #category : #'test converting' }
+{ #category : 'test converting' }
 NullUnitTest >> testConvertAmountToBaseUnit [
 
 	self assert: (nullUnit convertAmountToBaseUnit: 0) = 0.
 	self assert: (nullUnit convertAmountToBaseUnit: 10) = 0
 ]
 
-{ #category : #'test converting' }
+{ #category : 'test converting' }
 NullUnitTest >> testConvertToBaseUnit [
 
 	self assert: (nullUnit convertToBaseUnit: 0) == 0
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 NullUnitTest >> testDenominator [
 
 	self assert: nullUnit denominator = nullUnit
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 NullUnitTest >> testDivideByDividedUnit [
 
 	| meter hour |
@@ -50,7 +52,7 @@ NullUnitTest >> testDivideByDividedUnit [
 	self assert: (nullUnit / (meter / hour)) denominator = meter
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 NullUnitTest >> testDivideByMultipliedUnit [
 
 	| meter |
@@ -60,13 +62,13 @@ NullUnitTest >> testDivideByMultipliedUnit [
 	self assert: (nullUnit / (meter * meter)) denominator = (meter*meter)
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 NullUnitTest >> testDivideByNullUnit [
 
 	self assert: (nullUnit / nullUnit) = nullUnit
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 NullUnitTest >> testDivideBySimpleUnit [
 
 	| meter |
@@ -76,7 +78,7 @@ NullUnitTest >> testDivideBySimpleUnit [
 	self assert: (nullUnit / meter) denominator = meter
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 NullUnitTest >> testEqualBaseUnit [
 
 	| meter |
@@ -85,7 +87,7 @@ NullUnitTest >> testEqualBaseUnit [
 	self deny: nullUnit = meter
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 NullUnitTest >> testEqualDerivedUnit [
 
 	| meter centimeter |
@@ -96,7 +98,7 @@ NullUnitTest >> testEqualDerivedUnit [
 	self deny: nullUnit = centimeter
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 NullUnitTest >> testEqualDividedUnit [
 
 	| meter hour |
@@ -106,7 +108,7 @@ NullUnitTest >> testEqualDividedUnit [
 	self deny: nullUnit = (meter / hour)
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 NullUnitTest >> testEqualMultipliedUnit [
 
 	| meter hour |
@@ -116,20 +118,20 @@ NullUnitTest >> testEqualMultipliedUnit [
 	self deny: nullUnit = (meter * hour)
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 NullUnitTest >> testEqualNullUnit [
 
 	self assert: nullUnit = nullUnit.
 	self assert: NullUnit new = NullUnit new
 ]
 
-{ #category : #'test measurement creation' }
+{ #category : 'test measurement creation' }
 NullUnitTest >> testMeasureCreation [
 
 	self assert: (nullUnit with: 10) = 10
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 NullUnitTest >> testMultiplyByDividedUnit [
 
 	| meter second |
@@ -141,7 +143,7 @@ NullUnitTest >> testMultiplyByDividedUnit [
 	self assert: (nullUnit * (meter / second )) denominator = second
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 NullUnitTest >> testMultiplyByMultipliedUnit [
 
 	| second kelvin |
@@ -154,13 +156,13 @@ NullUnitTest >> testMultiplyByMultipliedUnit [
 	self assert: ((nullUnit * (second * kelvin)) factors includes: kelvin)
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 NullUnitTest >> testMultiplyByNullUnit [
 
 	self assert: (nullUnit * nullUnit) = nullUnit
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 NullUnitTest >> testMultiplyBySimpleUnit [
 
 	| meter |
@@ -170,37 +172,37 @@ NullUnitTest >> testMultiplyBySimpleUnit [
 	self assert: (nullUnit * meter) = meter
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 NullUnitTest >> testName [
 
 	self assert: nullUnit name = ''
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 NullUnitTest >> testNameForMany [
 
 	self assert: nullUnit nameForMany = ''
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 NullUnitTest >> testNameForOne [
 
 	self assert: nullUnit nameForOne = ''
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 NullUnitTest >> testNumerator [
 
 	self assert: nullUnit numerator = nullUnit
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 NullUnitTest >> testReciprocal [
 
 	self assert: nullUnit reciprocal = nullUnit
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 NullUnitTest >> testSameDomainAsBaseUnit [
 
 	| metro |
@@ -209,7 +211,7 @@ NullUnitTest >> testSameDomainAsBaseUnit [
 	self deny: (nullUnit sameDomainAs: metro)
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 NullUnitTest >> testSameDomainAsDerivedUnit [
 
 	| meter centimeter |
@@ -220,7 +222,7 @@ NullUnitTest >> testSameDomainAsDerivedUnit [
 	self deny: (nullUnit sameDomainAs: centimeter)
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 NullUnitTest >> testSameDomainAsDividedUnit [
 
 	| meter hour |
@@ -231,7 +233,7 @@ NullUnitTest >> testSameDomainAsDividedUnit [
 	self deny: (nullUnit sameDomainAs: (meter / hour))
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 NullUnitTest >> testSameDomainAsMultipliedUnit [
 
 	| meter hour |
@@ -242,7 +244,7 @@ NullUnitTest >> testSameDomainAsMultipliedUnit [
 	self deny: (nullUnit sameDomainAs: (meter * hour))
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 NullUnitTest >> testSameDomainAsNullUnit [
 
 	self assert: (nullUnit sameDomainAs: nullUnit)
@@ -250,7 +252,7 @@ NullUnitTest >> testSameDomainAsNullUnit [
 	
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 NullUnitTest >> testSign [
 
 	self assert: nullUnit sign = NullUnit defaultSign

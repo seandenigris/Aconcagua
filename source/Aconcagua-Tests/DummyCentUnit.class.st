@@ -1,10 +1,12 @@
 Class {
-	#name : #DummyCentUnit,
-	#superclass : #ProportionalDerivedUnit,
-	#category : #'Aconcagua-Tests-MeasureModel'
+	#name : 'DummyCentUnit',
+	#superclass : 'ProportionalDerivedUnit',
+	#category : 'Aconcagua-Tests-MeasureModel',
+	#package : 'Aconcagua-Tests',
+	#tag : 'MeasureModel'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 DummyCentUnit >> printMeasure: aMeasure on: aStream [
 
 	aStream

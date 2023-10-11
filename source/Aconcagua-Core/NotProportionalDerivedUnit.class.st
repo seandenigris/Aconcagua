@@ -1,6 +1,6 @@
 Class {
-	#name : #NotProportionalDerivedUnit,
-	#superclass : #DerivedUnit,
+	#name : 'NotProportionalDerivedUnit',
+	#superclass : 'DerivedUnit',
 	#instVars : [
 		'nameForOne',
 		'nameForMany',
@@ -9,10 +9,12 @@ Class {
 		'conversionBlock',
 		'reciprocalConversionBlock'
 	],
-	#category : 'Aconcagua-Core-MeasureModel'
+	#category : 'Aconcagua-Core-MeasureModel',
+	#package : 'Aconcagua-Core',
+	#tag : 'MeasureModel'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 NotProportionalDerivedUnit class >> baseUnit: aUnit conversionBlock: aBlock reciprocalConversionBlock: anotherBlock nameForOne: aString nameForMany: anotherString sign: aSignString [ 
 
 	^self new 
@@ -24,7 +26,7 @@ NotProportionalDerivedUnit class >> baseUnit: aUnit conversionBlock: aBlock reci
 		sign: aSignString
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 NotProportionalDerivedUnit class >> baseUnit: aUnit conversionBlock: aBlock reciprocalConversionBlock: anotherBlock named: aString [
 
 	^self 
@@ -36,7 +38,7 @@ NotProportionalDerivedUnit class >> baseUnit: aUnit conversionBlock: aBlock reci
 		sign: self defaultSign
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 NotProportionalDerivedUnit class >> baseUnit: aUnit conversionBlock: aBlock reciprocalConversionBlock: anotherBlock named: aString sign: aSignString [
 
 	^self 
@@ -48,25 +50,25 @@ NotProportionalDerivedUnit class >> baseUnit: aUnit conversionBlock: aBlock reci
 		sign: aSignString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NotProportionalDerivedUnit >> baseUnit [
 
 	^baseUnit
 ]
 
-{ #category : #'converting - private' }
+{ #category : 'converting - private' }
 NotProportionalDerivedUnit >> convertAmountFromBaseUnit: aNumber [
 
 	^reciprocalConversionBlock value: aNumber
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 NotProportionalDerivedUnit >> convertAmountToBaseUnit: aNumber [
 
 	^conversionBlock value: aNumber
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 NotProportionalDerivedUnit >> initializeBaseUnit: aUnit conversionBlock: aBlock reciprocalConversionBlock: anotherBlock nameForOne: aString nameForMany: anotherString sign: aSignString [
 
 	baseUnit := aUnit.
@@ -77,19 +79,19 @@ NotProportionalDerivedUnit >> initializeBaseUnit: aUnit conversionBlock: aBlock 
 	sign := aSignString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NotProportionalDerivedUnit >> nameForMany [
 
 	^nameForMany
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NotProportionalDerivedUnit >> nameForOne [
 
 	^nameForOne
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NotProportionalDerivedUnit >> sign [
 
 	^sign

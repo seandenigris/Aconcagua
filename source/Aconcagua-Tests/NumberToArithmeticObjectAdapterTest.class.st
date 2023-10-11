@@ -1,16 +1,18 @@
 Class {
-	#name : #NumberToArithmeticObjectAdapterTest,
-	#superclass : #TestCase,
-	#category : #'Aconcagua-Tests-ArithmeticModel'
+	#name : 'NumberToArithmeticObjectAdapterTest',
+	#superclass : 'TestCase',
+	#category : 'Aconcagua-Tests-ArithmeticModel',
+	#package : 'Aconcagua-Tests',
+	#tag : 'ArithmeticModel'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NumberToArithmeticObjectAdapterTest class >> resources [
 
 	^ { UnitsTestResource }
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 NumberToArithmeticObjectAdapterTest >> testArithmetic [
 
 	| measure |
@@ -28,7 +30,7 @@ NumberToArithmeticObjectAdapterTest >> testArithmetic [
 		assert: 20 / measure equals: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 NumberToArithmeticObjectAdapterTest >> testArithmeticWithMeters [
 
 	| meter tenMeters |
@@ -48,7 +50,7 @@ NumberToArithmeticObjectAdapterTest >> testArithmeticWithMeters [
 		assert: 20 / tenMeters equals: meter reciprocal * 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 NumberToArithmeticObjectAdapterTest >> testComparing [
 
 	| adapter |
@@ -72,7 +74,7 @@ NumberToArithmeticObjectAdapterTest >> testComparing [
 		deny: adapter > 11
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 NumberToArithmeticObjectAdapterTest >> testPrintString [
 
 	self
@@ -80,7 +82,7 @@ NumberToArithmeticObjectAdapterTest >> testPrintString [
 		equals: 'NumberMeasureAdapter for: 10'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 NumberToArithmeticObjectAdapterTest >> testQuotient [
 
 	| adapter |
@@ -94,7 +96,7 @@ NumberToArithmeticObjectAdapterTest >> testQuotient [
 		assert: adapter // 3 equals: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 NumberToArithmeticObjectAdapterTest >> testRemainder [
 
 	| adapter |

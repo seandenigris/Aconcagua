@@ -1,205 +1,207 @@
 Class {
-	#name : #MeasureBagTest,
-	#superclass : #TestCase,
+	#name : 'MeasureBagTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'units'
 	],
-	#category : 'Aconcagua-Tests-MeasureModel'
+	#category : 'Aconcagua-Tests-MeasureModel',
+	#package : 'Aconcagua-Tests',
+	#tag : 'MeasureModel'
 }
 
-{ #category : #resources }
+{ #category : 'resources' }
 MeasureBagTest class >> resources [
 
 	^Array with: UnitsTestResource
 ]
 
-{ #category : #'accessing temperature units' }
+{ #category : 'accessing temperature units' }
 MeasureBagTest >> celsius [
 
 	^units celsius
 ]
 
-{ #category : #'accessing monetary units' }
+{ #category : 'accessing monetary units' }
 MeasureBagTest >> centavo [
 	
 	^units centavo
 ]
 
-{ #category : #'accessing distance units' }
+{ #category : 'accessing distance units' }
 MeasureBagTest >> centimeter [
 	
 	^units centimeter
 ]
 
-{ #category : #'bag creation' }
+{ #category : 'bag creation' }
 MeasureBagTest >> createBagWith: aMeasure [ 
 	
 	^aMeasure createBagWithMeasure: self
 ]
 
-{ #category : #'accessing monetary units' }
+{ #category : 'accessing monetary units' }
 MeasureBagTest >> dollar [
 
 	^units dollar
 ]
 
-{ #category : #'accessing monetary units' }
+{ #category : 'accessing monetary units' }
 MeasureBagTest >> euro [
 
 	^units euro
 ]
 
-{ #category : #'accessing monetary units' }
+{ #category : 'accessing monetary units' }
 MeasureBagTest >> euroCent [
 	
 	^units euroCent
 ]
 
-{ #category : #'accessing temperature units' }
+{ #category : 'accessing temperature units' }
 MeasureBagTest >> fahrenheit [
 
 	^units fahrenheit
 ]
 
-{ #category : #'accessing monetary measurements' }
+{ #category : 'accessing monetary measurements' }
 MeasureBagTest >> fivePesos [
 
 	^Measure amount: 5 unit: self peso
 ]
 
-{ #category : #'accessing monetary measurements' }
+{ #category : 'accessing monetary measurements' }
 MeasureBagTest >> fortyDollars [
 
 	^Measure amount: 40 unit: self dollar
 ]
 
-{ #category : #'accessing distance units' }
+{ #category : 'accessing distance units' }
 MeasureBagTest >> kilometer [
 	
 	^units kilometer
 ]
 
-{ #category : #'accessing distance units' }
+{ #category : 'accessing distance units' }
 MeasureBagTest >> meter [
 
 	^units meter
 ]
 
-{ #category : #'accessing distance units' }
+{ #category : 'accessing distance units' }
 MeasureBagTest >> metro [
 
 	^units metro
 ]
 
-{ #category : #'accessing distance units' }
+{ #category : 'accessing distance units' }
 MeasureBagTest >> millimeter [
 	
 	^units millimeter
 ]
 
-{ #category : #'accessing monetary measurements' }
+{ #category : 'accessing monetary measurements' }
 MeasureBagTest >> minusTenDollars [
 
 	^Measure amount: -10 unit: self dollar
 ]
 
-{ #category : #'accessing monetary measurements' }
+{ #category : 'accessing monetary measurements' }
 MeasureBagTest >> minusTenPesos [
 	
 	^Measure amount: -10 unit: self peso
 ]
 
-{ #category : #'accessing temperature measurements' }
+{ #category : 'accessing temperature measurements' }
 MeasureBagTest >> oneCelsius [
 
 	^Measure amount: 1 unit: self celsius
 ]
 
-{ #category : #'accessing monetary measurements' }
+{ #category : 'accessing monetary measurements' }
 MeasureBagTest >> oneDollar [
 	
 	^Measure amount: 1 unit: self dollar
 ]
 
-{ #category : #'accessing temperature measurements' }
+{ #category : 'accessing temperature measurements' }
 MeasureBagTest >> oneFahrenheit [
 
 	^Measure amount: 1 unit: self fahrenheit
 ]
 
-{ #category : #'accessing distance measurements' }
+{ #category : 'accessing distance measurements' }
 MeasureBagTest >> oneKilometer [
 	
 	^Measure amount: 1 unit: self kilometer
 ]
 
-{ #category : #'accessing distance measurements' }
+{ #category : 'accessing distance measurements' }
 MeasureBagTest >> oneMeter [
 	
 	^Measure amount: 1 unit: self meter
 ]
 
-{ #category : #'accessing monetary measurements' }
+{ #category : 'accessing monetary measurements' }
 MeasureBagTest >> onePeso [
 
 	^Measure amount: 1 unit: self peso
 ]
 
-{ #category : #'accessing monetary measurements' }
+{ #category : 'accessing monetary measurements' }
 MeasureBagTest >> oneQuarter [
 	
 	^Measure amount: 1 unit: self quarter
 ]
 
-{ #category : #'accessing monetary units' }
+{ #category : 'accessing monetary units' }
 MeasureBagTest >> peso [
 
 	^units peso
 ]
 
-{ #category : #'accessing monetary units' }
+{ #category : 'accessing monetary units' }
 MeasureBagTest >> quarter [
 	
 	^units quarter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 MeasureBagTest >> setUp [
 
 	units := UnitsTestResource current
 ]
 
-{ #category : #'accessing monetary measurements' }
+{ #category : 'accessing monetary measurements' }
 MeasureBagTest >> tenCentavos [
 	
 	^Measure amount: 10 unit: self centavo
 ]
 
-{ #category : #'accessing monetary measurements' }
+{ #category : 'accessing monetary measurements' }
 MeasureBagTest >> tenDollars [
 
 	^Measure amount: 10 unit: self dollar
 ]
 
-{ #category : #'accessing monetary measurements' }
+{ #category : 'accessing monetary measurements' }
 MeasureBagTest >> tenEuros [
 
 	^Measure amount: 10 unit: self euro
 ]
 
-{ #category : #'accessing distance measurements' }
+{ #category : 'accessing distance measurements' }
 MeasureBagTest >> tenMeters [
 
 	^Measure amount: 10 unit: self meter
 ]
 
-{ #category : #'accessing monetary measurements' }
+{ #category : 'accessing monetary measurements' }
 MeasureBagTest >> tenPesos [
 	
 	^Measure amount: 10 unit: self peso
 ]
 
-{ #category : #'test integer remainder' }
+{ #category : 'test integer remainder' }
 MeasureBagTest >> tesRemainderFractionByMeasure [
 
 	self should: [ (1/3) \\  ( self tenPesos + self tenMeters )  ] raise: InvalidOperationException
@@ -207,7 +209,7 @@ MeasureBagTest >> tesRemainderFractionByMeasure [
 
 ]
 
-{ #category : #'test add' }
+{ #category : 'test add' }
 MeasureBagTest >> testAdd [
 
 	| measureBag |
@@ -224,13 +226,13 @@ MeasureBagTest >> testAdd [
 	self assert: (measureBag atSameBaseUnitAs: self euro) = self tenEuros
 ]
 
-{ #category : #'test add' }
+{ #category : 'test add' }
 MeasureBagTest >> testAddAssociativity [
 
 	self assert: ((self tenPesos + self twentyDollars) + self tenEuros) = (self tenPesos + (self twentyDollars + self tenEuros))
 ]
 
-{ #category : #'test add' }
+{ #category : 'test add' }
 MeasureBagTest >> testAddBags [
 
 	| result |
@@ -248,7 +250,7 @@ MeasureBagTest >> testAddBags [
 	self assert: result numberOfMeasures = 3	
 ]
 
-{ #category : #'test add' }
+{ #category : 'test add' }
 MeasureBagTest >> testAddCommutativity [
 
 	self assert: (self tenPesos + self twentyDollars) = (self twentyDollars + self tenPesos).
@@ -258,14 +260,14 @@ MeasureBagTest >> testAddCommutativity [
 
 ]
 
-{ #category : #'test add' }
+{ #category : 'test add' }
 MeasureBagTest >> testAddEquality [
 
 	self assert: (self tenPesos + self twentyDollars)  = (self tenPesos + self twentyDollars).
 	self assert: (self tenEuros + self tenPesos + self twentyDollars) = (self tenEuros + self tenPesos + self twentyDollars)
 ]
 
-{ #category : #'test add' }
+{ #category : 'test add' }
 MeasureBagTest >> testAddExistingUnit [
 
 	| measureBag |
@@ -278,7 +280,7 @@ MeasureBagTest >> testAddExistingUnit [
 	self assert: (measureBag atSameBaseUnitAs: self dollar) = self twentyDollars
 ]
 
-{ #category : #'test add' }
+{ #category : 'test add' }
 MeasureBagTest >> testAddFloatWithMeasure [
 
 	self assert: ((10.01 + (self tenMeters + self tenPesos) ) atSameBaseUnitAs: self meter) = self tenMeters.
@@ -286,7 +288,7 @@ MeasureBagTest >> testAddFloatWithMeasure [
 	self assert: ((10.01 + (self tenMeters + self tenPesos) ) atSameBaseUnitAs: NullUnit new) = 10.01
 ]
 
-{ #category : #'test add' }
+{ #category : 'test add' }
 MeasureBagTest >> testAddFractionWithMeasure [
 
 	self assert: ((1/3 + (self tenMeters + self tenPesos) ) atSameBaseUnitAs: self meter) = self tenMeters.
@@ -294,7 +296,7 @@ MeasureBagTest >> testAddFractionWithMeasure [
 	self assert: ((1/3 + (self tenMeters + self tenPesos) ) atSameBaseUnitAs: NullUnit new) = (1/3)
 ]
 
-{ #category : #'test add' }
+{ #category : 'test add' }
 MeasureBagTest >> testAddImmutability [
 
 	| a10pesosPlus20Dollars |
@@ -306,7 +308,7 @@ MeasureBagTest >> testAddImmutability [
 	
 ]
 
-{ #category : #'test add' }
+{ #category : 'test add' }
 MeasureBagTest >> testAddIntegerWithMeasure [
 
 	self assert: ((10 + (self tenMeters + self tenPesos) ) atSameBaseUnitAs: self meter) = self tenMeters.
@@ -314,7 +316,7 @@ MeasureBagTest >> testAddIntegerWithMeasure [
 	self assert: ((10 + (self tenMeters + self tenPesos) ) atSameBaseUnitAs: NullUnit new) = 10.	
 ]
 
-{ #category : #'test add' }
+{ #category : 'test add' }
 MeasureBagTest >> testAddNothing [
 
 	self assert: (self zeroPesos + self twentyDollars) = self twentyDollars.
@@ -323,7 +325,7 @@ MeasureBagTest >> testAddNothing [
 	
 ]
 
-{ #category : #'test add' }
+{ #category : 'test add' }
 MeasureBagTest >> testAddScaledDecimalWithMeasure [
 
 	self assert: ((10.01s2 + (self tenMeters + self tenPesos) ) atSameBaseUnitAs: self meter) = self tenMeters.
@@ -331,7 +333,7 @@ MeasureBagTest >> testAddScaledDecimalWithMeasure [
 	self assert: ((10.01s2 + (self tenMeters + self tenPesos) ) atSameBaseUnitAs: NullUnit new) = 10.01s2.		
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 MeasureBagTest >> testAtSameBaseUnitAsWithBaseUnits [
 
 	| measureBag |
@@ -344,7 +346,7 @@ MeasureBagTest >> testAtSameBaseUnitAsWithBaseUnits [
 	
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 MeasureBagTest >> testAtSameBaseUnitAsWithDerivedUnits [
 
 	| measureBag |
@@ -364,7 +366,7 @@ MeasureBagTest >> testAtSameBaseUnitAsWithDerivedUnits [
 	self assert: (measureBag atSameBaseUnitAs: self euroCent) = 0
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 MeasureBagTest >> testConvertAmountToBaseUnit [
 
 	self
@@ -374,7 +376,7 @@ MeasureBagTest >> testConvertAmountToBaseUnit [
 			self assert: ('*Unit of a MeasureBag is not defined' match: anException description)]
 ]
 
-{ #category : #'test instance creation' }
+{ #category : 'test instance creation' }
 MeasureBagTest >> testCreationWithMeasures [
 
 	| measures measureBag |
@@ -388,7 +390,7 @@ MeasureBagTest >> testCreationWithMeasures [
 	self assert: (measureBag atSameBaseUnitAs: self euro) = self tenEuros
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 MeasureBagTest >> testCreationWithMeasuresCopiesCollection [
 	"This test verifies that when bag is created using the private message  #measures:,
 	the collection that goes as collaborating is copied"
@@ -411,13 +413,13 @@ MeasureBagTest >> testCreationWithMeasuresCopiesCollection [
 
 ]
 
-{ #category : #'test division' }
+{ #category : 'test division' }
 MeasureBagTest >> testDivideByMeasure [
 
 	self assert: ((self tenPesos + self twentyDollars) / self tenPesos ) =((self twentyDollars / self tenPesos) + 1)
 ]
 
-{ #category : #'test division' }
+{ #category : 'test division' }
 MeasureBagTest >> testDivision [
 
 	self assert: ((self tenPesos + self twentyDollars) / 10) = (self onePeso + self twoDollars).
@@ -425,14 +427,14 @@ MeasureBagTest >> testDivision [
 	self assert: ((self tenPesos + self twentyDollars) / 3) = 	((Measure amount: (10/3) unit: self peso) + (Measure amount: (20/3) unit: self dollar))
 ]
 
-{ #category : #'test division' }
+{ #category : 'test division' }
 MeasureBagTest >> testDivisionDistributivity [
 
 	self assert: (self tenPesos + self tenDollars ) / ( self tenPesos + self tenDollars ) =
 		(((self tenPesos + self tenDollars ) / self tenPesos) + ((self tenPesos + self tenDollars ) / self tenDollars ))
 ]
 
-{ #category : #'test division' }
+{ #category : 'test division' }
 MeasureBagTest >> testDivisionFloatByMeasure [
 
 	self assert: (1.01 / (self tenPesos + self tenDollars)) = (MeasureBagFraction numerator: 1.01 denominator: (self tenPesos + self tenDollars))
@@ -440,7 +442,7 @@ MeasureBagTest >> testDivisionFloatByMeasure [
 
 ]
 
-{ #category : #'test division' }
+{ #category : 'test division' }
 MeasureBagTest >> testDivisionFractionByMeasure [
 
 	self assert: ((1/3) / (self tenPesos + self tenDollars)) = (MeasureBagFraction numerator: (1/3) denominator: (self tenPesos + self tenDollars))
@@ -448,7 +450,7 @@ MeasureBagTest >> testDivisionFractionByMeasure [
 
 ]
 
-{ #category : #'test division' }
+{ #category : 'test division' }
 MeasureBagTest >> testDivisionIntegerByMeasure [
 
 	self assert: (1 / (self tenPesos + self tenDollars)) = (MeasureBagFraction numerator: 1 denominator: (self tenPesos + self tenDollars))
@@ -456,7 +458,7 @@ MeasureBagTest >> testDivisionIntegerByMeasure [
 
 ]
 
-{ #category : #'test division' }
+{ #category : 'test division' }
 MeasureBagTest >> testDivisionMeasureByMeasureBag [
 
 	self assert: (self tenPesos / (self tenPesos + self tenDollars)) = (MeasureBagFraction numerator: self tenPesos denominator: (self tenPesos + self tenDollars))
@@ -464,7 +466,7 @@ MeasureBagTest >> testDivisionMeasureByMeasureBag [
 
 ]
 
-{ #category : #'test division' }
+{ #category : 'test division' }
 MeasureBagTest >> testDivisionScaledDecimalByMeasure [
 
 	self assert: (23.76s2 / (self tenPesos + self tenDollars)) = (MeasureBagFraction numerator: 23.76s2 denominator: (self tenPesos + self tenDollars))
@@ -472,7 +474,7 @@ MeasureBagTest >> testDivisionScaledDecimalByMeasure [
 
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 MeasureBagTest >> testEqual [
 
 	self assert: (MeasureBag with: self tenPesos with: self twentyDollars) = (MeasureBag with: self tenPesos with: self twentyDollars).
@@ -484,7 +486,7 @@ MeasureBagTest >> testEqual [
 	
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 MeasureBagTest >> testEqualAllNothing [
 
 	self assert: (MeasureBag with: self zeroPesos with: self zeroDollars) = (MeasureBag with: self zeroPesos with: self zeroDollars).
@@ -492,14 +494,14 @@ MeasureBagTest >> testEqualAllNothing [
 	self assert: (MeasureBag with: self zeroPesos with: self zeroDollars) = self zeroDollars	
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 MeasureBagTest >> testEqualNumber [
 
 	self assert: (MeasureBag with: self zeroPesos with: 1) = 1.
 	self assert: 1 = (MeasureBag with: self zeroPesos with: 1)
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 MeasureBagTest >> testEqualOneNothing [
 
 	self assert: (MeasureBag with: self zeroPesos with: self tenDollars) = (MeasureBag with: self zeroPesos with: self tenDollars).
@@ -508,21 +510,21 @@ MeasureBagTest >> testEqualOneNothing [
 	self assert: (MeasureBag with: self tenDollars with: self zeroPesos) = self tenDollars
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 MeasureBagTest >> testEqualWithDifferentBagSizeButRepresentSameEntity [
 
 	self assert: (MeasureBag with: self onePeso with: self zeroDollars) =
 		(MeasureBag measures: (Array with: self onePeso))
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 MeasureBagTest >> testEqualWithDifferentBagSizeIsNothing [
 
 	self assert: (MeasureBag with: self zeroPesos with: self zeroDollars) =
 		(MeasureBag measures: (Array with: self zeroPesos))
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 MeasureBagTest >> testHash [
 
 	self assert: (MeasureBag with: self tenPesos with: self twentyDollars) hash = (MeasureBag with: self tenPesos with: self twentyDollars) hash.
@@ -533,7 +535,7 @@ MeasureBagTest >> testHash [
 	self deny: (MeasureBag with: self tenPesos with: self twentyDollars) hash = (MeasureBag with: (self tenPesos+self onePeso) with: self twentyDollars) hash
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 MeasureBagTest >> testHashAllNothing [
 
 	self assert: (MeasureBag with: self zeroPesos with: self zeroDollars) hash = (MeasureBag with: self zeroPesos with: self zeroDollars) hash.
@@ -541,7 +543,7 @@ MeasureBagTest >> testHashAllNothing [
 	self assert: (MeasureBag with: self zeroPesos with: self zeroDollars) hash = self zeroDollars hash
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 MeasureBagTest >> testHashOneNothing [
 
 	self assert: (MeasureBag with: self zeroPesos with: self tenDollars) hash = (MeasureBag with: self zeroPesos with: self tenDollars) hash.
@@ -550,7 +552,7 @@ MeasureBagTest >> testHashOneNothing [
 	self assert: (MeasureBag with: self tenDollars with: self zeroPesos ) hash = self tenDollars hash
 ]
 
-{ #category : #'test truncated' }
+{ #category : 'test truncated' }
 MeasureBagTest >> testInvalidTruncated [
 
 	self 
@@ -562,33 +564,33 @@ MeasureBagTest >> testInvalidTruncated [
 			self assert: anException operationName = 'truncated' ]
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 MeasureBagTest >> testIsFraction [
 
 	self deny: ((self peso with: 10.01) + (self dollar with: 20.5)) isFraction
 ]
 
-{ #category : #'test testing' }
+{ #category : 'test testing' }
 MeasureBagTest >> testIsMeasurementBag [
 
 	self assert: ((self peso with: 10.01) + (self dollar with: 20.5)) isMeasureBag
 ]
 
-{ #category : #'test testing' }
+{ #category : 'test testing' }
 MeasureBagTest >> testIsNothing [
 
 	self assert: (self zeroPesos + self zeroDollars) isNothing.
 	self assert: ((self tenPesos + self tenDollars) - (self tenPesos + self tenDollars)) isNothing
 ]
 
-{ #category : #'test magnitude protocol' }
+{ #category : 'test magnitude protocol' }
 MeasureBagTest >> testLessThan [
 	"Not supported in bags..."
 
 	self should: [ (self tenPesos + self tenDollars) < (self tenPesos + self tenDollars) ] raise: Exception
 ]
 
-{ #category : #'test instance creation' }
+{ #category : 'test instance creation' }
 MeasureBagTest >> testMeasureBagImmutability [
 
 	| measureBag measures |
@@ -602,7 +604,7 @@ MeasureBagTest >> testMeasureBagImmutability [
 	self assert: (measureBag atSameBaseUnitAs: self dollar) = self twentyDollars
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 MeasureBagTest >> testMeasures [
 
 	| measureBag |
@@ -615,7 +617,7 @@ MeasureBagTest >> testMeasures [
 	self deny: (measureBag measures includes: 0)
 ]
 
-{ #category : #'test integer division' }
+{ #category : 'test integer division' }
 MeasureBagTest >> testModulo [
 
 	self assert: ((self tenPesos + self twentyDollars) // 8) = (self onePeso + self twoDollars).
@@ -627,7 +629,7 @@ MeasureBagTest >> testModulo [
 				(Measure amount: (20 // 3) unit: self dollar))
 ]
 
-{ #category : #'test integer division' }
+{ #category : 'test integer division' }
 MeasureBagTest >> testModuloFloatByMeasure [
 
 	self should: [ 1.01 // ( self tenPesos + self tenMeters ) ] raise: InvalidOperationException
@@ -635,7 +637,7 @@ MeasureBagTest >> testModuloFloatByMeasure [
 
 ]
 
-{ #category : #'test integer division' }
+{ #category : 'test integer division' }
 MeasureBagTest >> testModuloFractionByMeasure [
 
 	self should: [ (1/3) // ( self tenPesos + self tenMeters ) ] raise: InvalidOperationException
@@ -643,7 +645,7 @@ MeasureBagTest >> testModuloFractionByMeasure [
 
 ]
 
-{ #category : #'test integer division' }
+{ #category : 'test integer division' }
 MeasureBagTest >> testModuloIntegerByMeasure [
 
 	self should: [ 1 // ( self tenPesos + self tenMeters ) ] raise: InvalidOperationException
@@ -651,7 +653,7 @@ MeasureBagTest >> testModuloIntegerByMeasure [
 
 ]
 
-{ #category : #'test integer division' }
+{ #category : 'test integer division' }
 MeasureBagTest >> testModuloMeasure [
 
 	self should: [ self tenPesos // (self tenPesos + self tenDollars) ] raise: InvalidOperationException
@@ -659,7 +661,7 @@ MeasureBagTest >> testModuloMeasure [
 
 ]
 
-{ #category : #'test integer division' }
+{ #category : 'test integer division' }
 MeasureBagTest >> testModuloMeasureBag [
 
 	self should: [ (self tenPesos + self tenDollars) // (self tenPesos + self tenDollars) ] raise: InvalidOperationException
@@ -667,7 +669,7 @@ MeasureBagTest >> testModuloMeasureBag [
 
 ]
 
-{ #category : #'test integer division' }
+{ #category : 'test integer division' }
 MeasureBagTest >> testModuloScaledDecimalByMeasure [
 
 	self should: [ 23.76s2 // ( self tenPesos + self tenMeters ) ] raise: InvalidOperationException
@@ -675,7 +677,7 @@ MeasureBagTest >> testModuloScaledDecimalByMeasure [
 
 ]
 
-{ #category : #'test multiplication' }
+{ #category : 'test multiplication' }
 MeasureBagTest >> testMultiplication [
 
 	self assert: ((self tenPesos + self twentyDollars) * 2) = (self twentyPesos + self fortyDollars).
@@ -684,7 +686,7 @@ MeasureBagTest >> testMultiplication [
 	
 ]
 
-{ #category : #'test multiplication' }
+{ #category : 'test multiplication' }
 MeasureBagTest >> testMultiplicationByMeasure [
 
 	self assert: ((self tenPesos + self twentyDollars) * self tenPesos) = ((self tenPesos * self tenPesos) + (self tenPesos * self twentyDollars))
@@ -693,7 +695,7 @@ MeasureBagTest >> testMultiplicationByMeasure [
 	
 ]
 
-{ #category : #'test multiplication' }
+{ #category : 'test multiplication' }
 MeasureBagTest >> testMultiplicationByZero [
 
 	self assert: ((self tenPesos + self twentyDollars) * 0) isNothing.
@@ -702,7 +704,7 @@ MeasureBagTest >> testMultiplicationByZero [
 
 ]
 
-{ #category : #'test multiplication' }
+{ #category : 'test multiplication' }
 MeasureBagTest >> testMultiplicationCommutativity [
 
 	self assert: ((self tenPesos + self twentyDollars) * (25/10)) = ((25/10) * (self tenPesos + self twentyDollars)).
@@ -710,7 +712,7 @@ MeasureBagTest >> testMultiplicationCommutativity [
 
 ]
 
-{ #category : #'test multiplication' }
+{ #category : 'test multiplication' }
 MeasureBagTest >> testMultiplicationDistributivity [
 
 	self assert: ((self tenPesos + self twentyDollars) * 2) = ((self tenPesos * 2) + (self twentyDollars * 2)).
@@ -720,7 +722,7 @@ MeasureBagTest >> testMultiplicationDistributivity [
 		(((self tenPesos + self tenDollars )* self tenPesos) + ((self tenPesos + self tenDollars ) * self tenDollars ))
 ]
 
-{ #category : #'test multiplication' }
+{ #category : 'test multiplication' }
 MeasureBagTest >> testMultiplyFloatByMeasure [
 
 	self assert: (1.01 *  ( self tenPesos + self tenMeters ) ) = ((self tenPesos * 1.01) + (self tenMeters * 1.01))
@@ -728,7 +730,7 @@ MeasureBagTest >> testMultiplyFloatByMeasure [
 
 ]
 
-{ #category : #'test multiplication' }
+{ #category : 'test multiplication' }
 MeasureBagTest >> testMultiplyFractionByMeasure [
 
 	self assert: ((1/3) *  ( self tenPesos + self tenMeters ) ) = ((1/3* self tenPesos) + (1/3*self tenMeters)) 
@@ -736,7 +738,7 @@ MeasureBagTest >> testMultiplyFractionByMeasure [
 
 ]
 
-{ #category : #'test multiplication' }
+{ #category : 'test multiplication' }
 MeasureBagTest >> testMultiplyIntegerByMeasure [
 
 	self assert: (3 * (self tenPesos + self tenMeters )) =  ((3*self tenPesos) + (3*self tenMeters)) 
@@ -744,13 +746,13 @@ MeasureBagTest >> testMultiplyIntegerByMeasure [
 
 ]
 
-{ #category : #'test multiplication' }
+{ #category : 'test multiplication' }
 MeasureBagTest >> testMultiplyMeasureByMeasureBag [
 
 	self assert: (self tenPesos * (self tenPesos + self tenDollars)) = ((self tenPesos * self tenPesos) + (self tenPesos * self tenDollars))
 ]
 
-{ #category : #'test multiplication' }
+{ #category : 'test multiplication' }
 MeasureBagTest >> testMultiplyScaledDecimalByMeasure [
 
 	self assert: (23.76s2 * (self tenPesos + self tenMeters )) =  ((23.76s2 *self tenPesos) + (23.76s2 *self tenMeters)) 
@@ -758,27 +760,27 @@ MeasureBagTest >> testMultiplyScaledDecimalByMeasure [
 
 ]
 
-{ #category : #'test subtract' }
+{ #category : 'test subtract' }
 MeasureBagTest >> testNegated [
 
 	self assert: (self minusTenPesos + self minusTenDollars) = (self tenPesos + self tenDollars) negated
 ]
 
-{ #category : #'test subtract' }
+{ #category : 'test subtract' }
 MeasureBagTest >> testNegatedDistribution [
 
 	self assert: (self tenPesos negated + self tenDollars negated) = (self tenPesos + self tenDollars) negated.
 	self assert: (self tenPesos + self twentyDollars) negated negated = (self tenPesos + self twentyDollars)
 ]
 
-{ #category : #'test subtract' }
+{ #category : 'test subtract' }
 MeasureBagTest >> testNegatedZeroBag [
 
 	self assert: ((self tenPesos + self twentyDollars) - (self tenPesos + self twentyDollars) ) negated isNothing.
 
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 MeasureBagTest >> testNotEqual [
 
 	self deny: (MeasureBag with: self zeroPesos with: 1) = 'hello'.
@@ -788,7 +790,7 @@ MeasureBagTest >> testNotEqual [
 	self deny: Object new = (MeasureBag with: self zeroPesos with: 1)
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 MeasureBagTest >> testNumberOfMeasures [
 
 	| measureBag |
@@ -799,7 +801,7 @@ MeasureBagTest >> testNumberOfMeasures [
 	self assert: measureBag numberOfMeasures = measureBag measures size
 ]
 
-{ #category : #'test printing' }
+{ #category : 'test printing' }
 MeasureBagTest >> testPrintingForMany [
 
 	self assert: self tenPesos printString = '10 pesos' description: 'Printing for many with correct creation'.
@@ -808,7 +810,7 @@ MeasureBagTest >> testPrintingForMany [
 	
 ]
 
-{ #category : #'test printing' }
+{ #category : 'test printing' }
 MeasureBagTest >> testPrintingForOne [
 
 	self assert: self onePeso printString = '1 peso' description: 'Printing for one with correct creation'.
@@ -817,7 +819,7 @@ MeasureBagTest >> testPrintingForOne [
 	
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 MeasureBagTest >> testRemFrom [
 
 	self
@@ -825,7 +827,7 @@ MeasureBagTest >> testRemFrom [
 		raise: InvalidBinaryOperationException
 ]
 
-{ #category : #'test integer remainder' }
+{ #category : 'test integer remainder' }
 MeasureBagTest >> testRemainder [
 
 	self assert: ((self tenPesos + self twentyDollars) \\ 9) = (self onePeso + self twoDollars).
@@ -833,7 +835,7 @@ MeasureBagTest >> testRemainder [
 	self assert: ((self tenPesos + self twentyDollars) \\ 3) = ((Measure amount: (10\\3) unit: self peso) + (Measure amount: (20\\3) unit: self dollar))
 ]
 
-{ #category : #'test integer remainder' }
+{ #category : 'test integer remainder' }
 MeasureBagTest >> testRemainderFloatByMeasure [
 
 	self should: [ 1.01 \\ ( self tenPesos + self tenMeters )  ] raise: InvalidOperationException
@@ -841,7 +843,7 @@ MeasureBagTest >> testRemainderFloatByMeasure [
 
 ]
 
-{ #category : #'test integer remainder' }
+{ #category : 'test integer remainder' }
 MeasureBagTest >> testRemainderIntegerByMeasure [
 
 	self should: [ 1 \\  ( self tenPesos + self tenMeters ) ] raise: InvalidOperationException
@@ -849,7 +851,7 @@ MeasureBagTest >> testRemainderIntegerByMeasure [
 
 ]
 
-{ #category : #'test integer remainder' }
+{ #category : 'test integer remainder' }
 MeasureBagTest >> testRemainderMeasure [
 
 	self should: [ self tenPesos \\ (self tenPesos + self tenDollars) ] raise: InvalidOperationException
@@ -857,7 +859,7 @@ MeasureBagTest >> testRemainderMeasure [
 
 ]
 
-{ #category : #'test integer remainder' }
+{ #category : 'test integer remainder' }
 MeasureBagTest >> testRemainderMeasureBag [
 
 	self should: [ (self tenPesos + self tenDollars) \\ (self tenPesos + self tenDollars) ] raise: InvalidOperationException
@@ -865,7 +867,7 @@ MeasureBagTest >> testRemainderMeasureBag [
 
 ]
 
-{ #category : #'test integer remainder' }
+{ #category : 'test integer remainder' }
 MeasureBagTest >> testRemainderScaledDecimalByMeasure [
 
 	self should: [23.76s2 \\ ( self tenPesos + self tenMeters )  ] raise: InvalidOperationException
@@ -873,13 +875,13 @@ MeasureBagTest >> testRemainderScaledDecimalByMeasure [
 
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 MeasureBagTest >> testRoundTo [
 
 	self assert: ((self oneKilometer + self fivePesos) roundTo: 1) = (self oneKilometer + self fivePesos)
 ]
 
-{ #category : #'test subtract' }
+{ #category : 'test subtract' }
 MeasureBagTest >> testSubtract [
 
 	| measureBag |
@@ -896,7 +898,7 @@ MeasureBagTest >> testSubtract [
 	self assert: (measureBag atSameBaseUnitAs: self euro) = self tenEuros negated
 ]
 
-{ #category : #'test subtract' }
+{ #category : 'test subtract' }
 MeasureBagTest >> testSubtractBags [
 
 	| result |
@@ -914,7 +916,7 @@ MeasureBagTest >> testSubtractBags [
 	self assert: result numberOfMeasures = 3
 ]
 
-{ #category : #'test subtract' }
+{ #category : 'test subtract' }
 MeasureBagTest >> testSubtractEquality [
 
 	self assert: (self tenPesos - self twentyDollars)  = (self tenPesos - self twentyDollars).
@@ -923,7 +925,7 @@ MeasureBagTest >> testSubtractEquality [
 
 ]
 
-{ #category : #'test subtract' }
+{ #category : 'test subtract' }
 MeasureBagTest >> testSubtractExistingUnit [
 
 	| measureBag measure |
@@ -936,7 +938,7 @@ MeasureBagTest >> testSubtractExistingUnit [
 
 ]
 
-{ #category : #'test subtract' }
+{ #category : 'test subtract' }
 MeasureBagTest >> testSubtractFloatWithMeasure [
 
 	self assert: ((10.01 - (self tenMeters + self tenPesos) ) atSameBaseUnitAs: self meter) = self tenMeters negated.
@@ -944,7 +946,7 @@ MeasureBagTest >> testSubtractFloatWithMeasure [
 	self assert: ((10.01 - (self tenMeters + self tenPesos) ) atSameBaseUnitAs: NullUnit new) = 10.01.	
 ]
 
-{ #category : #'test subtract' }
+{ #category : 'test subtract' }
 MeasureBagTest >> testSubtractFractionWithMeasure [
 
 	self assert: ((1/3 - (self tenMeters + self tenPesos) ) atSameBaseUnitAs: self meter) = self tenMeters negated.
@@ -952,7 +954,7 @@ MeasureBagTest >> testSubtractFractionWithMeasure [
 	self assert: ((1/3 - (self tenMeters + self tenPesos) ) atSameBaseUnitAs: NullUnit new) = (1/3).	
 ]
 
-{ #category : #'test subtract' }
+{ #category : 'test subtract' }
 MeasureBagTest >> testSubtractIntegerWithMeasure [
 
 	self assert: ((10 - (self tenMeters + self tenPesos) ) atSameBaseUnitAs: self meter) = self tenMeters negated.
@@ -960,7 +962,7 @@ MeasureBagTest >> testSubtractIntegerWithMeasure [
 	self assert: ((10 - (self tenMeters + self tenPesos) ) atSameBaseUnitAs: NullUnit new) = 10.	
 ]
 
-{ #category : #'test multiplication' }
+{ #category : 'test multiplication' }
 MeasureBagTest >> testSubtractMeasureByMeasureBag [
 
 	self assert: (self tenMeters - (self tenPesos + self tenDollars)) = (self tenMeters - self tenPesos - self tenDollars)
@@ -968,7 +970,7 @@ MeasureBagTest >> testSubtractMeasureByMeasureBag [
 
 ]
 
-{ #category : #'test subtract' }
+{ #category : 'test subtract' }
 MeasureBagTest >> testSubtractNothing [
 
 	self assert: (self zeroPesos - self twentyDollars) = self twentyDollars negated.
@@ -977,7 +979,7 @@ MeasureBagTest >> testSubtractNothing [
 	
 ]
 
-{ #category : #'test subtract' }
+{ #category : 'test subtract' }
 MeasureBagTest >> testSubtractScaledDecimalWithMeasure [
 
 	self assert: ((10.01s2 - (self tenMeters + self tenPesos) ) atSameBaseUnitAs: self meter) = self tenMeters negated.
@@ -985,13 +987,13 @@ MeasureBagTest >> testSubtractScaledDecimalWithMeasure [
 	self assert: ((10.01s2 - (self tenMeters + self tenPesos) ) atSameBaseUnitAs: NullUnit new) = 10.01s2.		
 ]
 
-{ #category : #'test truncated' }
+{ #category : 'test truncated' }
 MeasureBagTest >> testTruncated [
 
 	self assert: ((self peso with: 10.01) + (self dollar with: 20.5)) truncated = (self tenPesos + self twentyDollars)
 ]
 
-{ #category : #test }
+{ #category : 'test' }
 MeasureBagTest >> testUnitNameOf [
 
 	self
@@ -1001,7 +1003,7 @@ MeasureBagTest >> testUnitNameOf [
 			self assert: ('*Unit of a MeasureBag is not defined' match: anException description)]
 ]
 
-{ #category : #'test instance creation' }
+{ #category : 'test instance creation' }
 MeasureBagTest >> testWithWithBaseUnits [
 
 	| measureBag |
@@ -1013,7 +1015,7 @@ MeasureBagTest >> testWithWithBaseUnits [
 	self assert: (measureBag atSameBaseUnitAs: self dollar) = self twentyDollars
 ]
 
-{ #category : #'test instance creation' }
+{ #category : 'test instance creation' }
 MeasureBagTest >> testWithWithDerivedUnits [
 
 	| measureBag |
@@ -1027,80 +1029,80 @@ MeasureBagTest >> testWithWithDerivedUnits [
 	self assert: (measureBag atSameBaseUnitAs: self dollar) amount = (1/4)
 ]
 
-{ #category : #'test division' }
+{ #category : 'test division' }
 MeasureBagTest >> testZeroDivision [
 
 	self assert: ((self zeroPesos + self zeroDollars) / 1) = self zeroPesos.
 	self assert: ((self zeroPesos + self zeroDollars) / 1) = self zeroDollars
 ]
 
-{ #category : #'accessing monetary measurements' }
+{ #category : 'accessing monetary measurements' }
 MeasureBagTest >> thirtyPesos [
 
 	^Measure amount: 30 unit: self peso
 ]
 
-{ #category : #'accessing distance measurements' }
+{ #category : 'accessing distance measurements' }
 MeasureBagTest >> thousandMillimeters [
 	
 	^Measure amount: 1000 unit: self millimeter
 ]
 
-{ #category : #'accessing monetary measurements' }
+{ #category : 'accessing monetary measurements' }
 MeasureBagTest >> twentyDollars [
 
 	^Measure amount: 20 unit: self dollar
 ]
 
-{ #category : #'accessing monetary measurements' }
+{ #category : 'accessing monetary measurements' }
 MeasureBagTest >> twentyEuros [
 	
 	^Measure amount: 20 unit: self euro
 ]
 
-{ #category : #'accessing monetary measurements' }
+{ #category : 'accessing monetary measurements' }
 MeasureBagTest >> twentyPesos [
 	
 	^Measure amount: 20 unit: self peso
 ]
 
-{ #category : #'accessing monetary measurements' }
+{ #category : 'accessing monetary measurements' }
 MeasureBagTest >> twoDollars [
 
 	^Measure amount: 2 unit: self dollar
 ]
 
-{ #category : #'accessing temperature measurements' }
+{ #category : 'accessing temperature measurements' }
 MeasureBagTest >> zeroCelsius [
 
 	^Measure amount: 0 unit: self celsius
 ]
 
-{ #category : #'accessing distance measurements' }
+{ #category : 'accessing distance measurements' }
 MeasureBagTest >> zeroCentimeters [
 
 	^Measure amount: 0 unit: self centimeter
 ]
 
-{ #category : #'accessing monetary measurements' }
+{ #category : 'accessing monetary measurements' }
 MeasureBagTest >> zeroDollars [
 	
 	^Measure amount: 0 unit: self dollar
 ]
 
-{ #category : #'accessing temperature measurements' }
+{ #category : 'accessing temperature measurements' }
 MeasureBagTest >> zeroFahrenheit [
 
 	^Measure amount: 0 unit: self fahrenheit
 ]
 
-{ #category : #'accessing distance measurements' }
+{ #category : 'accessing distance measurements' }
 MeasureBagTest >> zeroMeters [
 
 	^Measure amount: 0 unit: self meter
 ]
 
-{ #category : #'accessing monetary measurements' }
+{ #category : 'accessing monetary measurements' }
 MeasureBagTest >> zeroPesos [
 
 	^Measure amount: 0 unit: self peso

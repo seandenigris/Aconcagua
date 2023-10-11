@@ -1,21 +1,23 @@
 Class {
-	#name : #ProportionalDerivedUnitTest,
-	#superclass : #TestCase,
+	#name : 'ProportionalDerivedUnitTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'peso',
 		'centavo'
 	],
-	#category : #'Aconcagua-Tests-MeasureModel'
+	#category : 'Aconcagua-Tests-MeasureModel',
+	#package : 'Aconcagua-Tests',
+	#tag : 'MeasureModel'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ProportionalDerivedUnitTest >> setUp [
 
 	peso := BaseUnit named: 'peso'.
 	centavo := ProportionalDerivedUnit baseUnit: peso conversionFactor: (1/100) named: 'centavo'
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 ProportionalDerivedUnitTest >> testBaseUnit [
 
 	| unit |
@@ -24,7 +26,7 @@ ProportionalDerivedUnitTest >> testBaseUnit [
 	self assert: unit baseUnit = peso
 ]
 
-{ #category : #'test converting' }
+{ #category : 'test converting' }
 ProportionalDerivedUnitTest >> testConversionFactor [
 
 	| unit |
@@ -33,7 +35,7 @@ ProportionalDerivedUnitTest >> testConversionFactor [
 	self assert: unit conversionFactor = (1/100)
 ]
 
-{ #category : #'test converting' }
+{ #category : 'test converting' }
 ProportionalDerivedUnitTest >> testConvertAmountToBaseUnit [
 
 	| unit |
@@ -44,7 +46,7 @@ ProportionalDerivedUnitTest >> testConvertAmountToBaseUnit [
 	self assert: (unit convertAmountToBaseUnit: 100) = 1
 ]
 
-{ #category : #'test converting' }
+{ #category : 'test converting' }
 ProportionalDerivedUnitTest >> testConvertToBaseUnit [
 
 	| unit measure |
@@ -55,7 +57,7 @@ ProportionalDerivedUnitTest >> testConvertToBaseUnit [
 	self assert: (unit convertToBaseUnit: measure) unit = peso
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 ProportionalDerivedUnitTest >> testDenominator [
 
 	| unit |
@@ -64,7 +66,7 @@ ProportionalDerivedUnitTest >> testDenominator [
 	self assert: unit denominator = NullUnit new
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 ProportionalDerivedUnitTest >> testDivideByDifferentBaseUnit [
 
 	| meter |
@@ -74,7 +76,7 @@ ProportionalDerivedUnitTest >> testDivideByDifferentBaseUnit [
 	self assert: (centavo / meter) denominator = meter
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 ProportionalDerivedUnitTest >> testDivideByDifferentDomainDerivedUnit [
 
 	| minutes hour |
@@ -86,7 +88,7 @@ ProportionalDerivedUnitTest >> testDivideByDifferentDomainDerivedUnit [
 	self assert: (centavo / minutes) denominator = minutes
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 ProportionalDerivedUnitTest >> testDivideByDivideUnitSameDerivedUnitNumerator [
 
 	| meter |
@@ -96,7 +98,7 @@ ProportionalDerivedUnitTest >> testDivideByDivideUnitSameDerivedUnitNumerator [
 	self assert: (centavo / (centavo/meter)) = meter
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 ProportionalDerivedUnitTest >> testDivideByDividedUnitSameBaseUnitNumerator [
 
 	|  hour |
@@ -107,7 +109,7 @@ ProportionalDerivedUnitTest >> testDivideByDividedUnitSameBaseUnitNumerator [
 	self assert: (centavo / (peso / hour)) denominator = peso
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 ProportionalDerivedUnitTest >> testDivideByMultipliedUnit [
 
 	| meter |
@@ -121,19 +123,19 @@ ProportionalDerivedUnitTest >> testDivideByMultipliedUnit [
 	self assert: (centavo / (meter * meter)) denominator = (meter * meter)
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 ProportionalDerivedUnitTest >> testDivideByNullUnit [
 
 	self assert: centavo / NullUnit new = centavo
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 ProportionalDerivedUnitTest >> testDivideBySameBaseUnit [
 
 	self assert: centavo / centavo = NullUnit new
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 ProportionalDerivedUnitTest >> testDivideBySameDomainDerivedUnit [
 
 	| tenCents |
@@ -144,7 +146,7 @@ ProportionalDerivedUnitTest >> testDivideBySameDomainDerivedUnit [
 	self assert: (centavo / tenCents) denominator = tenCents
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 ProportionalDerivedUnitTest >> testEqualDerivedSameBaseUnit [
 
 	| tenCents |
@@ -153,7 +155,7 @@ ProportionalDerivedUnitTest >> testEqualDerivedSameBaseUnit [
 	self deny: centavo = tenCents
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 ProportionalDerivedUnitTest >> testEqualDifferentBaseUnit [
 
 	| meter |
@@ -162,7 +164,7 @@ ProportionalDerivedUnitTest >> testEqualDifferentBaseUnit [
 	self deny: centavo = meter
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 ProportionalDerivedUnitTest >> testEqualDividedUnit [
 
 	|  hour |
@@ -171,7 +173,7 @@ ProportionalDerivedUnitTest >> testEqualDividedUnit [
 	self deny: centavo = (centavo / hour)
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 ProportionalDerivedUnitTest >> testEqualMultipliedUnit [
 
 	| hour |
@@ -180,31 +182,31 @@ ProportionalDerivedUnitTest >> testEqualMultipliedUnit [
 	self deny: centavo = (centavo * hour)
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 ProportionalDerivedUnitTest >> testEqualNullUnit [
 
 	self deny: centavo = NullUnit new
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 ProportionalDerivedUnitTest >> testEqualSameBaseUnit [
 
 	self deny: centavo = peso
 ]
 
-{ #category : #'test comparing' }
+{ #category : 'test comparing' }
 ProportionalDerivedUnitTest >> testEqualSameDerivedUnit [
 
 	self assert: centavo = centavo
 ]
 
-{ #category : #'test measurement creation' }
+{ #category : 'test measurement creation' }
 ProportionalDerivedUnitTest >> testMeasureCreation [
 
 	self assert: (centavo with: 10) = (Measure amount: 10 unit: centavo)
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 ProportionalDerivedUnitTest >> testMultiplyByDividedUnit [
 
 	| second kelvin |
@@ -216,7 +218,7 @@ ProportionalDerivedUnitTest >> testMultiplyByDividedUnit [
 	self assert: (centavo * (second / kelvin)) denominator = kelvin
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 ProportionalDerivedUnitTest >> testMultiplyByMultipliedUnit [
 
 	| second kelvin |
@@ -230,13 +232,13 @@ ProportionalDerivedUnitTest >> testMultiplyByMultipliedUnit [
 	self assert: ((centavo * (second * kelvin)) factors includes: kelvin)
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 ProportionalDerivedUnitTest >> testMultiplyByNullUnit [
 
 	self assert: (centavo * NullUnit new) = centavo
 ]
 
-{ #category : #'test arithmetic operations' }
+{ #category : 'test arithmetic operations' }
 ProportionalDerivedUnitTest >> testMultiplyBySimpleUnit [
 
 	| second|
@@ -248,13 +250,13 @@ ProportionalDerivedUnitTest >> testMultiplyBySimpleUnit [
 	self assert: ((centavo * second) factors includes: second)
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 ProportionalDerivedUnitTest >> testName [
 
 	self assert: (ProportionalDerivedUnit baseUnit: peso conversionFactor: 1/100 named: 'centavo') name = 'centavo'
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 ProportionalDerivedUnitTest >> testNameForMany [
 
 	self assert: (ProportionalDerivedUnit baseUnit: peso conversionFactor: 1/100 named: 'centavo') nameForMany = 'centavos'.
@@ -262,7 +264,7 @@ ProportionalDerivedUnitTest >> testNameForMany [
 	self assert: (ProportionalDerivedUnit baseUnit: peso conversionFactor: 1/100 nameForOne: 'centavo' nameForMany: 'pepe' sign: '$') nameForMany = 'pepe'
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 ProportionalDerivedUnitTest >> testNameForOne [
 
 	| unit |
@@ -271,7 +273,7 @@ ProportionalDerivedUnitTest >> testNameForOne [
 	self assert: unit name = unit nameForOne
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 ProportionalDerivedUnitTest >> testNothingAmount [
 
 	| unit |
@@ -280,7 +282,7 @@ ProportionalDerivedUnitTest >> testNothingAmount [
 	self assert: unit nothingAmount = 0
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 ProportionalDerivedUnitTest >> testNullMeasure [
 
 	| unit |
@@ -290,7 +292,7 @@ ProportionalDerivedUnitTest >> testNullMeasure [
 	self assert: unit nullMeasure unit = peso
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 ProportionalDerivedUnitTest >> testNumerator [
 
 	| unit |
@@ -299,7 +301,7 @@ ProportionalDerivedUnitTest >> testNumerator [
 	self assert: unit numerator = unit
 ]
 
-{ #category : #'test printing' }
+{ #category : 'test printing' }
 ProportionalDerivedUnitTest >> testPrintingCustomization [
 
 	| unit measure |
@@ -309,7 +311,7 @@ ProportionalDerivedUnitTest >> testPrintingCustomization [
 	self assert: measure printString equals: '5c USD'.
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 ProportionalDerivedUnitTest >> testReciprocal [
 
 	| unit |
@@ -318,7 +320,7 @@ ProportionalDerivedUnitTest >> testReciprocal [
 	self assert: unit reciprocal = (NullUnit new / unit)
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 ProportionalDerivedUnitTest >> testSameDomainAsDerivedUnit [
 
 	| tenCents |
@@ -331,7 +333,7 @@ ProportionalDerivedUnitTest >> testSameDomainAsDerivedUnit [
 
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 ProportionalDerivedUnitTest >> testSameDomainAsDerivedUnitOfOtherDomain [
 
 	| hour minute|
@@ -344,7 +346,7 @@ ProportionalDerivedUnitTest >> testSameDomainAsDerivedUnitOfOtherDomain [
 	
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 ProportionalDerivedUnitTest >> testSameDomainAsDifferentBaseUnit [
 
 	| meter |
@@ -356,7 +358,7 @@ ProportionalDerivedUnitTest >> testSameDomainAsDifferentBaseUnit [
 
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 ProportionalDerivedUnitTest >> testSameDomainAsDividedUnit [
 
 	| meter hour |
@@ -367,7 +369,7 @@ ProportionalDerivedUnitTest >> testSameDomainAsDividedUnit [
 	self deny: (centavo sameDomainAs: (meter / hour))	
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 ProportionalDerivedUnitTest >> testSameDomainAsMultipliedUnit [
 
 	| meter hour |
@@ -378,7 +380,7 @@ ProportionalDerivedUnitTest >> testSameDomainAsMultipliedUnit [
 	self deny: (centavo sameDomainAs: (meter * hour))	
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 ProportionalDerivedUnitTest >> testSameDomainAsNullUnit [
 
 	self deny: (centavo sameDomainAs: NullUnit new)
@@ -386,19 +388,19 @@ ProportionalDerivedUnitTest >> testSameDomainAsNullUnit [
 	
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 ProportionalDerivedUnitTest >> testSameDomainAsSameBaseUnit [
 
 	self assert: (centavo sameDomainAs: peso)
 ]
 
-{ #category : #'test querying' }
+{ #category : 'test querying' }
 ProportionalDerivedUnitTest >> testSameDomainAsUnit [
 
 	self assert: (centavo sameDomainAs: centavo)
 ]
 
-{ #category : #'test accessing' }
+{ #category : 'test accessing' }
 ProportionalDerivedUnitTest >> testSign [
 
 	self assert:

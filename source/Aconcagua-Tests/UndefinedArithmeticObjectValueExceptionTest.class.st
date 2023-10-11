@@ -1,10 +1,12 @@
 Class {
-	#name : #UndefinedArithmeticObjectValueExceptionTest,
-	#superclass : #TestCase,
-	#category : 'Aconcagua-Tests-ArithmeticModel'
+	#name : 'UndefinedArithmeticObjectValueExceptionTest',
+	#superclass : 'TestCase',
+	#category : 'Aconcagua-Tests-ArithmeticModel',
+	#package : 'Aconcagua-Tests',
+	#tag : 'ArithmeticModel'
 }
 
-{ #category : #test }
+{ #category : 'test' }
 UndefinedArithmeticObjectValueExceptionTest >> testSignal [
 
 	| arithmeticObject |

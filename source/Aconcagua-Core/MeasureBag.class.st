@@ -1,13 +1,15 @@
 Class {
-	#name : #MeasureBag,
-	#superclass : #MeasureBehavior,
+	#name : 'MeasureBag',
+	#superclass : 'MeasureBehavior',
 	#instVars : [
 		'measures'
 	],
-	#category : 'Aconcagua-Core-MeasureModel'
+	#category : 'Aconcagua-Core-MeasureModel',
+	#package : 'Aconcagua-Core',
+	#tag : 'MeasureModel'
 }
 
-{ #category : #'instance creation - private' }
+{ #category : 'instance creation - private' }
 MeasureBag class >> measures: aCollection [ 
 	"NOTE: THIS METHOD IS PRIVATE. IT ASSUMES THE COLLECTION HAS NO ZERO MEASURES AND
 	MEASURES WITH DIFFERENT UNITS. DO NOT USE IT TO CREATE A MEASUREBAG, USE +, -, ETC"
@@ -16,7 +18,7 @@ MeasureBag class >> measures: aCollection [
 				collect: [:measure | measure convertToBaseUnit])
 ]
 
-{ #category : #'instance creation - private' }
+{ #category : 'instance creation - private' }
 MeasureBag class >> with: aMeasure with: anotherMeasure [
 	"This message is not due to never use. A MeasureBag is created sending the messages #+ or #-.
 	If the two measures are of the same domain, directly it gives back a canonized measure to the base unit.
@@ -30,46 +32,46 @@ MeasureBag class >> with: aMeasure with: anotherMeasure [
 		ifFalse: [aMeasure createBagWith: anotherMeasure]
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : 'arithmetic operations' }
 MeasureBag >> * aMeasure [
 
 	^aMeasure multiplyMeasureBag: self
 
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : 'arithmetic operations' }
 MeasureBag >> + aMeasure [
 
 	^aMeasure addMeasureBag: self
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : 'arithmetic operations' }
 MeasureBag >> / aMeasure [ 
 
 	^aMeasure divideMeasureBag: self
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : 'arithmetic operations' }
 MeasureBag >> // aMeasure [
 
 	^aMeasure moduloMeasureBag: self
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 MeasureBag >> = anObject [
 
 	^anObject equalsMeasureBag: self
 		
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : 'arithmetic operations' }
 MeasureBag >> \\ aMeasure [ 
 
 	^aMeasure remainderMeasureBag: self 
 
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 MeasureBag >> addMeasure: aMeasureToAdd [
 
 	| newMeasures sameBaseUnitMeasure nonNullMeasures |
@@ -82,7 +84,7 @@ MeasureBag >> addMeasure: aMeasureToAdd [
 		ifFalse: [self class measures: nonNullMeasures]
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 MeasureBag >> addMeasureBag: aMeasureBag [
 
 	| measuresByUnit nonNullMeasures |
@@ -100,26 +102,26 @@ MeasureBag >> addMeasureBag: aMeasureBag [
 				ifFalse: [self class measures: nonNullMeasures]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MeasureBag >> amount [
 	
 	Error signal: 'Amount of a MeasureBag is not defined'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MeasureBag >> atBaseUnit: aBaseUnit ifNone: aBlock [
 
 	^measures detect: [ :aMeasure | aMeasure baseUnit=aBaseUnit ] ifNone: aBlock
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MeasureBag >> atSameBaseUnitAs: aUnit [
 
 	^self atBaseUnit: aUnit baseUnit ifNone: [0]
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 MeasureBag >> convertAmountToBaseUnit [
 	"In fact, always one is going away to raise an exception since amount is not defined for a MeasureBag,
 	but it was implemented thus so that the semantics is clear and not to repeat the code that generates the exception"
@@ -127,13 +129,13 @@ MeasureBag >> convertAmountToBaseUnit [
 	^self unit convertAmountToBaseUnit: self amount
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MeasureBag >> denominator [
 
 	^1
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 MeasureBag >> divFrom: aNumber [
 
 	aNumber isNothing ifTrue: [^aNumber].
@@ -142,25 +144,25 @@ MeasureBag >> divFrom: aNumber [
 	^MeasureBagFraction numerator: aNumber denominator: self
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 MeasureBag >> divideByMeasure: aMeasure [
 
 	^self newBagDoingOnEachMeasure: [:aMeasureInBag | aMeasureInBag / aMeasure]
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 MeasureBag >> divideMeasure: aMeasure [
 
 	^MeasureBagFraction numerator: aMeasure denominator: self
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 MeasureBag >> divideMeasureBag: aMeasureBag [
 
 	^measures inject: 0 into: [:resultMeasure :aMeasureInBag | resultMeasure + (aMeasureBag / aMeasureInBag)]
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 MeasureBag >> equalsMeasure: aMeasure [
 
 	^measures allSatisfy: [:aMeasureInBag | 
@@ -169,13 +171,13 @@ MeasureBag >> equalsMeasure: aMeasure [
 			ifFalse: [aMeasureInBag isNothing]]
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 MeasureBag >> equalsMeasureBag: aMeasureBag [
 
 	^(self - aMeasureBag) isNothing
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MeasureBag >> hash [
 
 	^measures inject: 0 into: [ :hash :measure | hash bitXor: measure hash ].
@@ -184,13 +186,13 @@ MeasureBag >> hash [
 		
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 MeasureBag >> initializeMeasures: aCollection [
 
 	measures := aCollection
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MeasureBag >> isFixed [
 
 	^measures allSatisfy: [ :aMeasure | aMeasure isFixed]
@@ -198,13 +200,13 @@ MeasureBag >> isFixed [
 	
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MeasureBag >> isMeasureBag [
 
 	^true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MeasureBag >> isNothing [
 
 	^measures allSatisfy: [ :aMeasure | aMeasure isNothing].
@@ -212,20 +214,20 @@ MeasureBag >> isNothing [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MeasureBag >> measures [
 	"Return a copy because aMeasureBag inmutable"
 	
 	^measures copy
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 MeasureBag >> moduloByMeasure: aMeasure [
 
 	^self newBagDoingOnEachMeasure: [:aMeasureInBag | aMeasureInBag // aMeasure]
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 MeasureBag >> moduloMeasure: aMeasure [
 
 	InvalidBinaryOperationException 
@@ -234,7 +236,7 @@ MeasureBag >> moduloMeasure: aMeasure [
 		rightOperand: self
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 MeasureBag >> moduloMeasureBag: aMeasureBag [
 
 	InvalidBinaryOperationException 
@@ -243,26 +245,26 @@ MeasureBag >> moduloMeasureBag: aMeasureBag [
 		rightOperand: self
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 MeasureBag >> multiplyMeasure: aMeasure [
 
 	aMeasure isNothing ifTrue: [^aMeasure].
 	^self newBagDoingOnEachMeasure: [:aMeasureInBag | aMeasureInBag * aMeasure]
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 MeasureBag >> multiplyMeasureBag: aMeasureBag [
 
 	^measures inject: 0 into: [:resultMeasure :aMeasureInBag | resultMeasure + (aMeasureBag * aMeasureInBag)]
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : 'arithmetic operations' }
 MeasureBag >> negated [
 	
 	^self newBagDoingOnEachMeasure: [:aMeasure | aMeasure negated]
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 MeasureBag >> newBagDoingOnEachMeasure: aBlock [
 
 	| newMeasures |
@@ -270,44 +272,44 @@ MeasureBag >> newBagDoingOnEachMeasure: aBlock [
 	^self class measures: newMeasures
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MeasureBag >> numberOfMeasures [
 	
 	^measures size
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MeasureBag >> numerator [
 
 	^self
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 MeasureBag >> printOn: aStream [
 
 	measures do: [:aMeasure | aMeasure printOn: aStream]
 		separatedBy: [aStream nextPut: $+]
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 MeasureBag >> quoFrom: aNumber [
 
 	InvalidBinaryOperationException signalOperationName: 'quotient' leftOperand: aNumber rightOperand: self
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 MeasureBag >> remFrom: aNumber [
 
 	InvalidBinaryOperationException signalOperationName: 'rest' leftOperand: aNumber rightOperand: self
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 MeasureBag >> remainderByMeasure: aMeasure [ 
 	^self 
 		newBagDoingOnEachMeasure: [:aMeasureInBag | aMeasureInBag \\ aMeasure]
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 MeasureBag >> remainderMeasure: aMeasure [
 
 	InvalidBinaryOperationException 
@@ -316,7 +318,7 @@ MeasureBag >> remainderMeasure: aMeasure [
 		rightOperand: self
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 MeasureBag >> remainderMeasureBag: aMeasureBag [
 
 	InvalidBinaryOperationException 
@@ -325,31 +327,31 @@ MeasureBag >> remainderMeasureBag: aMeasureBag [
 		rightOperand: self
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : 'arithmetic operations' }
 MeasureBag >> roundTo: aNumber [
 	
 	^self newBagDoingOnEachMeasure: [:aMeasure | aMeasure roundTo: aNumber ]
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 MeasureBag >> subtractFrom: aNumber [
 
 	^self negated + aNumber
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : 'arithmetic operations' }
 MeasureBag >> truncated [
 	
 	^self newBagDoingOnEachMeasure: [:aMeasure | aMeasure truncated ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MeasureBag >> unit [
 	
 	Error signal: 'Unit of a MeasureBag is not defined'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MeasureBag >> unitNameOf: aUnit [
 
 	Error signal: 'Unit of a MeasureBag is not defined'

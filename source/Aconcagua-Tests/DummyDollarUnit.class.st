@@ -1,10 +1,12 @@
 Class {
-	#name : #DummyDollarUnit,
-	#superclass : #BaseUnit,
-	#category : #'Aconcagua-Tests-MeasureModel'
+	#name : 'DummyDollarUnit',
+	#superclass : 'BaseUnit',
+	#category : 'Aconcagua-Tests-MeasureModel',
+	#package : 'Aconcagua-Tests',
+	#tag : 'MeasureModel'
 }
 
-{ #category : #printing }
+{ #category : 'printing' }
 DummyDollarUnit >> printMeasure: aMeasure on: aStream [
 
 	aStream nextPut: $$.
