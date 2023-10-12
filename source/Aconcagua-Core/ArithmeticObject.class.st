@@ -240,7 +240,7 @@ ArithmeticObject >> formatOn: aStream using: aFormatter [
 	self subclassResponsibility
 ]
 
-{ #category : 'arithmetic operations - private' }
+{ #category : 'accessing' }
 ArithmeticObject >> generality [
 
 	^100
