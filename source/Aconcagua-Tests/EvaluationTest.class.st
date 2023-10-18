@@ -22,8 +22,9 @@ EvaluationTest >> assertAllTestShouldPassFor: aMessageName [
 { #category : 'accessing' }
 EvaluationTest >> genericTestsMessageNames [
 
-	^(self class selectors select: [:aSelector | 'performWith*' match: aSelector])
-		asOrderedCollection
+	^ (self class selectors select: [ :aSelector |
+		   (aSelector indexOfSubCollection: #performWith) = 1 ])
+		  asOrderedCollection
 ]
 
 { #category : 'accessing' }
