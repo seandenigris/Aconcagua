@@ -13,6 +13,26 @@ Class {
 	#tag : 'MeasureModel'
 }
 
+{ #category : 'test support' }
+MultipliedUnitTest >> assertProportionBetweenNumeratorAndDenominatorOf: aMeasure [
+	"Avoiding asserting specific numerator/denominator in each test case, and writing this in a generic way instead, because depending on the Smalltalk dialect fraction reduction may or may not happen automatically on instance creation"
+
+	self assert: aMeasure numerator amount / aMeasure denominator amount
+		= aMeasure amount
+]
+
+{ #category : 'test support' }
+MultipliedUnitTest >> assertUnitOfDenominatorrOf: aMeasure is: aUnit [
+
+	self assert: aMeasure denominator baseUnit = aUnit
+]
+
+{ #category : 'test support' }
+MultipliedUnitTest >> assertUnitOfNumeratorOf: aMeasure is: aUnit [
+
+	self assert: aMeasure numerator baseUnit = aUnit
+]
+
 { #category : 'initialization' }
 MultipliedUnitTest >> setUp [
 
@@ -101,13 +121,17 @@ MultipliedUnitTest >> testDivideByMinusInfinity [
 { #category : 'test arithmetic operations' }
 MultipliedUnitTest >> testDivideByNumber [
 
-	self assert: (meterBySecond / 5) = (meterBySecond with: 1/5).
-	self assert: (meterBySecond / 5) numerator = (meterBySecond with: 1).
-	self assert: (meterBySecond / 5) denominator = 5.
-	
-	self assert: (meterBySecond / 5.5) = (meterBySecond with: 1/5.5).
-	self assert: (meterBySecond / 5.5) numerator = (meterBySecond with: 1/5.5).
-	self assert: (meterBySecond / 5.5) denominator = 1
+	self assert: meterBySecond / 5 = (meterBySecond with: 1 / 5).
+	self assertUnitOfNumeratorOf: meterBySecond / 5 is: meterBySecond.
+	self assertUnitOfDenominatorrOf: meterBySecond / 5 is: NullUnit new.
+	self assertProportionBetweenNumeratorAndDenominatorOf:
+		meterBySecond / 5.
+
+	self assert: meterBySecond / 5.5 = (meterBySecond with: 1 / 5.5).
+	self assertUnitOfNumeratorOf: meterBySecond / 5.5 is: meterBySecond.
+	self assertUnitOfDenominatorrOf: meterBySecond / 5.5 is: NullUnit new.
+	self assertProportionBetweenNumeratorAndDenominatorOf:
+		meterBySecond / 5.5
 ]
 
 { #category : 'test arithmetic operations' }
@@ -238,13 +262,17 @@ MultipliedUnitTest >> testMultiplyByNullUnit [
 { #category : 'test arithmetic operations' }
 MultipliedUnitTest >> testMultiplyByNumber [
 
-	self assert: (meterBySecond * 5) = (meterBySecond with: 5).
-	self assert: (meterBySecond * 5) numerator = (meterBySecond with: 5).
-	self assert: (meterBySecond * 5) denominator = 1.
-	
-	self assert: (meterBySecond * 5.5) = (meterBySecond with: 5.5).
-	self assert: (meterBySecond * 5.5) numerator = (meterBySecond with: 5.5).
-	self assert: (meterBySecond * 5.5) denominator = 1
+	self assert: meterBySecond * 5 = (meterBySecond with: 5).
+	self assertUnitOfNumeratorOf: meterBySecond * 5 is: meterBySecond.
+	self assertUnitOfDenominatorrOf: meterBySecond * 5 is: NullUnit new.
+	self assertProportionBetweenNumeratorAndDenominatorOf:
+		meterBySecond * 5.
+
+	self assert: meterBySecond * 5.5 = (meterBySecond with: 5.5).
+	self assertUnitOfNumeratorOf: meterBySecond * 5.5 is: meterBySecond.
+	self assertUnitOfDenominatorrOf: meterBySecond * 5.5 is: NullUnit new.
+	self assertProportionBetweenNumeratorAndDenominatorOf:
+		meterBySecond * 5.5
 ]
 
 { #category : 'test arithmetic operations' }
@@ -292,13 +320,20 @@ MultipliedUnitTest >> testNullMeasure [
 { #category : 'test arithmetic operations' }
 MultipliedUnitTest >> testNumberDividedByUnit [
 
-	self assert: (5 / meterBySecond) = (5 / (meterBySecond with: 1)).
-	self assert: (5 / meterBySecond) numerator = 5.
-	self assert: (5 / meterBySecond) denominator = (meterBySecond with: 1).
-	
-	self assert: (5.5 / meterBySecond) = (5.5 / (meterBySecond with: 1)).
-	self assert: (5.5 / meterBySecond) numerator = 5.5.
-	self assert: (5.5 / meterBySecond) denominator = (meterBySecond with: 1)
+	self assert: 5 / meterBySecond = (5 / (meterBySecond with: 1)).
+	self assertUnitOfNumeratorOf: 5 / meterBySecond is: NullUnit new.
+	self assertUnitOfDenominatorrOf: 5 / meterBySecond is: meterBySecond.
+	self assertProportionBetweenNumeratorAndDenominatorOf:
+		5 / meterBySecond.
+
+
+	self assert: 5.5 / meterBySecond = (5.5 / (meterBySecond with: 1)).
+	self assertUnitOfNumeratorOf: 5.5 / meterBySecond is: NullUnit new.
+	self
+		assertUnitOfDenominatorrOf: 5.5 / meterBySecond
+		is: meterBySecond.
+	self assertProportionBetweenNumeratorAndDenominatorOf:
+		5.5 / meterBySecond
 ]
 
 { #category : 'test arithmetic operations' }
@@ -308,24 +343,32 @@ MultipliedUnitTest >> testNumberDividedByUnitTwice [
 	kelvin := BaseUnit named: 'kelvin'.
 	
 	self assert: (5 / kelvin / meterBySecond) = (5 / (kelvin * meterBySecond with: 1)).
-	self assert: (5 / kelvin / meterBySecond) numerator = 5.
-	self assert: (5 / kelvin / meterBySecond) denominator = (kelvin * meterBySecond with: 1).
-	
+	self assertUnitOfNumeratorOf: 5/kelvin/meterBySecond is: NullUnit new.
+	self assertUnitOfDenominatorrOf: 5/kelvin/meterBySecond is: kelvin*meterBySecond.
+	self assertProportionBetweenNumeratorAndDenominatorOf:
+		5/kelvin/meterBySecond.
+
 	self assert: (5.5 / kelvin / meterBySecond) = (5.5 / (kelvin * meterBySecond with: 1)).
-	self assert: (5.5 / kelvin / meterBySecond) numerator = 5.5.
-	self assert: (5.5 / kelvin / meterBySecond) denominator = (kelvin * meterBySecond with: 1)
+	self assertUnitOfNumeratorOf: 5.5/kelvin/meterBySecond is: NullUnit new.
+	self assertUnitOfDenominatorrOf: 5.5/kelvin/meterBySecond is: kelvin*meterBySecond.
+	self assertProportionBetweenNumeratorAndDenominatorOf:
+		5.5/kelvin/meterBySecond
 ]
 
 { #category : 'test arithmetic operations' }
 MultipliedUnitTest >> testNumberMultipliedByUnit [
 
-	self assert: (5 * meterBySecond) = (meterBySecond with: 5).
-	self assert: (5 * meterBySecond) numerator = (meterBySecond with: 5).
-	self assert: (5 * meterBySecond) denominator = 1.
-	
-	self assert: (5.5 * meterBySecond) = (meterBySecond with: 5.5).
-	self assert: (5.5 * meterBySecond) numerator = (meterBySecond with: 5.5).
-	self assert: (5.5 * meterBySecond) denominator = 1
+	self assert: 5 * meterBySecond = (meterBySecond with: 5).
+	self assertUnitOfNumeratorOf: 5 * meterBySecond is: meterBySecond.
+	self assertUnitOfDenominatorrOf: 5 * meterBySecond is: NullUnit new.
+	self assertProportionBetweenNumeratorAndDenominatorOf:
+		5 * meterBySecond.
+
+	self assert: 5.5 * meterBySecond = (meterBySecond with: 5.5).
+	self assertUnitOfNumeratorOf: 5.5 * meterBySecond is: meterBySecond.
+	self assertUnitOfDenominatorrOf: 5.5 * meterBySecond is: NullUnit new.
+	self assertProportionBetweenNumeratorAndDenominatorOf:
+		5.5 * meterBySecond
 ]
 
 { #category : 'test arithmetic operations' }
@@ -334,13 +377,27 @@ MultipliedUnitTest >> testNumberMultipliedByUnitTwice [
 	| kelvin |
 	kelvin := BaseUnit named: 'kelvin'.
 
-	self assert: (5 * kelvin * meterBySecond) = (kelvin * meterBySecond with: 5).
-	self assert: (5 * kelvin * meterBySecond) numerator = (kelvin * meterBySecond with: 5).
-	self assert: (5 * kelvin * meterBySecond) denominator = 1.
-	
-	self assert: (5.5 * kelvin * meterBySecond) = (kelvin * meterBySecond with: 5.5).
-	self assert: (5.5 * kelvin * meterBySecond) numerator = (kelvin * meterBySecond with: 5.5).
-	self assert: (5.5 * kelvin * meterBySecond) denominator = 1
+	self assert:
+		5 * kelvin * meterBySecond = (kelvin * meterBySecond with: 5).
+	self
+		assertUnitOfNumeratorOf: 5 * kelvin * meterBySecond
+		is: kelvin * meterBySecond.
+	self
+		assertUnitOfDenominatorrOf: 5 * kelvin * meterBySecond
+		is: NullUnit new.
+	self assertProportionBetweenNumeratorAndDenominatorOf:
+		5 * kelvin * meterBySecond.
+
+	self assert:
+		5.5 * kelvin * meterBySecond = (kelvin * meterBySecond with: 5.5).
+	self
+		assertUnitOfNumeratorOf: 5.5 * kelvin * meterBySecond
+		is: kelvin * meterBySecond.
+	self
+		assertUnitOfDenominatorrOf: 5.5 * kelvin * meterBySecond
+		is: NullUnit new.
+	self assertProportionBetweenNumeratorAndDenominatorOf:
+		5.5 * kelvin * meterBySecond
 ]
 
 { #category : 'test accessing' }
