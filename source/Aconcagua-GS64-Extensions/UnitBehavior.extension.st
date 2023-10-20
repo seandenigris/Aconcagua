@@ -1,13 +1,9 @@
 Extension { #name : 'UnitBehavior' }
 
 { #category : '*Aconcagua-GS64-Extensions' }
-UnitBehavior >> _coerce: aNumber [
+UnitBehavior >> _basicRetry: aSelector coercing: aNumber [
 
-	^ self with: aNumber
-]
-
-{ #category : '*Aconcagua-GS64-Extensions' }
-UnitBehavior >> _generality [
-
-	^ ArithmeticObject infinity
+	^ (#( #* #/ ) includes: aSelector)
+		  ifTrue: [ self perform: aSelector with: aNumber ]
+		  ifFalse: [ aNumber _retry: aSelector coercing: self ]
 ]
