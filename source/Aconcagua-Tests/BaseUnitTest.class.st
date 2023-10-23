@@ -6,6 +6,12 @@ Class {
 	#tag : 'MeasureModel'
 }
 
+{ #category : 'test support' }
+BaseUnitTest >> assertUnitOf: anArithmeticObject is: aUnit [
+
+	self assert: (anArithmeticObject unit sameDomainAs: aUnit)
+]
+
 { #category : 'test arithmetic operations' }
 BaseUnitTest >> infinity [
 
@@ -442,14 +448,14 @@ BaseUnitTest >> testNumberDividedByUnit [
 	
 	self assert: (5 / kelvin) = (Measure amount: 5 unit: NullUnit new / kelvin).
 	self assert: (5 / (kelvin with: 1)) = (Measure amount: 5 unit: NullUnit new / kelvin).
-	self assert: (5 / kelvin) numerator = 5.
-	self assert: (5 / kelvin) denominator = (kelvin with: 1).
-	self assert: (5 / (kelvin with: 1)) numerator = 5.
-	self assert: (5 / (kelvin with: 1)) denominator = (kelvin with: 1).
+	self assertUnitOf: (5 / kelvin) numerator is: NullUnit new.
+	self assertUnitOf: (5 / kelvin) denominator is: kelvin.
+	self assertUnitOf: (5 / (kelvin with: 1)) numerator is: NullUnit new.
+	self assertUnitOf: (5 / (kelvin with: 1)) denominator is: kelvin.
 	
 	self assert: (5.5 / kelvin) = (5.5 / (kelvin with: 1)).
-	self assert: (5.5 / kelvin) numerator = 5.5.
-	self assert: (5.5 / kelvin) denominator = (kelvin with: 1)
+	self assertUnitOf: (5.5 / kelvin) numerator is: NullUnit new.
+	self assertUnitOf: (5.5 / kelvin) denominator is: kelvin
 ]
 
 { #category : 'test arithmetic operations' }
@@ -461,12 +467,13 @@ BaseUnitTest >> testNumberDividedByUnitTwice [
 	meter := BaseUnit named: 'meter'.
 	
 	self assert: (5 / kelvin / meter) = (Measure amount: 5 unit: NullUnit new / (kelvin * meter)).
-	self assert: (5 / kelvin / meter) numerator = 5.
-	self assert: (5 / kelvin / meter) denominator = (kelvin * meter with: 1).
+	self assertUnitOf: (5 / kelvin / meter) numerator is: NullUnit new.
+	self assertUnitOf: (5 / kelvin / meter) denominator is: kelvin * meter.
 	
 	self assert: (5.5 / kelvin / meter) = (5.5 / (kelvin * meter with: 1)).
-	self assert: (5.5 / kelvin / meter ) numerator = 5.5.
-	self assert: (5.5 / kelvin / meter) denominator = (kelvin * meter with: 1)
+	self assertUnitOf: (5.5 / kelvin / meter ) numerator is: NullUnit new.
+	self assertUnitOf: (5.5 / kelvin / meter ) denominator is: kelvin * meter.
+
 ]
 
 { #category : 'test arithmetic operations' }
@@ -477,10 +484,10 @@ BaseUnitTest >> testNumberMultipliedByUnit [
 	kelvin := BaseUnit named: 'kelvin'.
 	
 	self assert: (5 * kelvin) = (kelvin with: 5).
-	self assert: (5 * kelvin) numerator = (kelvin with: 5).
-	self assert: (5 * kelvin) denominator = 1.
-	self assert: (5 * (kelvin with: 1)) numerator = (kelvin with: 5).
-	self assert: (5 * (kelvin with: 1)) denominator = 1.
+	self assertUnitOf: (5 * kelvin) numerator is: kelvin.
+	self assertUnitOf: (5 * kelvin) denominator is: NullUnit new.
+	self assertUnitOf: (5 * (kelvin with: 1)) numerator is: kelvin.
+	self assertUnitOf: (5 * (kelvin with: 1)) denominator is: NullUnit new.
 	
 	self assert: 5.5 * kelvin = (kelvin with: 5.5).
 	self assert: (5.5 * kelvin) numerator = (kelvin with: 5.5) numerator.
@@ -496,8 +503,8 @@ BaseUnitTest >> testNumberMultipliedByUnitTwice [
 	meter := BaseUnit named: 'meter'.
 	
 	self assert: 5 * kelvin * meter = (kelvin * meter with: 5).
-	self assert: (5 * kelvin * meter) numerator = (kelvin * meter with: 5).
-	self assert: (5 * kelvin * meter) denominator = 1.
+	self assertUnitOf: (5 * kelvin * meter) numerator is: kelvin * meter.
+	self assertUnitOf: (5 * kelvin * meter) denominator is: NullUnit new.
 		
 	self assert: 5.5 * kelvin * meter = (kelvin * meter with: 5.5).
 	self assert: (5.5 * kelvin * meter) numerator = (kelvin * meter with: 5.5) numerator.
