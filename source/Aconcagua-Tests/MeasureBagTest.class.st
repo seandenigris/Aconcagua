@@ -370,10 +370,11 @@ MeasureBagTest >> testAtSameBaseUnitAsWithDerivedUnits [
 MeasureBagTest >> testConvertAmountToBaseUnit [
 
 	self
-		should: [(self tenPesos + self tenDollars) convertAmountToBaseUnit]
+		should: [ (self tenPesos + self tenDollars) convertAmountToBaseUnit ]
 		raise: Exception
 		withExceptionDo: [ :anException |
-			self assert: ('*Unit of a MeasureBag is not defined' match: anException description)]
+			self assert: (anException description indexOfSubCollection:
+					 'Unit of a MeasureBag is not defined') > 0 ]
 ]
 
 { #category : 'test instance creation' }
@@ -997,10 +998,11 @@ MeasureBagTest >> testTruncated [
 MeasureBagTest >> testUnitNameOf [
 
 	self
-		should: [(self tenPesos + self tenDollars) unitNameOf: self dollar]
+		should: [ self tenPesos + self tenDollars unitNameOf: self dollar ]
 		raise: Exception
 		withExceptionDo: [ :anException |
-			self assert: ('*Unit of a MeasureBag is not defined' match: anException description)]
+			self assert: (anException description indexOfSubCollection:
+					 'Unit of a MeasureBag is not defined') > 0 ]
 ]
 
 { #category : 'test instance creation' }
