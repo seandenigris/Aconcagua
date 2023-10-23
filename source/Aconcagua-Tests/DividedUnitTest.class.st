@@ -11,6 +11,23 @@ Class {
 	#tag : 'MeasureModel'
 }
 
+{ #category : 'test support' }
+DividedUnitTest >> assertAreProportionallyEquivalentAmountOf: aMeasure and: aNumber [
+	"Avoiding asserting specific numerator/denominator in each test case, and writing this in a generic way instead, because depending on the Smalltalk dialect fraction reduction may or may not happen automatically on instance creation"
+
+	self assert: aMeasure numerator amount / aMeasure denominator amount
+		= aMeasure amount.
+	self assert:
+		(aMeasure numerator amount / aMeasure denominator amount) asFloat
+		= aNumber asFloat
+]
+
+{ #category : 'test support' }
+DividedUnitTest >> assertUnitOf: anArithmeticObject is: aUnit [
+
+	self assert: (anArithmeticObject unit sameDomainAs: aUnit)
+]
+
 { #category : 'test arithmetic operations' }
 DividedUnitTest >> infinity [
 
@@ -113,13 +130,17 @@ DividedUnitTest >> testDivideByMinusInfinity [
 { #category : 'test arithmetic operations' }
 DividedUnitTest >> testDivideByNumber [
 
-	self assert: (meterOverSecond / 5) = (meterOverSecond with: 1/5).
-	self assert: (meterOverSecond / 5) numerator = (meter with: 1).
-	self assert: (meterOverSecond / 5) denominator = (second with: 5).
-	
-	self assert: (meterOverSecond / 5.5) = (meterOverSecond with: 1/5.5).
-	self assert: (meterOverSecond / 5.5) numerator = (meter with: 1/5.5).
-	self assert: (meterOverSecond / 5.5) denominator = (second with: 1)
+	self
+		assertAreProportionallyEquivalentAmountOf: meterOverSecond / 5
+		and: 1 / 5.
+	self assertUnitOf: (meterOverSecond / 5) numerator is: meter.
+	self assertUnitOf: (meterOverSecond / 5) denominator is: second.
+
+	self
+		assertAreProportionallyEquivalentAmountOf: meterOverSecond / 5.5
+		and: 1 / (55 / 10).
+	self assertUnitOf: (meterOverSecond / 5.5) numerator is: meter.
+	self assertUnitOf: (meterOverSecond / 5.5) denominator is: second
 ]
 
 { #category : 'test arithmetic operations' }
@@ -266,13 +287,17 @@ DividedUnitTest >> testMultiplyByNullUnit [
 { #category : 'test arithmetic operations' }
 DividedUnitTest >> testMultiplyByNumber [
 
-	self assert: (meterOverSecond * 5) = (meterOverSecond with: 5).
-	self assert: (meterOverSecond * 5) numerator = (meter with: 5).
-	self assert: (meterOverSecond * 5) denominator = (second with: 1).
-	
-	self assert: (meterOverSecond * 5.5) = (meterOverSecond with: 5.5).
-	self assert: (meterOverSecond * 5.5) numerator = (meter with: 5.5).
-	self assert: (meterOverSecond * 5.5) denominator = (second with: 1)
+	self
+		assertAreProportionallyEquivalentAmountOf: meterOverSecond * 5
+		and: 5 / 1.
+	self assertUnitOf: (meterOverSecond * 5) numerator is: meter.
+	self assertUnitOf: (meterOverSecond * 5) denominator is: second.
+
+	self
+		assertAreProportionallyEquivalentAmountOf: meterOverSecond * 5.5
+		and: 55 / 10.
+	self assertUnitOf: (meterOverSecond * 5.5) numerator is: meter.
+	self assertUnitOf: (meterOverSecond * 5.5) denominator is: second
 ]
 
 { #category : 'test arithmetic operations' }
@@ -327,14 +352,20 @@ DividedUnitTest >> testNumberDividedByUnit [
 
 	| secondOverMeter |
 	secondOverMeter := meterOverSecond reciprocal.
-	
+
+	self
+		assertAreProportionallyEquivalentAmountOf: 5 / meterOverSecond
+		and: 5 / 1.
 	self assert: (5 / meterOverSecond) = (secondOverMeter with: 5).
-	self assert: (5 / meterOverSecond) numerator = (second with: 5).
-	self assert: (5 / meterOverSecond) denominator = (meter with: 1).
-	
+	self assertUnitOf: (5 / meterOverSecond) numerator is: second.
+	self assertUnitOf: (5 / meterOverSecond) denominator is: meter.
+
+	self
+		assertAreProportionallyEquivalentAmountOf: 5.5 / meterOverSecond
+		and: 55 / 10.
 	self assert: (5.5 / meterOverSecond) = (secondOverMeter with: 5.5).
-	self assert: (5.5 / meterOverSecond) numerator = (second with: 5.5).
-	self assert: (5.5 / meterOverSecond) denominator = (meter with: 1)
+	self assertUnitOf: (5.5 / meterOverSecond) numerator is: second.
+	self assertUnitOf: (5.5 / meterOverSecond) denominator is: meter
 ]
 
 { #category : 'test arithmetic operations' }
@@ -343,26 +374,28 @@ DividedUnitTest >> testNumberDividedByUnitTwice [
 	| secondOverMeter kelvin |
 	secondOverMeter := meterOverSecond reciprocal.
 	kelvin := BaseUnit named: 'kelvin'.
-	
+
+	self assertAreProportionallyEquivalentAmountOf: (5 / kelvin / meterOverSecond) and: 5/1.
 	self assert: (5 / kelvin / meterOverSecond) = (secondOverMeter * (NullUnit new / kelvin) with: 5).
-	self assert: (5 / kelvin / meterOverSecond) numerator = (second with: 5).
-	self assert: (5 / kelvin / meterOverSecond) denominator = (kelvin * meter with: 1).
+	self assertUnitOf: (5 / kelvin / meterOverSecond) numerator is: second.
+	self assertUnitOf: (5 / kelvin / meterOverSecond) denominator is: kelvin * meter.
 	
+	self assertAreProportionallyEquivalentAmountOf: (5.5 / kelvin / meterOverSecond) and: 55/10.
 	self assert: (5.5 / kelvin / meterOverSecond) = (secondOverMeter * (NullUnit new / kelvin) with: 5.5).
-	self assert: (5.5 / kelvin / meterOverSecond) numerator = (second with: 5.5).
-	self assert: (5.5 / kelvin / meterOverSecond) denominator = (kelvin * meter with: 1)
+	self assertUnitOf: (5.5 / kelvin / meterOverSecond) numerator is: second.
+	self assertUnitOf: (5.5 / kelvin / meterOverSecond) denominator is: kelvin * meter
 ]
 
 { #category : 'test arithmetic operations' }
 DividedUnitTest >> testNumberMultipliedByUnit [
 
-	self assert: (5 * meterOverSecond) = (meterOverSecond with: 5).
-	self assert: (5 * meterOverSecond) numerator = (meter with: 5).
-	self assert: (5 * meterOverSecond) denominator = (second with: 1).
+	self assertAreProportionallyEquivalentAmountOf: 5 * meterOverSecond and: 5/1.
+	self assertUnitOf: (5 * meterOverSecond) numerator is: meter.
+	self assertUnitOf: (5 * meterOverSecond) denominator is: second.
 	
-	self assert: (5.5 * meterOverSecond) = (meterOverSecond with: 5.5).
-	self assert: (5.5 * meterOverSecond) numerator = (meter with: 5.5).
-	self assert: (5.5 * meterOverSecond) denominator = (second with: 1)
+	self assertAreProportionallyEquivalentAmountOf: 5.5 * meterOverSecond and: 55/10.
+	self assertUnitOf: (5.5 * meterOverSecond) numerator is: meter.
+	self assertUnitOf: (5.5 * meterOverSecond) denominator is: second
 ]
 
 { #category : 'test arithmetic operations' }
@@ -371,13 +404,13 @@ DividedUnitTest >> testNumberMultipliedByUnitTwice [
 	| kelvin |
 	kelvin := BaseUnit named: 'kelvin'.
 	
-	self assert: (5 * kelvin * meterOverSecond) = (kelvin * meterOverSecond with: 5).
-	self assert: (5 * kelvin * meterOverSecond) numerator = (kelvin * meter with: 5).
-	self assert: (5 * kelvin * meterOverSecond) denominator = (second with: 1).
+	self assertAreProportionallyEquivalentAmountOf: 5 * kelvin * meterOverSecond and: 5/1.
+	self assertUnitOf: (5 * kelvin * meterOverSecond) numerator is: kelvin * meter.
+	self assertUnitOf: (5 * kelvin * meterOverSecond) denominator is: second.
 	
-	self assert: (5.5 * kelvin * meterOverSecond) = (kelvin * meterOverSecond with: 5.5).
-	self assert: (5.5 * kelvin * meterOverSecond) numerator = (kelvin * meter with: 5.5).
-	self assert: (5.5 * kelvin * meterOverSecond) denominator = (second with: 1)
+	self assertAreProportionallyEquivalentAmountOf: 5.5 * kelvin * meterOverSecond and: 55/10.
+	self assertUnitOf: (5.5 * kelvin * meterOverSecond) numerator is: kelvin * meter .
+	self assertUnitOf: (5.5 * kelvin * meterOverSecond) denominator is: second
 ]
 
 { #category : 'test accessing' }

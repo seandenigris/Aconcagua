@@ -14,7 +14,7 @@ Class {
 }
 
 { #category : 'test support' }
-MultipliedUnitTest >> assertProportionBetweenNumeratorAndDenominatorOf: aMeasure isEquivalentTo: aNumber [
+MultipliedUnitTest >> assertAreProportionallyEquivalentAmountOf: aMeasure and: aNumber [
 	"Avoiding asserting specific numerator/denominator in each test case, and writing this in a generic way instead, because depending on the Smalltalk dialect fraction reduction may or may not happen automatically on instance creation"
 
 	self assert: aMeasure numerator amount / aMeasure denominator amount
@@ -25,7 +25,7 @@ MultipliedUnitTest >> assertProportionBetweenNumeratorAndDenominatorOf: aMeasure
 ]
 
 { #category : 'test support' }
-MultipliedUnitTest >> assertUnitOf: anArithmeticObject isSameDomainAs: aUnit [
+MultipliedUnitTest >> assertUnitOf: anArithmeticObject is: aUnit [
 
 	self assert: (anArithmeticObject unit sameDomainAs: aUnit)
 ]
@@ -121,25 +121,25 @@ MultipliedUnitTest >> testDivideByNumber [
 	self assert: meterBySecond / 5 = (meterBySecond with: 1 / 5).
 	self
 		assertUnitOf: (meterBySecond / 5) numerator
-		isSameDomainAs: meterBySecond.
+		is: meterBySecond.
 	self
 		assertUnitOf: (meterBySecond / 5) denominator
-		isSameDomainAs: NullUnit new.
+		is: NullUnit new.
 	self
-		assertProportionBetweenNumeratorAndDenominatorOf: meterBySecond / 5
-		isEquivalentTo: 1 / 5.
+		assertAreProportionallyEquivalentAmountOf: meterBySecond / 5
+		and: 1 / 5.
 
 	self assert: meterBySecond / 5.5 = (meterBySecond with: 1 / 5.5).
 	self
 		assertUnitOf: (meterBySecond / 5.5) numerator
-		isSameDomainAs: meterBySecond.
+		is: meterBySecond.
 	self
 		assertUnitOf: (meterBySecond / 5.5) denominator
-		isSameDomainAs: NullUnit new.
+		is: NullUnit new.
 	self
-		assertProportionBetweenNumeratorAndDenominatorOf:
+		assertAreProportionallyEquivalentAmountOf:
 		meterBySecond / 5.5
-		isEquivalentTo: 1 / (55 / 10)
+		and: 1 / (55 / 10)
 ]
 
 { #category : 'test arithmetic operations' }
@@ -273,25 +273,25 @@ MultipliedUnitTest >> testMultiplyByNumber [
 	self assert: meterBySecond * 5 = (meterBySecond with: 5).
 	self
 		assertUnitOf: (meterBySecond * 5) numerator
-		isSameDomainAs: meterBySecond.
+		is: meterBySecond.
 	self
 		assertUnitOf: (meterBySecond * 5) denominator
-		isSameDomainAs: NullUnit new.
+		is: NullUnit new.
 	self
-		assertProportionBetweenNumeratorAndDenominatorOf: meterBySecond * 5
-		isEquivalentTo: 5 / 1.
+		assertAreProportionallyEquivalentAmountOf: meterBySecond * 5
+		and: 5 / 1.
 
 	self assert: meterBySecond * 5.5 = (meterBySecond with: 5.5).
 	self
 		assertUnitOf: (meterBySecond * 5.5) numerator
-		isSameDomainAs: meterBySecond.
+		is: meterBySecond.
 	self
 		assertUnitOf: (meterBySecond * 5.5) denominator
-		isSameDomainAs: NullUnit new.
+		is: NullUnit new.
 	self
-		assertProportionBetweenNumeratorAndDenominatorOf:
+		assertAreProportionallyEquivalentAmountOf:
 		meterBySecond * 5.5
-		isEquivalentTo: 55 / 10
+		and: 55 / 10
 ]
 
 { #category : 'test arithmetic operations' }
@@ -342,26 +342,26 @@ MultipliedUnitTest >> testNumberDividedByUnit [
 	self assert: 5 / meterBySecond = (5 / (meterBySecond with: 1)).
 	self
 		assertUnitOf: (5 / meterBySecond) numerator
-		isSameDomainAs: NullUnit new.
+		is: NullUnit new.
 	self
 		assertUnitOf: (5 / meterBySecond) denominator
-		isSameDomainAs: meterBySecond.
+		is: meterBySecond.
 	self
-		assertProportionBetweenNumeratorAndDenominatorOf: 5 / meterBySecond
-		isEquivalentTo: 5 / 1.
+		assertAreProportionallyEquivalentAmountOf: 5 / meterBySecond
+		and: 5 / 1.
 
 
 	self assert: 5.5 / meterBySecond = (5.5 / (meterBySecond with: 1)).
 	self
 		assertUnitOf: (5.5 / meterBySecond) numerator
-		isSameDomainAs: NullUnit new.
+		is: NullUnit new.
 	self
 		assertUnitOf: (5.5 / meterBySecond) denominator
-		isSameDomainAs: meterBySecond.
+		is: meterBySecond.
 	self
-		assertProportionBetweenNumeratorAndDenominatorOf:
+		assertAreProportionallyEquivalentAmountOf:
 		5.5 / meterBySecond
-		isEquivalentTo: 55 / 10
+		and: 55 / 10
 ]
 
 { #category : 'test arithmetic operations' }
@@ -374,27 +374,27 @@ MultipliedUnitTest >> testNumberDividedByUnitTwice [
 		5 / kelvin / meterBySecond = (5 / (kelvin * meterBySecond with: 1)).
 	self
 		assertUnitOf: (5 / kelvin / meterBySecond) numerator
-		isSameDomainAs: NullUnit new.
+		is: NullUnit new.
 	self
 		assertUnitOf: (5 / kelvin / meterBySecond) denominator
-		isSameDomainAs: kelvin * meterBySecond.
+		is: kelvin * meterBySecond.
 	self
-		assertProportionBetweenNumeratorAndDenominatorOf:
+		assertAreProportionallyEquivalentAmountOf:
 		5 / kelvin / meterBySecond
-		isEquivalentTo: 5 / 1.
+		and: 5 / 1.
 
 	self assert: 5.5 / kelvin / meterBySecond
 		= (5.5 / (kelvin * meterBySecond with: 1)).
 	self
 		assertUnitOf: (5.5 / kelvin / meterBySecond) numerator
-		isSameDomainAs: NullUnit new.
+		is: NullUnit new.
 	self
 		assertUnitOf: (5.5 / kelvin / meterBySecond) denominator
-		isSameDomainAs: kelvin * meterBySecond.
+		is: kelvin * meterBySecond.
 	self
-		assertProportionBetweenNumeratorAndDenominatorOf:
+		assertAreProportionallyEquivalentAmountOf:
 		5.5 / kelvin / meterBySecond
-		isEquivalentTo: 55 / 10
+		and: 55 / 10
 ]
 
 { #category : 'test arithmetic operations' }
@@ -403,25 +403,25 @@ MultipliedUnitTest >> testNumberMultipliedByUnit [
 	self assert: 5 * meterBySecond = (meterBySecond with: 5).
 	self
 		assertUnitOf: (5 * meterBySecond) numerator
-		isSameDomainAs: meterBySecond.
+		is: meterBySecond.
 	self
 		assertUnitOf: (5 * meterBySecond) denominator
-		isSameDomainAs: NullUnit new.
+		is: NullUnit new.
 	self
-		assertProportionBetweenNumeratorAndDenominatorOf: 5 * meterBySecond
-		isEquivalentTo: 5 / 1.
+		assertAreProportionallyEquivalentAmountOf: 5 * meterBySecond
+		and: 5 / 1.
 
 	self assert: 5.5 * meterBySecond = (meterBySecond with: 5.5).
 	self
 		assertUnitOf: (5.5 * meterBySecond) numerator
-		isSameDomainAs: meterBySecond.
+		is: meterBySecond.
 	self
 		assertUnitOf: (5.5 * meterBySecond) denominator
-		isSameDomainAs: NullUnit new.
+		is: NullUnit new.
 	self
-		assertProportionBetweenNumeratorAndDenominatorOf:
+		assertAreProportionallyEquivalentAmountOf:
 		5.5 * meterBySecond
-		isEquivalentTo: 55 / 10
+		and: 55 / 10
 ]
 
 { #category : 'test arithmetic operations' }
@@ -434,27 +434,27 @@ MultipliedUnitTest >> testNumberMultipliedByUnitTwice [
 		5 * kelvin * meterBySecond = (kelvin * meterBySecond with: 5).
 	self
 		assertUnitOf: (5 * kelvin * meterBySecond) numerator
-		isSameDomainAs: kelvin * meterBySecond.
+		is: kelvin * meterBySecond.
 	self
 		assertUnitOf: (5 * kelvin * meterBySecond) denominator
-		isSameDomainAs: NullUnit new.
+		is: NullUnit new.
 	self
-		assertProportionBetweenNumeratorAndDenominatorOf:
+		assertAreProportionallyEquivalentAmountOf:
 		5 * kelvin * meterBySecond
-		isEquivalentTo: 5 / 1.
+		and: 5 / 1.
 
 	self assert:
 		5.5 * kelvin * meterBySecond = (kelvin * meterBySecond with: 5.5).
 	self
 		assertUnitOf: (5.5 * kelvin * meterBySecond) numerator
-		isSameDomainAs: kelvin * meterBySecond.
+		is: kelvin * meterBySecond.
 	self
 		assertUnitOf: (5.5 * kelvin * meterBySecond) denominator
-		isSameDomainAs: NullUnit new.
+		is: NullUnit new.
 	self
-		assertProportionBetweenNumeratorAndDenominatorOf:
+		assertAreProportionallyEquivalentAmountOf:
 		5.5 * kelvin * meterBySecond
-		isEquivalentTo: 55 / 10
+		and: 55 / 10
 ]
 
 { #category : 'test accessing' }
