@@ -1,9 +1,13 @@
 Extension { #name : 'UnitBehavior' }
 
 { #category : '*Aconcagua-GS64-Extensions' }
-UnitBehavior >> _basicRetry: aSelector coercing: aNumber [
+UnitBehavior >> _coerce: number [
 
-	^ aSelector = #/
-		  ifTrue: [ self reciprocal perform: #* with: aNumber ]
-		  ifFalse: [ self perform: aSelector with: aNumber ]
+	^Measure amount: number unit: number unit
+]
+
+{ #category : '*Aconcagua-GS64-Extensions' }
+UnitBehavior >> _generality [
+
+	^110
 ]
