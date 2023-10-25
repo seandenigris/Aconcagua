@@ -270,9 +270,14 @@ ArithmeticObjectIntervalTest >> testStoreOn [
 
 	| stream |
 	stream := WriteStream on: String new.
-	(ArithmeticObjectInterval 
-		from: 1
-		to: 10
-		by: 1) storeOn: stream.
-	self assert: stream contents = '(ArithmeticObjectInterval from: 1 to: 10 by: 1)'
+	(ArithmeticObjectInterval from: 1 to: 10 by: 1) storeOn: stream.
+	self assert: stream contents = (String streamContents: [ :aStream |
+			 aStream
+				 nextPutAll: '(ArithmeticObjectInterval from: ';
+				 nextPutAll: 1 storeString;
+				 nextPutAll: ' to: ';
+				 nextPutAll: 10 storeString;
+				 nextPutAll: ' by: ';
+				 nextPutAll: 1 storeString;
+				 nextPutAll: ')' ])
 ]
