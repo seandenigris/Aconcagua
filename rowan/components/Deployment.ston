@@ -4,7 +4,6 @@ RwSimpleProjectLoadComponentV2 {
   #componentNames : [	],
   #packageNames : [
     'Aconcagua-Core',
-    'Aconcagua-GS64-Base-Extensions',
     'Aconcagua-GS64-Extensions',
     'Aconcagua-Extensions'
   ],
@@ -13,7 +12,6 @@ RwSimpleProjectLoadComponentV2 {
       'allusers' : {
         #packageNameToPlatformPropertiesMap : {
           'Aconcagua-Core' : { 'symbolDictName' : 'Aconcagua' },
-          'Aconcagua-GS64-Base-Extensions' : { 'symbolDictName' : 'Globals' },
           'Aconcagua-GS64-Extensions' : { 'symbolDictName' : 'Aconcagua' },
           'Aconcagua-Extensions' : { 'symbolDictName' : 'Globals' }
         }
