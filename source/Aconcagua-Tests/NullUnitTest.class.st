@@ -18,15 +18,14 @@ NullUnitTest >> setUp [
 { #category : 'test accessing' }
 NullUnitTest >> testBaseUnit [
 
-	self assert: (nullUnit baseUnit) = nullUnit
-
+	self assert: nullUnit baseUnit equals: nullUnit
 ]
 
 { #category : 'test converting' }
 NullUnitTest >> testConvertAmountToBaseUnit [
 
-	self assert: (nullUnit convertAmountToBaseUnit: 0) = 0.
-	self assert: (nullUnit convertAmountToBaseUnit: 10) = 0
+	self assert: (nullUnit convertAmountToBaseUnit: 0) equals: 0.
+	self assert: (nullUnit convertAmountToBaseUnit: 10) equals: 0
 ]
 
 { #category : 'test converting' }
@@ -38,44 +37,43 @@ NullUnitTest >> testConvertToBaseUnit [
 { #category : 'test accessing' }
 NullUnitTest >> testDenominator [
 
-	self assert: nullUnit denominator = nullUnit
+	self assert: nullUnit denominator equals: nullUnit
 ]
 
 { #category : 'test arithmetic operations' }
 NullUnitTest >> testDivideByDividedUnit [
 
 	| meter hour |
-	
 	meter := BaseUnit named: 'meter'.
 	hour := BaseUnit named: 'hour'.
-	self assert: (nullUnit / (meter / hour)) numerator = hour.
-	self assert: (nullUnit / (meter / hour)) denominator = meter
+	self assert: (nullUnit / (meter / hour)) numerator equals: hour.
+	self assert: (nullUnit / (meter / hour)) denominator equals: meter
 ]
 
 { #category : 'test arithmetic operations' }
 NullUnitTest >> testDivideByMultipliedUnit [
 
 	| meter |
-	
 	meter := BaseUnit named: 'meter'.
-	self assert: (nullUnit / (meter * meter)) numerator = nullUnit.
-	self assert: (nullUnit / (meter * meter)) denominator = (meter*meter)
+	self assert: (nullUnit / (meter * meter)) numerator equals: nullUnit.
+	self
+		assert: (nullUnit / (meter * meter)) denominator
+		equals: meter * meter
 ]
 
 { #category : 'test arithmetic operations' }
 NullUnitTest >> testDivideByNullUnit [
 
-	self assert: (nullUnit / nullUnit) = nullUnit
+	self assert: nullUnit / nullUnit equals: nullUnit
 ]
 
 { #category : 'test arithmetic operations' }
 NullUnitTest >> testDivideBySimpleUnit [
 
 	| meter |
-	
 	meter := BaseUnit named: 'meter'.
-	self assert: (nullUnit / meter) numerator = nullUnit.
-	self assert: (nullUnit / meter) denominator = meter
+	self assert: (nullUnit / meter) numerator equals: nullUnit.
+	self assert: (nullUnit / meter) denominator equals: meter
 ]
 
 { #category : 'test comparing' }
@@ -121,85 +119,81 @@ NullUnitTest >> testEqualMultipliedUnit [
 { #category : 'test comparing' }
 NullUnitTest >> testEqualNullUnit [
 
-	self assert: nullUnit = nullUnit.
-	self assert: NullUnit new = NullUnit new
+	self assert: nullUnit equals: nullUnit.
+	self assert: NullUnit new equals: NullUnit new
 ]
 
 { #category : 'test measurement creation' }
 NullUnitTest >> testMeasureCreation [
 
-	self assert: (nullUnit with: 10) = 10
+	self assert: (nullUnit with: 10) equals: 10
 ]
 
 { #category : 'test arithmetic operations' }
 NullUnitTest >> testMultiplyByDividedUnit [
 
 	| meter second |
-	
 	meter := BaseUnit named: 'meter'.
 	second := BaseUnit named: 'second'.
-	
-	self assert: (nullUnit * (meter / second )) numerator = meter.
-	self assert: (nullUnit * (meter / second )) denominator = second
+	self assert: (nullUnit * (meter / second)) numerator equals: meter.
+	self assert: (nullUnit * (meter / second)) denominator equals: second
 ]
 
 { #category : 'test arithmetic operations' }
 NullUnitTest >> testMultiplyByMultipliedUnit [
 
 	| second kelvin |
-
 	second := BaseUnit named: 'second'.
 	kelvin := BaseUnit named: 'kelvin'.
-	
-	self assert: (nullUnit * (second * kelvin)) factorsSize = 2.
-	self assert: ((nullUnit * (second * kelvin)) factors includes: second).
-	self assert: ((nullUnit * (second * kelvin)) factors includes: kelvin)
+	self assert: (nullUnit * (second * kelvin)) factorsSize equals: 2.
+	self assert:
+		((nullUnit * (second * kelvin)) factors includes: second).
+	self assert:
+		((nullUnit * (second * kelvin)) factors includes: kelvin)
 ]
 
 { #category : 'test arithmetic operations' }
 NullUnitTest >> testMultiplyByNullUnit [
 
-	self assert: (nullUnit * nullUnit) = nullUnit
+	self assert: nullUnit * nullUnit equals: nullUnit
 ]
 
 { #category : 'test arithmetic operations' }
 NullUnitTest >> testMultiplyBySimpleUnit [
 
 	| meter |
-	
 	meter := BaseUnit named: 'meter'.
-	
-	self assert: (nullUnit * meter) = meter
+	self assert: nullUnit * meter equals: meter
 ]
 
 { #category : 'test accessing' }
 NullUnitTest >> testName [
 
-	self assert: nullUnit name = ''
+	self assert: nullUnit name equals: ''
 ]
 
 { #category : 'test accessing' }
 NullUnitTest >> testNameForMany [
 
-	self assert: nullUnit nameForMany = ''
+	self assert: nullUnit nameForMany equals: ''
 ]
 
 { #category : 'test accessing' }
 NullUnitTest >> testNameForOne [
 
-	self assert: nullUnit nameForOne = ''
+	self assert: nullUnit nameForOne equals: ''
 ]
 
 { #category : 'test accessing' }
 NullUnitTest >> testNumerator [
 
-	self assert: nullUnit numerator = nullUnit
+	self assert: nullUnit numerator equals: nullUnit
 ]
 
 { #category : 'test accessing' }
 NullUnitTest >> testReciprocal [
 
-	self assert: nullUnit reciprocal = nullUnit
+	self assert: nullUnit reciprocal equals: nullUnit
 ]
 
 { #category : 'test querying' }
@@ -255,5 +249,5 @@ NullUnitTest >> testSameDomainAsNullUnit [
 { #category : 'test accessing' }
 NullUnitTest >> testSign [
 
-	self assert: nullUnit sign = NullUnit defaultSign
+	self assert: nullUnit sign equals: NullUnit defaultSign
 ]

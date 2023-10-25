@@ -238,66 +238,100 @@ MeasureTest >> tenPesos [
 { #category : 'test integer remainder' }
 MeasureTest >> tesRemainderFractionByMeasure [
 
-	self assert: (1/3) \\ self tenPesos = (1/3)
+	self assert: 1 / 3 \\ self tenPesos equals: 1 / 3
 ]
 
 { #category : 'test' }
 MeasureTest >> testAbs [
 
-	self assert: self onePeso abs = self onePeso.
-	self assert: (self onePeso unit with: 0)  abs = (self onePeso unit with: 0).
-	self assert: (self onePeso unit with: -1)  abs = (self onePeso unit with: 1)
+	self assert: self onePeso abs equals: self onePeso.
+	self
+		assert: (self onePeso unit with: 0) abs
+		equals: (self onePeso unit with: 0).
+	self
+		assert: (self onePeso unit with: -1) abs
+		equals: (self onePeso unit with: 1)
 ]
 
 { #category : 'test add' }
 MeasureTest >> testAddAssociativity [
 
-	self assert: (self oneMeter + (self oneMeter + self oneKilometer)) amount = ((self oneMeter + self oneMeter) + self oneKilometer) amount.
-	self assert: (self oneMeter + (self oneMeter + self oneKilometer)) unit = ((self oneMeter + self oneMeter) + self oneKilometer) unit
+	self
+		assert: (self oneMeter + (self oneMeter + self oneKilometer)) amount
+		equals: (self oneMeter + self oneMeter + self oneKilometer) amount.
+	self
+		assert: (self oneMeter + (self oneMeter + self oneKilometer)) unit
+		equals: (self oneMeter + self oneMeter + self oneKilometer) unit
 ]
 
 { #category : 'test add' }
 MeasureTest >> testAddBaseUnit [
 
-	self assert: (self oneMeter + self oneMeter) amount = 2.
-	self assert: (self oneMeter + self oneMeter) unit = self meter
+	self assert: (self oneMeter + self oneMeter) amount equals: 2.
+	self assert: (self oneMeter + self oneMeter) unit equals: self meter
 ]
 
 { #category : 'test add' }
 MeasureTest >> testAddBaseUnitAndDerivedUnit [
 
-	self assert: (self oneKilometer + self oneMeter) amount = 1001.
-	self assert: (self oneKilometer + self oneMeter) unit = self meter.
-	
-	self assert: (self zeroCelsius + (Measure amount: 32 unit: self fahrenheit)) amount = (5463/10).
-	self assert: (self zeroCelsius + (Measure amount: 32 unit: self fahrenheit)) unit = self kelvin
-
+	self assert: (self oneKilometer + self oneMeter) amount equals: 1001.
+	self
+		assert: (self oneKilometer + self oneMeter) unit
+		equals: self meter.
+	self
+		assert:
+		(self zeroCelsius + (Measure amount: 32 unit: self fahrenheit))
+			amount
+		equals: 5463 / 10.
+	self
+		assert:
+		(self zeroCelsius + (Measure amount: 32 unit: self fahrenheit)) unit
+		equals: self kelvin
 ]
 
 { #category : 'test add' }
 MeasureTest >> testAddCommutativity [
 
-	self assert: (self oneMeter + self oneKilometer) amount = (self oneKilometer + self oneMeter) amount.
-	self assert: (self oneMeter + self oneKilometer) unit = (self oneKilometer + self oneMeter) unit
+	self
+		assert: (self oneMeter + self oneKilometer) amount
+		equals: (self oneKilometer + self oneMeter) amount.
+	self
+		assert: (self oneMeter + self oneKilometer) unit
+		equals: (self oneKilometer + self oneMeter) unit
 ]
 
 { #category : 'test add' }
 MeasureTest >> testAddDerivedUnit [
 
-	self assert: (self oneKilometer + self oneCentimeter) amount = (100001/100).
-	self assert: (self oneKilometer + self oneCentimeter) unit = self meter
+	self
+		assert: (self oneKilometer + self oneCentimeter) amount
+		equals: 100001 / 100.
+	self
+		assert: (self oneKilometer + self oneCentimeter) unit
+		equals: self meter
 ]
 
 { #category : 'test add' }
 MeasureTest >> testAddDifferentBaseUnits [
 
-	self should: [ (self tenPesos + self twentyDollars) amount ] raise: Exception.
-	self should: [ (self tenPesos + self twentyDollars) unit ] raise: Exception.
-	self assert: (self tenPesos + self twentyDollars) numberOfMeasures=2.
+	self
+		should: [ (self tenPesos + self twentyDollars) amount ]
+		raise: Exception.
+	self
+		should: [ (self tenPesos + self twentyDollars) unit ]
+		raise: Exception.
+	self
+		assert: (self tenPesos + self twentyDollars) numberOfMeasures
+		equals: 2.
 
-	self should: [ (self tenPesos + ( self twentyDollars + self tenEuros)) amount ] raise: Exception.
-	self should: [ ((self tenPesos + self twentyDollars) + self tenEuros) amount ] raise: Exception.
-
+	self
+		should: [
+		(self tenPesos + (self twentyDollars + self tenEuros)) amount ]
+		raise: Exception.
+	self
+		should: [
+		(self tenPesos + self twentyDollars + self tenEuros) amount ]
+		raise: Exception
 ]
 
 { #category : 'test add' }
@@ -322,69 +356,108 @@ MeasureTest >> testAddDifferentUnit [
 { #category : 'test add' }
 MeasureTest >> testAddDividedMeasure [
 
-	self assert: ((self tenMeters + (self tenMeters / self fivePesos)) atSameBaseUnitAs: self meter) = self tenMeters.
-	self assert: ((self tenMeters + (self tenMeters / self fivePesos)) atSameBaseUnitAs: (self meter / self peso)) = (self tenMeters / self fivePesos)
+	self
+		assert:
+			(self tenMeters + (self tenMeters / self fivePesos)
+				 atSameBaseUnitAs: self meter)
+		equals: self tenMeters.
+	self
+		assert:
+			(self tenMeters + (self tenMeters / self fivePesos)
+				 atSameBaseUnitAs: self meter / self peso)
+		equals: self tenMeters / self fivePesos
 ]
 
 { #category : 'test add' }
 MeasureTest >> testAddFloatWithMeasure [
 
-	self assert: ((10.01 + self tenMeters) atSameBaseUnitAs: self meter) = self tenMeters.
-	self assert: ((10.01 + self tenMeters) atSameBaseUnitAs: NullUnit new) = 10.01.	
+	self
+		assert: (10.01 + self tenMeters atSameBaseUnitAs: self meter)
+		equals: self tenMeters.
+	self
+		assert: (10.01 + self tenMeters atSameBaseUnitAs: NullUnit new)
+		equals: 10.01
 ]
 
 { #category : 'test add' }
 MeasureTest >> testAddFractionWithMeasure [
 
-	self assert: ((1/3 + self tenMeters) atSameBaseUnitAs: self meter) = self tenMeters.
-	self assert: ((1/3 + self tenMeters) atSameBaseUnitAs: NullUnit new) = (1/3).	
+	self
+		assert: (1 / 3 + self tenMeters atSameBaseUnitAs: self meter)
+		equals: self tenMeters.
+	self
+		assert: (1 / 3 + self tenMeters atSameBaseUnitAs: NullUnit new)
+		equals: 1 / 3
 ]
 
 { #category : 'test infinity' }
 MeasureTest >> testAddInfinity [
 
-	self assert: self oneMeter + infinity = infinity.
-	self assert: infinity + self oneMeter = infinity.
-	self assert: self oneMeter negated + infinity = infinity.
-	self assert: infinity + self oneMeter negated = infinity
+	self assert: self oneMeter + infinity equals: infinity.
+	self assert: infinity + self oneMeter equals: infinity.
+	self assert: self oneMeter negated + infinity equals: infinity.
+	self assert: infinity + self oneMeter negated equals: infinity
 ]
 
 { #category : 'test add' }
 MeasureTest >> testAddIntegerWithMeasure [
 
-	self assert: ((10 + self tenMeters) atSameBaseUnitAs: self meter) = self tenMeters.
-	self assert: ((10 + self tenMeters) atSameBaseUnitAs: NullUnit new) = 10.	
+	self
+		assert: (10 + self tenMeters atSameBaseUnitAs: self meter)
+		equals: self tenMeters.
+	self
+		assert: (10 + self tenMeters atSameBaseUnitAs: NullUnit new)
+		equals: 10
 ]
 
 { #category : 'test minus infinity' }
 MeasureTest >> testAddMinusInfinity [
 
-	self assert: self oneMeter + minusInfinity = minusInfinity.
-	self assert: minusInfinity + self oneMeter = minusInfinity.
-	self assert: self oneMeter negated + minusInfinity = minusInfinity.
-	self assert: minusInfinity + self oneMeter negated = minusInfinity
+	self assert: self oneMeter + minusInfinity equals: minusInfinity.
+	self assert: minusInfinity + self oneMeter equals: minusInfinity.
+	self
+		assert: self oneMeter negated + minusInfinity
+		equals: minusInfinity.
+	self
+		assert: minusInfinity + self oneMeter negated
+		equals: minusInfinity
 ]
 
 { #category : 'test add' }
 MeasureTest >> testAddMultipliedMeasure [
 
-	self assert: ((self tenMeters + (self tenMeters * self fivePesos)) atSameBaseUnitAs: self meter) = self tenMeters.
-	self assert: ((self tenMeters + (self tenMeters * self fivePesos)) atSameBaseUnitAs: (self meter*self peso)) = (self tenMeters * self fivePesos)
-
+	self
+		assert:
+			(self tenMeters + (self tenMeters * self fivePesos)
+				 atSameBaseUnitAs: self meter)
+		equals: self tenMeters.
+	self
+		assert:
+			(self tenMeters + (self tenMeters * self fivePesos)
+				 atSameBaseUnitAs: self meter * self peso)
+		equals: self tenMeters * self fivePesos
 ]
 
 { #category : 'test add' }
 MeasureTest >> testAddNumber [
 
-	self assert: ((self tenMeters + 10) atSameBaseUnitAs: self meter) = self tenMeters.
-	self assert: ((self tenMeters + 10) atSameBaseUnitAs: NullUnit new) = 10.	
+	self
+		assert: (self tenMeters + 10 atSameBaseUnitAs: self meter)
+		equals: self tenMeters.
+	self
+		assert: (self tenMeters + 10 atSameBaseUnitAs: NullUnit new)
+		equals: 10
 ]
 
 { #category : 'test add' }
 MeasureTest >> testAddScaledDecimalWithMeasure [
 
-	self assert: ((10.01s2 + self tenMeters) atSameBaseUnitAs: self meter) = self tenMeters.
-	self assert: ((10.01s2 + self tenMeters) atSameBaseUnitAs: NullUnit new) = 10.01s2.	
+	self
+		assert: (10.01s2 + self tenMeters atSameBaseUnitAs: self meter)
+		equals: self tenMeters.
+	self
+		assert: (10.01s2 + self tenMeters atSameBaseUnitAs: NullUnit new)
+		equals: 10.01s2
 ]
 
 { #category : 'test accessing' }
@@ -397,18 +470,20 @@ MeasureTest >> testAmount [
 { #category : 'test' }
 MeasureTest >> testAtBaseUnitIfNone [
 
-	self assert: (self oneSecond atBaseUnit: self second ifNone: []) = self oneSecond.
-	self assert: (self oneSecond atBaseUnit: self minute ifNone: ['error']) = 'error'
+	self
+		assert: (self oneSecond atBaseUnit: self second ifNone: [  ])
+		equals: self oneSecond.
+	self
+		assert: (self oneSecond atBaseUnit: self minute ifNone: [ 'error' ])
+		equals: 'error'
 ]
 
 { #category : 'test accessing' }
 MeasureTest >> testBaseUnit [
 
-	self assert: self oneMeter baseUnit = self meter.
-	self assert: self oneKilometer baseUnit = self meter.
-	self assert: self oneCentimeter baseUnit = self meter.
-	
-	
+	self assert: self oneMeter baseUnit equals: self meter.
+	self assert: self oneKilometer baseUnit equals: self meter.
+	self assert: self oneCentimeter baseUnit equals: self meter
 ]
 
 { #category : 'test magnitude protocol' }
@@ -451,140 +526,173 @@ MeasureTest >> testCompareGreaterThan [
 { #category : 'test accessing' }
 MeasureTest >> testConvertAmountToBaseUnit [
 
-	self assert: self oneMeter convertAmountToBaseUnit = 1.
-	self assert: self oneKilometer convertAmountToBaseUnit = 1000.
-	self assert: self oneCentimeter convertAmountToBaseUnit = (1/100)
+	self assert: self oneMeter convertAmountToBaseUnit equals: 1.
+	self assert: self oneKilometer convertAmountToBaseUnit equals: 1000.
+	self
+		assert: self oneCentimeter convertAmountToBaseUnit
+		equals: 1 / 100
 ]
 
 { #category : 'test converting' }
 MeasureTest >> testConvertNothing [
 
-	self assert: (self zeroMeters convertTo: self meter) = self zeroMeters.
-	self assert: ((Measure amount: 0 unit: self centimeter) convertTo: self meter) = self zeroMeters		
+	self
+		assert: (self zeroMeters convertTo: self meter)
+		equals: self zeroMeters.
+	self
+		assert:
+		((Measure amount: 0 unit: self centimeter) convertTo: self meter)
+		equals: self zeroMeters
 ]
 
 { #category : 'test converting' }
 MeasureTest >> testConvertTo [
 
-	self assert: (self oneMeter convertTo: self meter) = self oneMeter.
-	self assert: (self oneKilometer convertTo: self meter) = (Measure amount: 1000 unit: self meter).
-	self assert: (self oneCentimeter convertTo: self meter) = (Measure amount: (1/100) unit: self meter).
-
-	self assert: (self oneMeter convertTo: self kilometer) = (Measure amount: (1/1000) unit: self kilometer).
-	self assert: (self oneMeter convertTo: self centimeter) = (Measure amount: 100 unit: self centimeter).
-
-	self assert: (self oneCentimeter convertTo: self kilometer) = (Measure amount: (1/100000) unit: self kilometer).
-	self assert: (self oneKilometer convertTo: self centimeter) = (Measure amount: 100000 unit: self centimeter)
+	self
+		assert: (self oneMeter convertTo: self meter)
+		equals: self oneMeter.
+	self
+		assert: (self oneKilometer convertTo: self meter)
+		equals: (Measure amount: 1000 unit: self meter).
+	self
+		assert: (self oneCentimeter convertTo: self meter)
+		equals: (Measure amount: 1 / 100 unit: self meter).
+	self
+		assert: (self oneMeter convertTo: self kilometer)
+		equals: (Measure amount: 1 / 1000 unit: self kilometer).
+	self
+		assert: (self oneMeter convertTo: self centimeter)
+		equals: (Measure amount: 100 unit: self centimeter).
+	self
+		assert: (self oneCentimeter convertTo: self kilometer)
+		equals: (Measure amount: 1 / 100000 unit: self kilometer).
+	self
+		assert: (self oneKilometer convertTo: self centimeter)
+		equals: (Measure amount: 100000 unit: self centimeter)
 ]
 
 { #category : 'test converting' }
 MeasureTest >> testConvertToBaseUnit [
 
-	self assert: self oneMeter convertToBaseUnit = self oneMeter.
-	self assert: self oneKilometer convertToBaseUnit = (Measure amount: 1000 unit: self meter)
+	self assert: self oneMeter convertToBaseUnit equals: self oneMeter.
+	self
+		assert: self oneKilometer convertToBaseUnit
+		equals: (Measure amount: 1000 unit: self meter)
 ]
 
 { #category : 'test accessing' }
 MeasureTest >> testDenominator [
 
-	self assert: (self tenMeters ) denominator = 1.
-	self assert: (self tenMeters * self tenMeters) denominator = 1
+	self assert: self tenMeters denominator equals: 1.
+	self assert: (self tenMeters * self tenMeters) denominator equals: 1
 ]
 
 { #category : 'test infinity' }
 MeasureTest >> testDivideInfinity [
 
-	self assert: self oneMeter / infinity = 0.
+	self assert: self oneMeter / infinity equals: 0.
 	self
-		should: [infinity / self oneMeter]
+		should: [ infinity / self oneMeter ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Division operation is indeterminate between Infinity and 1 meter'].
-	self assert: self oneMeter negated / infinity = 0.
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Division operation is indeterminate between Infinity and 1 meter' ].
+	self assert: self oneMeter negated / infinity equals: 0.
 	self
-		should: [infinity / self oneMeter negated]
+		should: [ infinity / self oneMeter negated ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Division operation is indeterminate between Infinity and -1 meter']
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Division operation is indeterminate between Infinity and -1 meter' ]
 ]
 
 { #category : 'test minus infinity' }
 MeasureTest >> testDivideMinusInfinity [
 
-	self assert: self oneMeter / minusInfinity = 0.
+	self assert: self oneMeter / minusInfinity equals: 0.
 	self
-		should: [minusInfinity / self oneMeter]
+		should: [ minusInfinity / self oneMeter ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Division operation is indeterminate between Minus Infinity and 1 meter'].
-	self assert: self oneMeter negated / minusInfinity = 0.
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Division operation is indeterminate between Minus Infinity and 1 meter' ].
+	self assert: self oneMeter negated / minusInfinity equals: 0.
 	self
-		should: [minusInfinity / self oneMeter negated]
+		should: [ minusInfinity / self oneMeter negated ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Division operation is indeterminate between Minus Infinity and -1 meter']
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Division operation is indeterminate between Minus Infinity and -1 meter' ]
 ]
 
 { #category : 'test division' }
 MeasureTest >> testDivisionByDividedMeasure [
 
-	self assert: (self oneKilometer / (self oneMeter/self onePeso)) = (Measure amount: 1000 unit: self peso).
-	self assert: (self oneKilometer / (self onePeso/self oneMeter)) = ((self oneKilometer*self oneMeter)/self onePeso)
-	
-
+	self
+		assert: self oneKilometer / (self oneMeter / self onePeso)
+		equals: (Measure amount: 1000 unit: self peso).
+	self
+		assert: self oneKilometer / (self onePeso / self oneMeter)
+		equals: self oneKilometer * self oneMeter / self onePeso
 ]
 
 { #category : 'test division' }
 MeasureTest >> testDivisionByMeasureBaseUnitOverBaseUnit [
 
-	self assert: (self tenMeters / self tenMeters) = 1.
-	self assert: (self tenMeters / self tenMeters) amount= 1.
-	self assert: (self tenMeters / self tenMeters) unit = NullUnit new.
-	self assert: (self tenMeters / self oneMeter) = 10.
-	self assert: (self tenMeters / self oneSecond) = (Measure amount: 10 unit: (self meter/self second)).
-	self assert: (self tenMeters / self twoSecond) = (Measure amount: 5 unit: (self meter/self second)).
-	self assert: (self tenMeters / self oneSecond) numerator = self tenMeters.
-	self assert: (self tenMeters / self oneSecond) denominator = self oneSecond
+	self assert: self tenMeters / self tenMeters equals: 1.
+	self assert: (self tenMeters / self tenMeters) amount equals: 1.
+	self
+		assert: (self tenMeters / self tenMeters) unit
+		equals: NullUnit new.
+	self assert: self tenMeters / self oneMeter equals: 10.
+	self
+		assert: self tenMeters / self oneSecond
+		equals: (Measure amount: 10 unit: self meter / self second).
+	self
+		assert: self tenMeters / self twoSecond
+		equals: (Measure amount: 5 unit: self meter / self second).
+	self
+		assert: (self tenMeters / self oneSecond) numerator
+		equals: self tenMeters.
+	self
+		assert: (self tenMeters / self oneSecond) denominator
+		equals: self oneSecond
 ]
 
 { #category : 'test division' }
 MeasureTest >> testDivisionByMeasureBaseUnitOverDerivedUnit [
 
-	self assert: (self oneMeter / self oneKilometer) = (1/1000).
-	self assert: (self oneMeter / self oneCentimeter) = 100.
-	self assert: (self oneMeter / self oneMinute) = (Measure amount: 1/60 unit: (self meter/self second)).
-
-	
-
+	self assert: self oneMeter / self oneKilometer equals: 1 / 1000.
+	self assert: self oneMeter / self oneCentimeter equals: 100.
+	self
+		assert: self oneMeter / self oneMinute
+		equals: (Measure amount: 1 / 60 unit: self meter / self second)
 ]
 
 { #category : 'test division' }
 MeasureTest >> testDivisionByMeasureDerivedUnitOverBaseUnit [
 
-	self assert: (self oneKilometer / self oneMeter) = 1000.
-	self assert: (self oneKilometer / self tenMeters) = 100.
-	self assert: (self oneKilometer / self oneKilometer) = 1.
-	self assert: (self oneKilometer / self oneSecond) = (Measure amount: 1000 unit: (self meter/self second)).
-
-	
-
+	self assert: self oneKilometer / self oneMeter equals: 1000.
+	self assert: self oneKilometer / self tenMeters equals: 100.
+	self assert: self oneKilometer / self oneKilometer equals: 1.
+	self
+		assert: self oneKilometer / self oneSecond
+		equals: (Measure amount: 1000 unit: self meter / self second)
 ]
 
 { #category : 'test division' }
 MeasureTest >> testDivisionByNumber [
 
-	self assert: (self zeroPesos / 1) amount = 0.
-	self assert: (self tenPesos / 10) = self onePeso.
-
-
+	self assert: (self zeroPesos / 1) amount equals: 0.
+	self assert: self tenPesos / 10 equals: self onePeso
 ]
 
 { #category : 'test division' }
@@ -597,25 +705,25 @@ MeasureTest >> testDivisionByZero [
 { #category : 'test division' }
 MeasureTest >> testDivisionFloatByMeasure [
 
-	self assert: (1.01 / self tenPesos) = ((NullUnit new / self peso) with: 1.01/10)
-
-
+	self
+		assert: 1.01 / self tenPesos
+		equals: (NullUnit new / self peso with: 1.01 / 10)
 ]
 
 { #category : 'test division' }
 MeasureTest >> testDivisionFractionByMeasure [
 
-	self assert: ((1/3) / self tenPesos) = ((NullUnit new / self peso) with: (1/3)/10)
-
-
+	self
+		assert: 1 / 3 / self tenPesos
+		equals: (NullUnit new / self peso with: 1 / 3 / 10)
 ]
 
 { #category : 'test division' }
 MeasureTest >> testDivisionIntegerByMeasure [
 
-	self assert: (1 / self tenPesos) = ((NullUnit new / self peso) with: 1/10)
-
-
+	self
+		assert: 1 / self tenPesos
+		equals: (NullUnit new / self peso with: 1 / 10)
 ]
 
 { #category : 'test division' }
@@ -630,32 +738,40 @@ MeasureTest >> testDivisionOfBaseUnit [
 { #category : 'test division' }
 MeasureTest >> testDivisionOfDerivedUnit [
 
-	self assert: (self oneKilometer / 10 ) amount = (1/10).
-	self assert: (self oneKilometer / 10 ) unit = self kilometer.
-	
-
+	self assert: (self oneKilometer / 10) amount equals: 1 / 10.
+	self assert: (self oneKilometer / 10) unit equals: self kilometer
 ]
 
 { #category : 'test division' }
 MeasureTest >> testDivisionScaledDecimalByMeasure [
 
-	self assert: (23.76s2 / self tenPesos) = ((NullUnit new / self peso) with: 23.76s2/10)
-
-
+	self
+		assert: 23.76s2 / self tenPesos
+		equals: (NullUnit new / self peso with: 23.76s2 / 10)
 ]
 
 { #category : 'test comparing' }
 MeasureTest >> testEqual [
 
-	self assert: self oneMeter = self thousandMillimeters description: 'Equal on same system'.
-	self assert: self thousandMillimeters = self oneMeter description: 'Equal on same system'.
-	
+	self
+		assert: self oneMeter = self thousandMillimeters
+		description: 'Equal on same system'.
+	self
+		assert: self thousandMillimeters = self oneMeter
+		description: 'Equal on same system'.
+
 	self assert: self tenPesos = self tenPesos description: 'Equals'.
-	self deny: self tenPesos = self twentyPesos description: 'Equals different amount'.
-	
-	self deny: self zeroCelsius = self zeroFahrenheit description: 'Equals on the same type of unit but not equal measures'.
-	self assert: self zeroCelsius = (Measure amount: 32 unit: self fahrenheit)
-	
+	self
+		deny: self tenPesos = self twentyPesos
+		description: 'Equals different amount'.
+
+	self
+		deny: self zeroCelsius = self zeroFahrenheit
+		description:
+		'Equals on the same type of unit but not equal measures'.
+	self
+		assert: self zeroCelsius
+		equals: (Measure amount: 32 unit: self fahrenheit)
 ]
 
 { #category : 'test comparing' }
@@ -703,97 +819,98 @@ MeasureTest >> testGreaterThanEquals [
 { #category : 'test comparing' }
 MeasureTest >> testHash [
 
-	self assert: self oneMeter hash = self oneMeter hash.
-	self assert: self oneMeter hash = self thousandMillimeters hash
-	
-	
-
+	self assert: self oneMeter hash equals: self oneMeter hash.
+	self assert: self oneMeter hash equals: self thousandMillimeters hash
 ]
 
 { #category : 'test' }
 MeasureTest >> testIntegerDivideMeasureBag [
 
-	self assert:
-		(self fiveDollars moduloMeasureBag: self fiveDollars + self fivePesos) =
-			(1 + (self onePeso / self oneDollar))
+	self
+		assert:
+		(self fiveDollars moduloMeasureBag:
+			 self fiveDollars + self fivePesos)
+		equals: 1 + (self onePeso / self oneDollar)
 ]
 
 { #category : 'test magnitude protocol' }
 MeasureTest >> testInvalidBetweenAnd [
 
 	self
-		should: [self tenMeters between: self oneMeter and: self onePeso]
+		should: [ self tenMeters between: self oneMeter and: self onePeso ]
 		raise: CanNotConvertMeasureException
 		withExceptionDo: [ :anException |
-			self assert: anException sourceMeasure = self tenMeters.
-			self assert: anException operationName = 'convertTo:'.
-			self assert: anException targetUnit = self peso].
+			self assert: anException sourceMeasure equals: self tenMeters.
+			self assert: anException operationName equals: 'convertTo:'.
+			self assert: anException targetUnit equals: self peso ].
 
 	self
-		should: [self tenMeters between: self onePeso and: self oneMeter]
+		should: [ self tenMeters between: self onePeso and: self oneMeter ]
 		raise: CanNotConvertMeasureException
 		withExceptionDo: [ :anException |
-			self assert: anException sourceMeasure = self tenMeters.
-			self assert: anException targetUnit = self peso].
+			self assert: anException sourceMeasure equals: self tenMeters.
+			self assert: anException targetUnit equals: self peso ].
 
 	self
-		should: [self tenMeters between: 1 and: 2]
+		should: [ self tenMeters between: 1 and: 2 ]
 		raise: CanNotConvertMeasureException
 		withExceptionDo: [ :anException |
-			self assert: anException sourceMeasure = self tenMeters.
-			self assert: anException targetUnit = NullUnit new]
+			self assert: anException sourceMeasure equals: self tenMeters.
+			self assert: anException targetUnit equals: NullUnit new ]
 ]
 
 { #category : 'test magnitude protocol' }
 MeasureTest >> testInvalidBetweenAndNotInclusive [
 
-	self 
-		should: [ self tenMeters between: self oneMeter andNotInclusive: self onePeso ]
+	self
+		should: [
+		self tenMeters between: self oneMeter andNotInclusive: self onePeso ]
 		raise: CanNotConvertMeasureException
-		withExceptionDo: [ :anException | 
-			self assert: anException sourceMeasure = self tenMeters.
-			self assert: anException targetUnit = self peso ].
+		withExceptionDo: [ :anException |
+			self assert: anException sourceMeasure equals: self tenMeters.
+			self assert: anException targetUnit equals: self peso ].
 
-	self 
-		should: [ self tenMeters between: self onePeso andNotInclusive: self oneMeter ]
+	self
+		should: [
+		self tenMeters between: self onePeso andNotInclusive: self oneMeter ]
 		raise: CanNotConvertMeasureException
-		withExceptionDo: [ :anException | 
-				self assert: anException sourceMeasure = self tenMeters.
-				self assert: anException targetUnit = self peso ].
-			
-	self 
+		withExceptionDo: [ :anException |
+			self assert: anException sourceMeasure equals: self tenMeters.
+			self assert: anException targetUnit equals: self peso ].
+
+	self
 		should: [ self tenMeters between: 1 andNotInclusive: 2 ]
 		raise: CanNotConvertMeasureException
-		withExceptionDo: [ :anException | 
-				self assert: anException sourceMeasure = self tenMeters.
-				self assert: anException targetUnit = NullUnit new ]
+		withExceptionDo: [ :anException |
+			self assert: anException sourceMeasure equals: self tenMeters.
+			self assert: anException targetUnit equals: NullUnit new ]
 ]
 
 { #category : 'test converting' }
 MeasureTest >> testInvalidConvertTo [
 
-	self assert: 
-		([ self oneMeter convertTo: self peso.
-		false ]
-			on: CanNotConvertMeasureException
-			do: [ :anException |
-				self assert: anException sourceMeasure = self oneMeter.
-				self assert: anException targetUnit = self peso.
-				self assert: anException isResumable.
-				anException return: true ])
+	self assert: ([
+		 self oneMeter convertTo: self peso.
+		 false ]
+			 on: CanNotConvertMeasureException
+			 do: [ :anException |
+				 self assert: anException sourceMeasure equals: self oneMeter.
+				 self assert: anException targetUnit equals: self peso.
+				 self assert: anException isResumable.
+				 anException return: true ])
 ]
 
 { #category : 'test magnitude protocol' }
 MeasureTest >> testInvalidGreaterThan [
 
-	self assert: (
-		[ self oneMeter > self onePeso.
-		false ]
-			on: CanNotConvertMeasureException
-			do: [ :aSignal | 
-				self assert: aSignal sourceMeasure = self oneMeter.
-				self assert: aSignal targetUnit = self peso.
-				aSignal return: true ])
+	self assert: ([
+		 self oneMeter > self onePeso.
+		 false ]
+			 on: CanNotConvertMeasureException
+			 do: [ :aSignal |
+				 self assert: aSignal sourceMeasure equals: self oneMeter.
+				 self assert: aSignal targetUnit equals: self peso.
+				 aSignal return: true ])
 ]
 
 { #category : 'test' }
@@ -810,148 +927,154 @@ MeasureTest >> testInvalidGreaterThanAgainstScalar [
 { #category : 'test magnitude protocol' }
 MeasureTest >> testInvalidGreaterThanEquals [
 
-	self assert: (
-		[ self oneMeter >= self onePeso.
-		false ]
-			on: CanNotConvertMeasureException
-			do: [ :aSignal | 
-				self assert: aSignal sourceMeasure = self oneMeter.
-				self assert: aSignal targetUnit = self peso.			
-				aSignal return: true ]).
+	self assert: ([
+		 self oneMeter >= self onePeso.
+		 false ]
+			 on: CanNotConvertMeasureException
+			 do: [ :aSignal |
+				 self assert: aSignal sourceMeasure equals: self oneMeter.
+				 self assert: aSignal targetUnit equals: self peso.
+				 aSignal return: true ]).
 
-	self assert: (
-		[ self oneMeter >= 1.
-		false ]
-			on: CanNotConvertMeasureException
-			do: [ :aSignal | aSignal return: true ]).
+	self assert: ([
+		 self oneMeter >= 1.
+		 false ]
+			 on: CanNotConvertMeasureException
+			 do: [ :aSignal | aSignal return: true ])
 ]
 
 { #category : 'test magnitude protocol' }
 MeasureTest >> testInvalidLessThan [
 
-	self assert: (
-		[ self oneMeter < self onePeso.
-		false ]
-			on: CanNotConvertMeasureException
-			do: [ :aSignal | 
-				self assert: aSignal sourceMeasure = self oneMeter.
-				self assert: aSignal targetUnit = self peso.
-				aSignal return: true ]).
+	self assert: ([
+		 self oneMeter < self onePeso.
+		 false ]
+			 on: CanNotConvertMeasureException
+			 do: [ :aSignal |
+				 self assert: aSignal sourceMeasure equals: self oneMeter.
+				 self assert: aSignal targetUnit equals: self peso.
+				 aSignal return: true ]).
 
-	self assert: (
-		[ self oneMeter < 1.
-		false ]
-			on: CanNotConvertMeasureException
-			do: [ :aSignal | aSignal return: true ]).
-			
-
+	self assert: ([
+		 self oneMeter < 1.
+		 false ]
+			 on: CanNotConvertMeasureException
+			 do: [ :aSignal | aSignal return: true ])
 ]
 
 { #category : 'test magnitude protocol' }
 MeasureTest >> testInvalidLessThanEquals [
 
-	self assert: (
-		[ self oneMeter <= self onePeso.
-		false ]
-			on: CanNotConvertMeasureException
-			do: [ :aSignal | 
-				self assert: aSignal sourceMeasure = self oneMeter.
-				self assert: aSignal targetUnit = self peso.			
-				aSignal return: true ]).
+	self assert: ([
+		 self oneMeter <= self onePeso.
+		 false ]
+			 on: CanNotConvertMeasureException
+			 do: [ :aSignal |
+				 self assert: aSignal sourceMeasure equals: self oneMeter.
+				 self assert: aSignal targetUnit equals: self peso.
+				 aSignal return: true ]).
 
-	self assert: (
-		[ self oneMeter <= 1.
-		false ]
-			on: CanNotConvertMeasureException
-			do: [ :aSignal | aSignal return: true ])
+	self assert: ([
+		 self oneMeter <= 1.
+		 false ]
+			 on: CanNotConvertMeasureException
+			 do: [ :aSignal | aSignal return: true ])
 ]
 
 { #category : 'test magnitude protocol' }
 MeasureTest >> testInvalidMax [
 
-	self assert: (
-		[ self tenMeters max: self onePeso.
-		false ]
-			on: CanNotConvertMeasureException
-			do: [ :aSignal | 
-				self assert: aSignal sourceMeasure = self tenMeters.
-				self assert: aSignal targetUnit = self peso.
-				aSignal return: true ]).
+	self assert: ([
+		 self tenMeters max: self onePeso.
+		 false ]
+			 on: CanNotConvertMeasureException
+			 do: [ :aSignal |
+				 self assert: aSignal sourceMeasure equals: self tenMeters.
+				 self assert: aSignal targetUnit equals: self peso.
+				 aSignal return: true ]).
 
-	self assert: (
-		[ self tenMeters max: 1.
-		false ]
-			on: CanNotConvertMeasureException
-			do: [ :aSignal | aSignal return: true ])
+	self assert: ([
+		 self tenMeters max: 1.
+		 false ]
+			 on: CanNotConvertMeasureException
+			 do: [ :aSignal | aSignal return: true ])
 ]
 
 { #category : 'test magnitude protocol' }
 MeasureTest >> testInvalidMin [
 
-	self assert: (
-		[ self tenMeters min: self onePeso.
-		false ]
-			on: CanNotConvertMeasureException
-			do: [ :aSignal | 
-				self assert: aSignal sourceMeasure = self tenMeters.
-				self assert: aSignal targetUnit = self peso.
-				aSignal return: true ]).
+	self assert: ([
+		 self tenMeters min: self onePeso.
+		 false ]
+			 on: CanNotConvertMeasureException
+			 do: [ :aSignal |
+				 self assert: aSignal sourceMeasure equals: self tenMeters.
+				 self assert: aSignal targetUnit equals: self peso.
+				 aSignal return: true ]).
 
-	self assert: (
-		[ self tenMeters min: 1.
-		false ]
-			on: CanNotConvertMeasureException
-			do: [ :aSignal | aSignal return: true ])
+	self assert: ([
+		 self tenMeters min: 1.
+		 false ]
+			 on: CanNotConvertMeasureException
+			 do: [ :aSignal | aSignal return: true ])
 ]
 
 { #category : 'test magnitude protocol' }
 MeasureTest >> testInvalidNotInclusiveBetweenAnd [
 
-	self 
-		should: [ self tenMeters notInclusiveBetween: self oneMeter and: self onePeso ]
+	self
+		should: [
+		self tenMeters notInclusiveBetween: self oneMeter and: self onePeso ]
 		raise: CanNotConvertMeasureException
-		withExceptionDo: [ :anException | 
-			self assert: anException sourceMeasure = self tenMeters.
-			self assert: anException targetUnit = self peso ].
+		withExceptionDo: [ :anException |
+			self assert: anException sourceMeasure equals: self tenMeters.
+			self assert: anException targetUnit equals: self peso ].
 
-	self 
-		should: [ self tenMeters notInclusiveBetween: self onePeso and: self oneMeter ]
+	self
+		should: [
+		self tenMeters notInclusiveBetween: self onePeso and: self oneMeter ]
 		raise: CanNotConvertMeasureException
-		withExceptionDo: [ :anException | 
-				self assert: anException sourceMeasure = self tenMeters.
-				self assert: anException targetUnit = self peso ].
-			
-	self 
+		withExceptionDo: [ :anException |
+			self assert: anException sourceMeasure equals: self tenMeters.
+			self assert: anException targetUnit equals: self peso ].
+
+	self
 		should: [ self tenMeters notInclusiveBetween: 1 and: 2 ]
 		raise: CanNotConvertMeasureException
-		withExceptionDo: [ :anException | 
-				self assert: anException sourceMeasure = self tenMeters.
-				self assert: anException targetUnit = NullUnit new ]
+		withExceptionDo: [ :anException |
+			self assert: anException sourceMeasure equals: self tenMeters.
+			self assert: anException targetUnit equals: NullUnit new ]
 ]
 
 { #category : 'test magnitude protocol' }
 MeasureTest >> testInvalidNotInclusiveBetweenAndNotInclusive [
 
-	self 
-		should: [ self tenMeters notInclusiveBetween: self oneMeter andNotInclusive: self onePeso ]
+	self
+		should: [
+			self tenMeters
+				notInclusiveBetween: self oneMeter
+				andNotInclusive: self onePeso ]
 		raise: CanNotConvertMeasureException
-		withExceptionDo: [ :anException | 
-			self assert: anException sourceMeasure = self tenMeters.
-			self assert: anException targetUnit = self peso ].
+		withExceptionDo: [ :anException |
+			self assert: anException sourceMeasure equals: self tenMeters.
+			self assert: anException targetUnit equals: self peso ].
 
-	self 
-		should: [ self tenMeters notInclusiveBetween: self onePeso andNotInclusive: self oneMeter ]
+	self
+		should: [
+			self tenMeters
+				notInclusiveBetween: self onePeso
+				andNotInclusive: self oneMeter ]
 		raise: CanNotConvertMeasureException
-		withExceptionDo: [ :anException | 
-				self assert: anException sourceMeasure = self tenMeters.
-				self assert: anException targetUnit = self peso ].
-			
-	self 
+		withExceptionDo: [ :anException |
+			self assert: anException sourceMeasure equals: self tenMeters.
+			self assert: anException targetUnit equals: self peso ].
+
+	self
 		should: [ self tenMeters notInclusiveBetween: 1 andNotInclusive: 2 ]
 		raise: CanNotConvertMeasureException
-		withExceptionDo: [ :anException | 
-				self assert: anException sourceMeasure = self tenMeters.
-				self assert: anException targetUnit = NullUnit new ]
+		withExceptionDo: [ :anException |
+			self assert: anException sourceMeasure equals: self tenMeters.
+			self assert: anException targetUnit equals: NullUnit new ]
 ]
 
 { #category : 'test' }
@@ -1004,14 +1127,24 @@ MeasureTest >> testLessThanEquals [
 { #category : 'test magnitude protocol' }
 MeasureTest >> testMax [
 
-	self assert: (self tenMeters max: self oneMeter) = self tenMeters.
-	self assert: (self oneMeter max: self tenMeters) = self tenMeters.
-	self assert: (self tenMeters max: self oneKilometer) = self oneKilometer.
-	self assert: (self oneKilometer max: self oneMeter) = self oneKilometer.
-	self assert: (self oneCentimeter max: self oneKilometer) = self oneKilometer.
-	self assert: (self oneKilometer max: self oneCentimeter) = self oneKilometer.
-	
-
+	self
+		assert: (self tenMeters max: self oneMeter)
+		equals: self tenMeters.
+	self
+		assert: (self oneMeter max: self tenMeters)
+		equals: self tenMeters.
+	self
+		assert: (self tenMeters max: self oneKilometer)
+		equals: self oneKilometer.
+	self
+		assert: (self oneKilometer max: self oneMeter)
+		equals: self oneKilometer.
+	self
+		assert: (self oneCentimeter max: self oneKilometer)
+		equals: self oneKilometer.
+	self
+		assert: (self oneKilometer max: self oneCentimeter)
+		equals: self oneKilometer
 ]
 
 { #category : 'test accessing' }
@@ -1025,25 +1158,37 @@ MeasureTest >> testMeasures [
 { #category : 'test magnitude protocol' }
 MeasureTest >> testMin [
 
-	self assert: (self tenMeters min: self oneMeter) = self oneMeter.
-	self assert: (self oneMeter min: self tenMeters) = self oneMeter.
-	self assert: (self tenMeters min: self oneKilometer) = self tenMeters.
-	self assert: (self oneKilometer min: self oneMeter) = self oneMeter.
-	self assert: (self oneCentimeter min: self oneKilometer) = self oneCentimeter.
-	self assert: (self oneKilometer min: self oneCentimeter) = self oneCentimeter.
-	
-
+	self
+		assert: (self tenMeters min: self oneMeter)
+		equals: self oneMeter.
+	self
+		assert: (self oneMeter min: self tenMeters)
+		equals: self oneMeter.
+	self
+		assert: (self tenMeters min: self oneKilometer)
+		equals: self tenMeters.
+	self
+		assert: (self oneKilometer min: self oneMeter)
+		equals: self oneMeter.
+	self
+		assert: (self oneCentimeter min: self oneKilometer)
+		equals: self oneCentimeter.
+	self
+		assert: (self oneKilometer min: self oneCentimeter)
+		equals: self oneCentimeter
 ]
 
 { #category : 'test integer division' }
 MeasureTest >> testModuloByMeasure [
 
-	self assert: (self tenMeters // self tenMeters) = 1.
-	self assert: (self oneMeter // self tenMeters) = 0.
-	self assert:
-		(self tenMeters // self oneSecond) = (Measure amount: 10 unit: (self meter / self second)).
-	self assert:
-		(self tenMeters // self twoSecond) = (Measure amount: 5 unit: (self meter / self second))
+	self assert: self tenMeters // self tenMeters equals: 1.
+	self assert: self oneMeter // self tenMeters equals: 0.
+	self
+		assert: self tenMeters // self oneSecond
+		equals: (Measure amount: 10 unit: self meter / self second).
+	self
+		assert: self tenMeters // self twoSecond
+		equals: (Measure amount: 5 unit: self meter / self second)
 ]
 
 { #category : 'test integer division' }
@@ -1056,203 +1201,206 @@ MeasureTest >> testModuloByZero [
 { #category : 'test integer division' }
 MeasureTest >> testModuloFloatByMeasure [
 
-	self assert: (10.01 // self tenPesos) = (1 / self onePeso)
-
+	self assert: 10.01 // self tenPesos equals: 1 / self onePeso
 ]
 
 { #category : 'test integer division' }
 MeasureTest >> testModuloFractionByMeasure [
 
-	self assert: (1/3) // self tenPesos = (0 / self onePeso)
-
+	self assert: 1 / 3 // self tenPesos equals: 0 / self onePeso
 ]
 
 { #category : 'test infinity' }
 MeasureTest >> testModuloInfinity [
 
-	self assert: self oneMeter // infinity = 0.
+	self assert: self oneMeter // infinity equals: 0.
 	self
-		should: [infinity // self oneMeter]
+		should: [ infinity // self oneMeter ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Modulo operation is indeterminate between Infinity and 1 meter'].
-	self assert: self oneMeter negated // infinity = 0.
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Modulo operation is indeterminate between Infinity and 1 meter' ].
+	self assert: self oneMeter negated // infinity equals: 0.
 	self
-		should: [infinity // self oneMeter negated]
+		should: [ infinity // self oneMeter negated ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Modulo operation is indeterminate between Infinity and -1 meter']
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Modulo operation is indeterminate between Infinity and -1 meter' ]
 ]
 
 { #category : 'test integer division' }
 MeasureTest >> testModuloIntegerByMeasure [
 
-	self assert: 1 // self tenPesos = (0 / self onePeso)
-
-
+	self assert: 1 // self tenPesos equals: 0 / self onePeso
 ]
 
 { #category : 'test minus infinity' }
 MeasureTest >> testModuloMinusInfinity [
 
-	self assert: self oneMeter // minusInfinity = 0.
+	self assert: self oneMeter // minusInfinity equals: 0.
 	self
-		should: [minusInfinity // self oneMeter]
+		should: [ minusInfinity // self oneMeter ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Modulo operation is indeterminate between Minus Infinity and 1 meter'].
-	self assert: self oneMeter negated // minusInfinity = 0.
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Modulo operation is indeterminate between Minus Infinity and 1 meter' ].
+	self assert: self oneMeter negated // minusInfinity equals: 0.
 	self
-		should: [minusInfinity // self oneMeter negated]
+		should: [ minusInfinity // self oneMeter negated ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Modulo operation is indeterminate between Minus Infinity and -1 meter']
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Modulo operation is indeterminate between Minus Infinity and -1 meter' ]
 ]
 
 { #category : 'test integer division' }
 MeasureTest >> testModuloOfBaseUnit [
 
-	self assert: (self tenMeters // 10) amount = 1.
-	self assert: (self tenMeters // 10) unit = self meter.
-	
-	self assert: (self tenMeters // 3) amount = 3.
-
+	self assert: (self tenMeters // 10) amount equals: 1.
+	self assert: (self tenMeters // 10) unit equals: self meter.
+	self assert: (self tenMeters // 3) amount equals: 3
 ]
 
 { #category : 'test integer division' }
 MeasureTest >> testModuloOfDerivedUnit [
 
-	self assert: (self tenKilometers // 10 ) amount = 1.
-	self assert: (self tenKilometers // 10 ) unit = self kilometer.
-	
-	self assert: (self tenKilometers // 3 ) amount = 3.
-
+	self assert: (self tenKilometers // 10) amount equals: 1.
+	self assert: (self tenKilometers // 10) unit equals: self kilometer.
+	self assert: (self tenKilometers // 3) amount equals: 3
 ]
 
 { #category : 'test integer division' }
 MeasureTest >> testModuloScaledDecimalByMeasure [
 
-	self assert: (23.76s2 // self tenPesos) = (2 / self onePeso)
-
+	self assert: 23.76s2 // self tenPesos equals: 2 / self onePeso
 ]
 
 { #category : 'test multiplication' }
 MeasureTest >> testMultiplicationOfBaseUnit [
 
-	self assert: (self tenMeters * 2) amount = 20.
-	self assert: (self tenMeters * 2) unit = self meter
-	
-	
+	self assert: (self tenMeters * 2) amount equals: 20.
+	self assert: (self tenMeters * 2) unit equals: self meter
 ]
 
 { #category : 'test multiplication' }
 MeasureTest >> testMultiplicationOfDerivedUnit [
 
-	self assert: (self oneKilometer * 2) amount = 2.
-	self assert: (self oneKilometer * 2) unit = self kilometer
-	
-	
+	self assert: (self oneKilometer * 2) amount equals: 2.
+	self assert: (self oneKilometer * 2) unit equals: self kilometer
 ]
 
 { #category : 'test multiplication' }
 MeasureTest >> testMultiplyByDividedMeasure [
 
-	self assert: (self onePeso*(self tenPesos/self oneMeter)) amount = 10.
-	self assert: (self onePeso*(self tenPesos/self oneMeter)) unit = (self peso*self peso/self meter).
-
-	self assert: (self onePeso*(self tenMeters/self onePeso)) = self tenMeters
+	self
+		assert: (self onePeso * (self tenPesos / self oneMeter)) amount
+		equals: 10.
+	self
+		assert: (self onePeso * (self tenPesos / self oneMeter)) unit
+		equals: self peso * self peso / self meter.
+	self
+		assert: self onePeso * (self tenMeters / self onePeso)
+		equals: self tenMeters
 ]
 
 { #category : 'test multiplication' }
 MeasureTest >> testMultiplyByMeasure [
 
-	self assert: (self onePeso*self tenPesos) amount = 10.
-	self assert: (self onePeso*self tenPesos) unit = (self peso*self peso).
-
-	
-	
+	self assert: (self onePeso * self tenPesos) amount equals: 10.
+	self
+		assert: (self onePeso * self tenPesos) unit
+		equals: self peso * self peso
 ]
 
 { #category : 'test multiplication' }
 MeasureTest >> testMultiplyByMeasureAssociativity [
 
-	self assert: ((self onePeso * self tenPesos) * self tenPesos) = (self onePeso * (self tenPesos * self tenPesos))	
-	
+	self
+		assert: self onePeso * self tenPesos * self tenPesos
+		equals: self onePeso * (self tenPesos * self tenPesos)
 ]
 
 { #category : 'test multiplication' }
 MeasureTest >> testMultiplyByMultipliedMeasure [
 
-	self assert: (self onePeso * self tenPesos * self tenPesos) amount = 100.
-	self assert: (self onePeso * self tenPesos * self tenPesos) unit = (self peso * self peso * self peso)	
-	
+	self
+		assert: (self onePeso * self tenPesos * self tenPesos) amount
+		equals: 100.
+	self
+		assert: (self onePeso * self tenPesos * self tenPesos) unit
+		equals: self peso * self peso * self peso
 ]
 
 { #category : 'test multiplication' }
 MeasureTest >> testMultiplyByNumber [
 
-	self assert: self onePeso * 10 = self tenPesos.	
-	self assert: self onePeso * 0 = self zeroPesos.	
-	self assert: self onePeso * 0 = 0.
-	self assert: self onePeso * 0 = self zeroDollars
+	self assert: self onePeso * 10 equals: self tenPesos.
+	self assert: self onePeso * 0 equals: self zeroPesos.
+	self assert: self onePeso * 0 equals: 0.
+	self assert: self onePeso * 0 equals: self zeroDollars
 ]
 
 { #category : 'test multiplication' }
 MeasureTest >> testMultiplyFloatByMeasure [
 
-	self assert: (1.01 * self tenPesos) = ((NullUnit new * self peso) with: 1.01*10)
-
-
+	self
+		assert: 1.01 * self tenPesos
+		equals: (NullUnit new * self peso with: 1.01 * 10)
 ]
 
 { #category : 'test multiplication' }
 MeasureTest >> testMultiplyFractionByMeasure [
 
-	self assert: ((1/3) * self tenPesos) = ((NullUnit new * self peso) with: (1/3)*10)
-
-
+	self
+		assert: 1 / 3 * self tenPesos
+		equals: (NullUnit new * self peso with: 1 / 3 * 10)
 ]
 
 { #category : 'test infinity' }
 MeasureTest >> testMultiplyInfinity [
 
-	self assert: self oneMeter * infinity = infinity.
-	self assert: infinity * self oneMeter = infinity.
-	self assert: self oneMeter negated * infinity = infinity.
-	self assert: infinity * self oneMeter negated = infinity
+	self assert: self oneMeter * infinity equals: infinity.
+	self assert: infinity * self oneMeter equals: infinity.
+	self assert: self oneMeter negated * infinity equals: infinity.
+	self assert: infinity * self oneMeter negated equals: infinity
 ]
 
 { #category : 'test multiplication' }
 MeasureTest >> testMultiplyIntegerByMeasure [
 
-	self assert: (3 * self tenPesos) = ((NullUnit new * self peso) with: 3*10)
-
-
+	self
+		assert: 3 * self tenPesos
+		equals: (NullUnit new * self peso with: 3 * 10)
 ]
 
 { #category : 'test minus infinity' }
 MeasureTest >> testMultiplyMinusInfinity [
 
-	self assert: self oneMeter * minusInfinity = minusInfinity.
-	self assert: minusInfinity * self oneMeter = minusInfinity.
-	self assert: self oneMeter negated * minusInfinity = minusInfinity.
-	self assert: minusInfinity * self oneMeter negated = minusInfinity
+	self assert: self oneMeter * minusInfinity equals: minusInfinity.
+	self assert: minusInfinity * self oneMeter equals: minusInfinity.
+	self
+		assert: self oneMeter negated * minusInfinity
+		equals: minusInfinity.
+	self
+		assert: minusInfinity * self oneMeter negated
+		equals: minusInfinity
 ]
 
 { #category : 'test multiplication' }
 MeasureTest >> testMultiplyScaledDecimalByMeasure [
 
-	self assert: (23.76s2 * self tenPesos) = ((NullUnit new * self peso) with: 23.76s2*10)
-
-
+	self
+		assert: 23.76s2 * self tenPesos
+		equals: (NullUnit new * self peso with: 23.76s2 * 10)
 ]
 
 { #category : 'test subtract' }
@@ -1302,13 +1450,10 @@ MeasureTest >> testNotInclusiveBetweenAndNotInclusive [
 { #category : 'test accessing' }
 MeasureTest >> testNumerator [
 
-	self assert: (self tenMeters ) numerator = self tenMeters.
-	self assert: (self tenMeters * self tenMeters ) numerator = (self tenMeters * self tenMeters)
-
-	
-
-	
-
+	self assert: self tenMeters numerator equals: self tenMeters.
+	self
+		assert: (self tenMeters * self tenMeters) numerator
+		equals: self tenMeters * self tenMeters
 ]
 
 { #category : 'test' }
@@ -1338,26 +1483,31 @@ MeasureTest >> testPrintingForOne [
 MeasureTest >> testRemFrom [
 
 	self
-		should: [self oneCelsius remFrom: 0]
+		should: [ self oneCelsius remFrom: 0 ]
 		raise: InvalidBinaryOperationException
 		withExceptionDo: [ :anException |
 			self
 				assert: anException description notNil;
-				assert: anException operationName = 'rest';
-				assert: anException leftOperand = 0;
-				assert: anException rightOperand = self oneCelsius]
+				assert: anException operationName equals: 'rest';
+				assert: anException leftOperand equals: 0;
+				assert: anException rightOperand equals: self oneCelsius ]
 ]
 
 { #category : 'test integer remainder' }
 MeasureTest >> testRemainderByMeasure [
 
-	self assert: (self tenMeters \\ self tenMeters) = (self meter with: 10\\10).
-	self assert: (self oneMeter \\ self tenMeters) = (self meter with: 1\\10).
-	self assert: (self tenMeters \\ self oneSecond) = (self meter with: 10\\1).
-	self assert: (self tenMeters \\ self threeSeconds) = (self meter with: 10\\3).
-
-	
-
+	self
+		assert: self tenMeters \\ self tenMeters
+		equals: (self meter with: 10 \\ 10).
+	self
+		assert: self oneMeter \\ self tenMeters
+		equals: (self meter with: 1 \\ 10).
+	self
+		assert: self tenMeters \\ self oneSecond
+		equals: (self meter with: 10 \\ 1).
+	self
+		assert: self tenMeters \\ self threeSeconds
+		equals: (self meter with: 10 \\ 3)
 ]
 
 { #category : 'test integer remainder' }
@@ -1370,49 +1520,50 @@ MeasureTest >> testRemainderByZero [
 { #category : 'test integer remainder' }
 MeasureTest >> testRemainderFloatByMeasure [
 
-	self assert: (10.5 \\ self tenPesos) = 0.5
-
+	self assert: 10.5 \\ self tenPesos equals: 0.5
 ]
 
 { #category : 'test infinity' }
 MeasureTest >> testRemainderInfinity [
 
 	self
-		should: [self oneMeter \\ infinity]
+		should: [ self oneMeter \\ infinity ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Multiplication operation is indeterminate between 0 and Infinity'].
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Multiplication operation is indeterminate between 0 and Infinity' ].
 	self
-		should: [infinity \\ self oneMeter]
+		should: [ infinity \\ self oneMeter ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Remainder operation is indeterminate between Infinity and 1 meter'].
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Remainder operation is indeterminate between Infinity and 1 meter' ].
 	self
-		should: [self oneMeter negated \\ infinity]
+		should: [ self oneMeter negated \\ infinity ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Multiplication operation is indeterminate between 0 and Infinity'].
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Multiplication operation is indeterminate between 0 and Infinity' ].
 	self
-		should: [infinity \\ self oneMeter negated]
+		should: [ infinity \\ self oneMeter negated ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Remainder operation is indeterminate between Infinity and -1 meter']
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Remainder operation is indeterminate between Infinity and -1 meter' ]
 ]
 
 { #category : 'test integer remainder' }
 MeasureTest >> testRemainderIntegerByMeasure [
 
-	self assert: 1 \\ self tenPesos = 1
-
-
+	self assert: 1 \\ self tenPesos equals: 1
 ]
 
 { #category : 'test integer remainder' }
@@ -1427,72 +1578,84 @@ MeasureTest >> testRemainderMeasureBagByMeasure [
 MeasureTest >> testRemainderMinusInfinity [
 
 	self
-		should: [self oneMeter \\ minusInfinity]
+		should: [ self oneMeter \\ minusInfinity ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Multiplication operation is indeterminate between 0 and Minus Infinity'].
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Multiplication operation is indeterminate between 0 and Minus Infinity' ].
 	self
-		should: [minusInfinity \\ self oneMeter]
+		should: [ minusInfinity \\ self oneMeter ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Remainder operation is indeterminate between Minus Infinity and 1 meter'].
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Remainder operation is indeterminate between Minus Infinity and 1 meter' ].
 	self
-		should: [self oneMeter negated \\ minusInfinity]
+		should: [ self oneMeter negated \\ minusInfinity ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Multiplication operation is indeterminate between 0 and Minus Infinity'].
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Multiplication operation is indeterminate between 0 and Minus Infinity' ].
 	self
-		should: [minusInfinity \\ self oneMeter negated]
+		should: [ minusInfinity \\ self oneMeter negated ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Remainder operation is indeterminate between Minus Infinity and -1 meter']
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Remainder operation is indeterminate between Minus Infinity and -1 meter' ]
 ]
 
 { #category : 'test integer remainder' }
 MeasureTest >> testRemainderOfBaseUnit [
 
-	self assert: (self tenMeters \\ 10) amount = 0.
-	self assert: (self tenMeters \\ 10) unit = self meter.
-	
-	self assert: (self tenMeters \\ 3) amount = 1.
-
+	self assert: (self tenMeters \\ 10) amount equals: 0.
+	self assert: (self tenMeters \\ 10) unit equals: self meter.
+	self assert: (self tenMeters \\ 3) amount equals: 1
 ]
 
 { #category : 'test integer remainder' }
 MeasureTest >> testRemainderOfDerivedUnit [
 
-	self assert: (self tenKilometers \\ 9 ) amount = 1.
-	self assert: (self tenKilometers \\ 9 ) unit = self kilometer.
-	
-
+	self assert: (self tenKilometers \\ 9) amount equals: 1.
+	self assert: (self tenKilometers \\ 9) unit equals: self kilometer
 ]
 
 { #category : 'test integer remainder' }
 MeasureTest >> testRemainderScaledDecimalByMeasure [
 
-	self assert: (23.5s2 \\ self tenPesos) = 3.5s2
-
-
+	self assert: 23.5s2 \\ self tenPesos equals: 3.5s2
 ]
 
 { #category : 'test' }
 MeasureTest >> testRoundTo [
 
-	self assert: ((Measure amount: 1 unit: self celsius) roundTo: 1) = (self celsius with: 1).
-	self assert: ((Measure amount: 1 unit: self celsius) roundTo: 0.1) = (self celsius with: 1).
-	self assert: ((Measure amount: 1.4 unit: self celsius) roundTo: 1) = (self celsius with: 1).
-	self assert: ((Measure amount: 1.5 unit: self celsius) roundTo: 1) = (self celsius with: 2).
-	self assert: ((Measure amount: 1.09 unit: self celsius) roundTo: 1) = (self celsius with: 1).
-	self assert: ((Measure amount: -1 unit: self celsius) roundTo: 1) = (self celsius with: -1).
-	self assert: ((Measure amount: -1.1 unit: self celsius) roundTo: 1) = (self celsius with: -1)
+	self
+		assert: ((Measure amount: 1 unit: self celsius) roundTo: 1)
+		equals: (self celsius with: 1).
+	self
+		assert: ((Measure amount: 1 unit: self celsius) roundTo: 0.1)
+		equals: (self celsius with: 1).
+	self
+		assert: ((Measure amount: 1.4 unit: self celsius) roundTo: 1)
+		equals: (self celsius with: 1).
+	self
+		assert: ((Measure amount: 1.5 unit: self celsius) roundTo: 1)
+		equals: (self celsius with: 2).
+	self
+		assert: ((Measure amount: 1.09 unit: self celsius) roundTo: 1)
+		equals: (self celsius with: 1).
+	self
+		assert: ((Measure amount: -1 unit: self celsius) roundTo: 1)
+		equals: (self celsius with: -1).
+	self
+		assert: ((Measure amount: -1.1 unit: self celsius) roundTo: 1)
+		equals: (self celsius with: -1)
 ]
 
 { #category : 'test testing' }
@@ -1509,213 +1672,281 @@ MeasureTest >> testSameDomainAs [
 MeasureTest >> testSimplificationsAddingWithZero [
 
 	self
-		assert: (self oneMeter + 0) = self oneMeter;
-		assert: (self oneMeter + 0) unit = self oneMeter unit
+		assert: self oneMeter + 0 equals: self oneMeter;
+		assert: (self oneMeter + 0) unit equals: self oneMeter unit
 ]
 
 { #category : 'test division' }
 MeasureTest >> testSimplificationsDividingFromZero [
 
-	self assert: (0 / self oneMeter) = 0
+	self assert: 0 / self oneMeter equals: 0
 ]
 
 { #category : 'test subtract' }
 MeasureTest >> testSubtractAssociativity [
 
-	self assert: (self tenMeters - self oneMeter - self oneMeter) amount = ((self tenMeters - self oneMeter) - self oneMeter) amount.
-	self assert: ((self tenMeters - self oneMeter) - self oneMeter) amount = (self tenMeters - (self oneMeter + self oneMeter)) amount
-
-	
+	self
+		assert: (self tenMeters - self oneMeter - self oneMeter) amount
+		equals: (self tenMeters - self oneMeter - self oneMeter) amount.
+	self
+		assert: (self tenMeters - self oneMeter - self oneMeter) amount
+		equals: (self tenMeters - (self oneMeter + self oneMeter)) amount
 ]
 
 { #category : 'test subtract' }
 MeasureTest >> testSubtractBaseUnit [
 
-	self assert: (self tenMeters - self oneMeter) amount = 9.
-	self assert: (self tenMeters - self oneMeter) unit = self meter
-	
+	self assert: (self tenMeters - self oneMeter) amount equals: 9.
+	self assert: (self tenMeters - self oneMeter) unit equals: self meter
 ]
 
 { #category : 'test subtract' }
 MeasureTest >> testSubtractDerivedUnit [
 
-	self assert: (self oneKilometer - self oneMeter) amount = 999.
-	self assert: (self oneKilometer - self oneMeter) unit = self meter.
-
-	
-
-	
+	self assert: (self oneKilometer - self oneMeter) amount equals: 999.
+	self
+		assert: (self oneKilometer - self oneMeter) unit
+		equals: self meter
 ]
 
 { #category : 'test subtract' }
 MeasureTest >> testSubtractDividedMeasure [
 
-	self assert: ((self tenMeters - (self tenMeters / self fivePesos)) atSameBaseUnitAs: self meter) = self tenMeters.
-	self assert: ((self tenMeters - (self tenMeters / self fivePesos)) atSameBaseUnitAs: (self meter / self peso)) = (self tenMeters negated / self fivePesos)
-
+	self
+		assert:
+			(self tenMeters - (self tenMeters / self fivePesos)
+				 atSameBaseUnitAs: self meter)
+		equals: self tenMeters.
+	self
+		assert:
+			(self tenMeters - (self tenMeters / self fivePesos)
+				 atSameBaseUnitAs: self meter / self peso)
+		equals: self tenMeters negated / self fivePesos
 ]
 
 { #category : 'test subtract' }
 MeasureTest >> testSubtractFloatWithMeasure [
 
-	self assert: ((10.01 - self tenMeters) atSameBaseUnitAs: self meter) = self tenMeters negated.
-	self assert: ((10.01 - self tenMeters) atSameBaseUnitAs: NullUnit new) = 10.01.	
-	
-
+	self
+		assert: (10.01 - self tenMeters atSameBaseUnitAs: self meter)
+		equals: self tenMeters negated.
+	self
+		assert: (10.01 - self tenMeters atSameBaseUnitAs: NullUnit new)
+		equals: 10.01
 ]
 
 { #category : 'test subtract' }
 MeasureTest >> testSubtractFractionWithMeasure [
 
-	self assert: ((1/3 - self tenMeters) atSameBaseUnitAs: self meter) = self tenMeters negated.
-	self assert: ((1/3 - self tenMeters) atSameBaseUnitAs: NullUnit new) = (1/3).	
+	self
+		assert: (1 / 3 - self tenMeters atSameBaseUnitAs: self meter)
+		equals: self tenMeters negated.
+	self
+		assert: (1 / 3 - self tenMeters atSameBaseUnitAs: NullUnit new)
+		equals: 1 / 3
 ]
 
 { #category : 'test infinity' }
 MeasureTest >> testSubtractInfinity [
 
-	self assert: self oneMeter - infinity = minusInfinity.
-	self assert: infinity - self oneMeter = infinity.
-	self assert: self oneMeter negated - infinity = minusInfinity.
-	self assert: infinity - self oneMeter negated = infinity
+	self assert: self oneMeter - infinity equals: minusInfinity.
+	self assert: infinity - self oneMeter equals: infinity.
+	self assert: self oneMeter negated - infinity equals: minusInfinity.
+	self assert: infinity - self oneMeter negated equals: infinity
 ]
 
 { #category : 'test subtract' }
 MeasureTest >> testSubtractIntegerWithMeasure [
 
-	self assert: ((10 - self tenMeters) atSameBaseUnitAs: self meter) = self tenMeters negated.
-	self assert: ((10 - self tenMeters) atSameBaseUnitAs: NullUnit new) = 10.	
+	self
+		assert: (10 - self tenMeters atSameBaseUnitAs: self meter)
+		equals: self tenMeters negated.
+	self
+		assert: (10 - self tenMeters atSameBaseUnitAs: NullUnit new)
+		equals: 10
 ]
 
 { #category : 'test minus infinity' }
 MeasureTest >> testSubtractMinusInfinity [
 
-	self assert: self oneMeter - minusInfinity = infinity.
-	self assert: minusInfinity - self oneMeter = minusInfinity.
-	self assert: self oneMeter negated - minusInfinity = infinity.
-	self assert: minusInfinity - self oneMeter negated = minusInfinity
+	self assert: self oneMeter - minusInfinity equals: infinity.
+	self assert: minusInfinity - self oneMeter equals: minusInfinity.
+	self assert: self oneMeter negated - minusInfinity equals: infinity.
+	self
+		assert: minusInfinity - self oneMeter negated
+		equals: minusInfinity
 ]
 
 { #category : 'test subtract' }
 MeasureTest >> testSubtractMultipliedMeasure [
 
-	self assert: ((self tenMeters - (self tenMeters * self fivePesos)) atSameBaseUnitAs: self meter) = self tenMeters.
-	self assert: ((self tenMeters - (self tenMeters * self fivePesos)) atSameBaseUnitAs: (self meter * self peso)) = (self tenMeters negated * self fivePesos)
+	self
+		assert:
+			(self tenMeters - (self tenMeters * self fivePesos)
+				 atSameBaseUnitAs: self meter)
+		equals: self tenMeters.
+	self
+		assert:
+			(self tenMeters - (self tenMeters * self fivePesos)
+				 atSameBaseUnitAs: self meter * self peso)
+		equals: self tenMeters negated * self fivePesos
 ]
 
 { #category : 'test subtract' }
 MeasureTest >> testSubtractScaledDecimalWithMeasure [
 
-	self assert: ((10.01s2 - self tenMeters) atSameBaseUnitAs: self meter) = self tenMeters negated.
-	self assert: ((10.01s2 - self tenMeters) atSameBaseUnitAs: NullUnit new) = 10.01s2
+	self
+		assert: (10.01s2 - self tenMeters atSameBaseUnitAs: self meter)
+		equals: self tenMeters negated.
+	self
+		assert: (10.01s2 - self tenMeters atSameBaseUnitAs: NullUnit new)
+		equals: 10.01s2
 ]
 
 { #category : 'test interval related protocol' }
 MeasureTest >> testTo [
 
-	self assert: (self oneMeter to: self tenMeters) from = self oneMeter.
-	self assert: (self oneMeter to: self tenMeters) to = self tenMeters.
-	self assert: (self oneMeter to: self tenMeters) by = self oneMeter.	
-
-	self assert: (self tenMeters to: self oneKilometer) by = self oneMeter.
-	self assert: (self oneCentimeter to: self oneKilometer) by = self oneCentimeter
+	self
+		assert: (self oneMeter to: self tenMeters) from
+		equals: self oneMeter.
+	self
+		assert: (self oneMeter to: self tenMeters) to
+		equals: self tenMeters.
+	self
+		assert: (self oneMeter to: self tenMeters) by
+		equals: self oneMeter.
+	self
+		assert: (self tenMeters to: self oneKilometer) by
+		equals: self oneMeter.
+	self
+		assert: (self oneCentimeter to: self oneKilometer) by
+		equals: self oneCentimeter
 ]
 
 { #category : 'test interval related protocol' }
 MeasureTest >> testToAt [
 
 	| coll |
-
-	coll := self tenMeters to: (self tenMeters * 2).
-	1 to: coll size do: [ :index | self assert: (coll at: index) amount = (9 + index) ]
+	coll := self tenMeters to: self tenMeters * 2.
+	1 to: coll size do: [ :index |
+	self assert: (coll at: index) amount equals: 9 + index ]
 ]
 
 { #category : 'test interval related protocol' }
 MeasureTest >> testToAtByNegative [
 
 	| coll |
-	
-	coll := (self tenMeters * 2) to: self tenMeters by: self oneMeter negated.
-	
-	1 to: coll size do: [ :index | self assert: (coll at: index) amount = (21 - index) ]	
+	coll := self tenMeters * 2 to: self tenMeters by:
+	        self oneMeter negated.
+
+	1 to: coll size do: [ :index |
+	self assert: (coll at: index) amount equals: 21 - index ]
 ]
 
 { #category : 'test interval related protocol' }
 MeasureTest >> testToBy [
 
-	self assert: (self oneMeter to: self tenMeters by: self oneCentimeter ) from = self oneMeter.
-	self assert: (self oneMeter to: self tenMeters by: self oneCentimeter ) to = self tenMeters.
-	self assert: (self oneMeter to: self tenMeters by: self oneCentimeter ) by = self oneCentimeter
+	self
+		assert:
+		(self oneMeter to: self tenMeters by: self oneCentimeter) from
+		equals: self oneMeter.
+	self
+		assert: (self oneMeter to: self tenMeters by: self oneCentimeter) to
+		equals: self tenMeters.
+	self
+		assert: (self oneMeter to: self tenMeters by: self oneCentimeter) by
+		equals: self oneCentimeter
 ]
 
 { #category : 'test interval related protocol' }
 MeasureTest >> testToByDo [
 
 	| value |
-	
 	value := 1.
 	(self oneMeter to: self tenMeters by: self oneMeter) do: [ :aMeasure |
-		self assert: value = aMeasure amount.
+		self assert: value equals: aMeasure amount.
 		value := value + 1 ]
-
 ]
 
 { #category : 'test interval related protocol' }
 MeasureTest >> testToCollect [
 
 	| coll |
-	
-	coll := (self oneMeter to: self tenMeters) collect: [ :aMeasure | aMeasure amount ].
-	coll inject: 1 into: [ :value :amount | self assert: value = amount. value + 1 ]
+	coll := (self oneMeter to: self tenMeters) collect: [ :aMeasure |
+		        aMeasure amount ].
+	coll inject: 1 into: [ :value :amount |
+		self assert: value equals: amount.
+		value + 1 ]
 ]
 
 { #category : 'test interval related protocol' }
 MeasureTest >> testToFirst [
 
-
-	self assert: (self oneMeter to: self tenMeters) first = self oneMeter.
-	self assert: (self tenMeters to: self oneMeter by: self oneMeter negated) first = self tenMeters
+	self
+		assert: (self oneMeter to: self tenMeters) first
+		equals: self oneMeter.
+	self
+		assert:
+		(self tenMeters to: self oneMeter by: self oneMeter negated) first
+		equals: self tenMeters
 ]
 
 { #category : 'test interval related protocol' }
 MeasureTest >> testToLast [
 
-
-	self assert: (self oneMeter to: self tenMeters) last = self tenMeters.
-	self assert: (self tenMeters to: self oneMeter by: self oneMeter negated) last = self oneMeter
+	self
+		assert: (self oneMeter to: self tenMeters) last
+		equals: self tenMeters.
+	self
+		assert:
+		(self tenMeters to: self oneMeter by: self oneMeter negated) last
+		equals: self oneMeter
 ]
 
 { #category : 'test interval related protocol' }
 MeasureTest >> testToSize [
 
-	self assert: (self oneCentimeter to: self oneKilometer) size = (100*1000)
-	
+	self
+		assert: (self oneCentimeter to: self oneKilometer) size
+		equals: 100 * 1000
 ]
 
 { #category : 'test truncated' }
 MeasureTest >> testTruncated [
 
-	self assert: (self meter with: 1.05) truncated = (self meter with: 1).
-	self assert: (self centimeter with: 1.05) truncated = (self centimeter with: 1).
-	self assert: ((self peso * self meter ) with: 1.05) truncated = ((self peso * self meter) with: 1).
-	self assert: ((self peso / self meter ) with: 1.05) truncated = ((self peso / self meter) with: 1)	
+	self
+		assert: (self meter with: 1.05) truncated
+		equals: (self meter with: 1).
+	self
+		assert: (self centimeter with: 1.05) truncated
+		equals: (self centimeter with: 1).
+	self
+		assert: (self peso * self meter with: 1.05) truncated
+		equals: (self peso * self meter with: 1).
+	self
+		assert: (self peso / self meter with: 1.05) truncated
+		equals: (self peso / self meter with: 1)
 ]
 
 { #category : 'test accessing' }
 MeasureTest >> testUnit [
 
-	self assert: self onePeso unit = self peso.
-	self assert: self oneMeter unit = self meter
+	self assert: self onePeso unit equals: self peso.
+	self assert: self oneMeter unit equals: self meter
 ]
 
 { #category : 'test' }
 MeasureTest >> testUnitNameOf [
 
 	self
-		assert: (self oneDollar unitNameOf: self dollar) = self dollar nameForOne;
-		assert: (self tenDollars unitNameOf: self dollar) = self dollar nameForMany;
-		assert: (self zeroDollars unitNameOf: self dollar) = self dollar nameForMany;
-		assert: (self oneDollar negated unitNameOf: self dollar) = self dollar nameForOne
+		assert: (self oneDollar unitNameOf: self dollar)
+		equals: self dollar nameForOne;
+		assert: (self tenDollars unitNameOf: self dollar)
+		equals: self dollar nameForMany;
+		assert: (self zeroDollars unitNameOf: self dollar)
+		equals: self dollar nameForMany;
+		assert: (self oneDollar negated unitNameOf: self dollar)
+		equals: self dollar nameForOne
 ]
 
 { #category : 'accessing monetary measurements' }

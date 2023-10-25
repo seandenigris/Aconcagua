@@ -24,29 +24,31 @@ MinusInfinityClassTest >> setUp [
 { #category : 'test arithmetic operations' }
 MinusInfinityClassTest >> testAdd [
 
-	self assert: minusInfinity + minusInfinity = minusInfinity.
-	self assert: 9 + minusInfinity = minusInfinity.
-	self assert: minusInfinity + 9 = minusInfinity.
+	self assert: minusInfinity + minusInfinity equals: minusInfinity.
+	self assert: 9 + minusInfinity equals: minusInfinity.
+	self assert: minusInfinity + 9 equals: minusInfinity.
 	self
-		should: [minusInfinity + infinity]
+		should: [ minusInfinity + infinity ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Sum operation is indeterminate between Minus Infinity and Infinity'].
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Sum operation is indeterminate between Minus Infinity and Infinity' ].
 	self
-		should: [infinity + minusInfinity]
+		should: [ infinity + minusInfinity ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Sum operation is indeterminate between Infinity and Minus Infinity']
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Sum operation is indeterminate between Infinity and Minus Infinity' ]
 ]
 
 { #category : 'test accessing' }
 MinusInfinityClassTest >> testAmount [
 
-	self assert: minusInfinity = minusInfinity
+	self assert: minusInfinity equals: minusInfinity
 ]
 
 { #category : 'test bag creation' }
@@ -81,7 +83,7 @@ MinusInfinityClassTest >> testBagCreationWithNumber [
 { #category : 'test accessing' }
 MinusInfinityClassTest >> testBaseUnit [
 
-	self assert: minusInfinity baseUnit = NullUnit new
+	self assert: minusInfinity baseUnit equals: NullUnit new
 ]
 
 { #category : 'test magnitude protocol' }
@@ -96,79 +98,83 @@ MinusInfinityClassTest >> testBetweenAnd [
 { #category : 'test converting' }
 MinusInfinityClassTest >> testConvertAmountToBaseUnit [
 
-	self assert: minusInfinity convertAmountToBaseUnit = 0
+	self assert: minusInfinity convertAmountToBaseUnit equals: 0
 ]
 
 { #category : 'test converting' }
 MinusInfinityClassTest >> testConvertTo [
 
 	| unit |
-
 	unit := BaseUnit named: 'peso'.
 	self
-		should: [minusInfinity convertTo: unit]
+		should: [ minusInfinity convertTo: unit ]
 		raise: CanNotConvertMeasureException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description = 'It is not possible to convert Minus Infinity to peso']
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals: 'It is not possible to convert Minus Infinity to peso' ]
 ]
 
 { #category : 'test converting' }
 MinusInfinityClassTest >> testConvertToBaseUnit [
 
-	self assert: minusInfinity convertToBaseUnit = minusInfinity
+	self assert: minusInfinity convertToBaseUnit equals: minusInfinity
 ]
 
 { #category : 'test accessing' }
 MinusInfinityClassTest >> testDenominator [
 
-	self assert: minusInfinity denominator = 1
+	self assert: minusInfinity denominator equals: 1
 ]
 
 { #category : 'test arithmetic operations' }
 MinusInfinityClassTest >> testDivide [
 
 	self
-		should: [minusInfinity / minusInfinity]
+		should: [ minusInfinity / minusInfinity ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Division operation is indeterminate between Minus Infinity and Minus Infinity'].
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Division operation is indeterminate between Minus Infinity and Minus Infinity' ].
 	self
-		should: [minusInfinity / infinity]
+		should: [ minusInfinity / infinity ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Division operation is indeterminate between Minus Infinity and Infinity'].
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Division operation is indeterminate between Minus Infinity and Infinity' ].
 	self
-		should: [infinity / minusInfinity]
+		should: [ infinity / minusInfinity ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Division operation is indeterminate between Infinity and Minus Infinity'].
-	self assert: 9 / minusInfinity = 0.
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Division operation is indeterminate between Infinity and Minus Infinity' ].
+	self assert: 9 / minusInfinity equals: 0.
 	self
-		should: [minusInfinity / 9]
+		should: [ minusInfinity / 9 ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Division operation is indeterminate between Minus Infinity and 9']
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Division operation is indeterminate between Minus Infinity and 9' ]
 ]
 
 { #category : 'test arithmetic operations' }
 MinusInfinityClassTest >> testDivideByUnit [
 
-	self assert: (minusInfinity divideByUnit: meter) = (0 * meter)
+	self assert: (minusInfinity divideByUnit: meter) equals: 0 * meter
 ]
 
 { #category : 'test arithmetic operations' }
 MinusInfinityClassTest >> testDivideMeasure [
 
-	self assert: (minusInfinity divideMeasure: meter * 5) = 0
+	self assert: (minusInfinity divideMeasure: meter * 5) equals: 0
 ]
 
 { #category : 'test comparing' }
@@ -206,107 +212,117 @@ MinusInfinityClassTest >> testIsNothing [
 { #category : 'test magnitude protocol' }
 MinusInfinityClassTest >> testMax [
 
-	self assert: (minusInfinity max: 5) = 5.
-	self assert: (5 max: minusInfinity) = 5.
-	self assert: (infinity max: minusInfinity) = infinity.
-	self assert: (minusInfinity max: infinity) = infinity.
-	self assert: (minusInfinity max: minusInfinity) = minusInfinity
+	self assert: (minusInfinity max: 5) equals: 5.
+	self assert: (5 max: minusInfinity) equals: 5.
+	self assert: (infinity max: minusInfinity) equals: infinity.
+	self assert: (minusInfinity max: infinity) equals: infinity.
+	self assert: (minusInfinity max: minusInfinity) equals: minusInfinity
 ]
 
 { #category : 'test magnitude protocol' }
 MinusInfinityClassTest >> testMin [
 
-	self assert: (minusInfinity min: 5) = minusInfinity.
-	self assert: (5 min: minusInfinity) = minusInfinity.
-	self assert: (infinity min: minusInfinity) = minusInfinity.
-	self assert: (minusInfinity min: infinity) = minusInfinity.
-	self assert: (minusInfinity min: minusInfinity) = minusInfinity
+	self assert: (minusInfinity min: 5) equals: minusInfinity.
+	self assert: (5 min: minusInfinity) equals: minusInfinity.
+	self assert: (infinity min: minusInfinity) equals: minusInfinity.
+	self assert: (minusInfinity min: infinity) equals: minusInfinity.
+	self assert: (minusInfinity min: minusInfinity) equals: minusInfinity
 ]
 
 { #category : 'test arithmetic operations' }
 MinusInfinityClassTest >> testModulo [
 
 	self
-		should: [minusInfinity // minusInfinity]
+		should: [ minusInfinity // minusInfinity ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Modulo operation is indeterminate between Minus Infinity and Minus Infinity'].
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Modulo operation is indeterminate between Minus Infinity and Minus Infinity' ].
 	self
-		should: [minusInfinity // infinity]
+		should: [ minusInfinity // infinity ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Modulo operation is indeterminate between Minus Infinity and Infinity'].
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Modulo operation is indeterminate between Minus Infinity and Infinity' ].
 	self
-		should: [infinity // minusInfinity]
+		should: [ infinity // minusInfinity ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Modulo operation is indeterminate between Infinity and Minus Infinity'].
-	self assert: 9 // minusInfinity = 0.
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Modulo operation is indeterminate between Infinity and Minus Infinity' ].
+	self assert: 9 // minusInfinity equals: 0.
 	self
-		should: [minusInfinity // 9]
+		should: [ minusInfinity // 9 ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Modulo operation is indeterminate between Minus Infinity and 9']
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Modulo operation is indeterminate between Minus Infinity and 9' ]
 ]
 
 { #category : 'test arithmetic operations' }
 MinusInfinityClassTest >> testModuloMeasure [
 
-	self assert: (minusInfinity moduloMeasure: 5 * meter) = 0
+	self assert: (minusInfinity moduloMeasure: 5 * meter) equals: 0
 ]
 
 { #category : 'test arithmetic operations' }
 MinusInfinityClassTest >> testMultiplication [
 
-	self assert: minusInfinity * minusInfinity = infinity.
-	self assert: 9 * minusInfinity = minusInfinity.
-	self assert: -9 * minusInfinity = infinity.
-	self assert: minusInfinity * 9 = minusInfinity.
-	self assert: minusInfinity * -9 = infinity.
-	self assert: minusInfinity * infinity = minusInfinity.
-	self assert: infinity * minusInfinity = minusInfinity.
+	self assert: minusInfinity * minusInfinity equals: infinity.
+	self assert: 9 * minusInfinity equals: minusInfinity.
+	self assert: -9 * minusInfinity equals: infinity.
+	self assert: minusInfinity * 9 equals: minusInfinity.
+	self assert: minusInfinity * -9 equals: infinity.
+	self assert: minusInfinity * infinity equals: minusInfinity.
+	self assert: infinity * minusInfinity equals: minusInfinity.
 
 	self
-		should: [0 * minusInfinity]
+		should: [ 0 * minusInfinity ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Multiplication operation is indeterminate between 0 and Minus Infinity'].
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Multiplication operation is indeterminate between 0 and Minus Infinity' ].
 
 	self
-		should: [minusInfinity * 0]
+		should: [ minusInfinity * 0 ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Multiplication operation is indeterminate between 0 and Minus Infinity']
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Multiplication operation is indeterminate between 0 and Minus Infinity' ]
 ]
 
 { #category : 'test arithmetic operations' }
 MinusInfinityClassTest >> testMultiplyByUnit [
 
-	self assert: (minusInfinity multiplyByUnit: meter) = (minusInfinity * meter)
+	self
+		assert: (minusInfinity multiplyByUnit: meter)
+		equals: minusInfinity * meter
 ]
 
 { #category : 'test arithmetic operations' }
 MinusInfinityClassTest >> testMultiplyMeasure [
 
-	self assert: (minusInfinity multiplyMeasure: 5 * meter) = minusInfinity
+	self
+		assert: (minusInfinity multiplyMeasure: 5 * meter)
+		equals: minusInfinity
 ]
 
 { #category : 'test arithmetic operations' }
 MinusInfinityClassTest >> testNegated [
 
-	self assert: minusInfinity negated = infinity
+	self assert: minusInfinity negated equals: infinity
 ]
 
 { #category : 'test testing' }
@@ -318,7 +334,7 @@ MinusInfinityClassTest >> testNegative [
 { #category : 'test accessing' }
 MinusInfinityClassTest >> testNumerator [
 
-	self assert: minusInfinity numerator = minusInfinity
+	self assert: minusInfinity numerator equals: minusInfinity
 ]
 
 { #category : 'test testing' }
@@ -331,58 +347,64 @@ MinusInfinityClassTest >> testPositive [
 MinusInfinityClassTest >> testRemainder [
 
 	self
-		should: [minusInfinity \\ minusInfinity]
+		should: [ minusInfinity \\ minusInfinity ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Remainder operation is indeterminate between Minus Infinity and Minus Infinity'].
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Remainder operation is indeterminate between Minus Infinity and Minus Infinity' ].
 	self
-		should: [minusInfinity \\ infinity]
+		should: [ minusInfinity \\ infinity ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Remainder operation is indeterminate between Minus Infinity and Infinity'].
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Remainder operation is indeterminate between Minus Infinity and Infinity' ].
 	self
-		should: [infinity \\ minusInfinity]
+		should: [ infinity \\ minusInfinity ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Remainder operation is indeterminate between Infinity and Minus Infinity'].
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Remainder operation is indeterminate between Infinity and Minus Infinity' ].
 	self
-		should: [minusInfinity \\ 9]
+		should: [ minusInfinity \\ 9 ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Remainder operation is indeterminate between Minus Infinity and 9'].
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Remainder operation is indeterminate between Minus Infinity and 9' ].
 	self
-		should: [9 \\ minusInfinity]
+		should: [ 9 \\ minusInfinity ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Multiplication operation is indeterminate between 0 and Minus Infinity']
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Multiplication operation is indeterminate between 0 and Minus Infinity' ]
 ]
 
 { #category : 'test arithmetic operations' }
 MinusInfinityClassTest >> testRemainderMeasure [
 
 	self
-		should: [minusInfinity remainderMeasure: 5 * meter]
+		should: [ minusInfinity remainderMeasure: 5 * meter ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Multiplication operation is indeterminate between 0 and Minus Infinity']
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Multiplication operation is indeterminate between 0 and Minus Infinity' ]
 ]
 
 { #category : 'test arithmetic operations' }
 MinusInfinityClassTest >> testRoundTo [
 
-	self assert: (minusInfinity roundTo: 2) = minusInfinity
+	self assert: (minusInfinity roundTo: 2) equals: minusInfinity
 ]
 
 { #category : 'test testing' }
@@ -403,99 +425,97 @@ MinusInfinityClassTest >> testSameUnitAs [
 MinusInfinityClassTest >> testSubtract [
 
 	self
-		should: [minusInfinity - minusInfinity]
+		should: [ minusInfinity - minusInfinity ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Subtract operation is indeterminate between Minus Infinity and Minus Infinity'].
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Subtract operation is indeterminate between Minus Infinity and Minus Infinity' ].
 	self
-		should: [minusInfinity - infinity]
+		should: [ minusInfinity - infinity ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Subtract operation is indeterminate between Minus Infinity and Infinity'].
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Subtract operation is indeterminate between Minus Infinity and Infinity' ].
 	self
-		should: [infinity - minusInfinity]
+		should: [ infinity - minusInfinity ]
 		raise: IndeterminateOperationException
-		withExceptionDo: [:anException |
-			self assert:
-				anException description =
-					'The Subtract operation is indeterminate between Infinity and Minus Infinity'].
-	self assert: 9 - minusInfinity = infinity.
-	self assert: minusInfinity - 9 = minusInfinity
+		withExceptionDo: [ :anException |
+			self
+				assert: anException description
+				equals:
+				'The Subtract operation is indeterminate between Infinity and Minus Infinity' ].
+	self assert: 9 - minusInfinity equals: infinity.
+	self assert: minusInfinity - 9 equals: minusInfinity
 ]
 
 { #category : 'test interval protocol' }
 MinusInfinityClassTest >> testToBy [
 
 	| interval |
-
 	interval := minusInfinity to: minusInfinity by: 5.
 	self
-		assert: interval from = minusInfinity;
-		assert: interval to = minusInfinity;
-		assert: interval size = infinity;
-		assert: interval by = 5
+		assert: interval from equals: minusInfinity;
+		assert: interval to equals: minusInfinity;
+		assert: interval size equals: infinity;
+		assert: interval by equals: 5
 ]
 
 { #category : 'test interval protocol' }
 MinusInfinityClassTest >> testToFromFixed [
 
 	| interval |
-
 	interval := 5 toMinusInfinity.
 	self
-		assert: interval from = 5;
-		assert: interval to = minusInfinity;
-		assert: interval size = infinity;
-		assert: interval by = 1
+		assert: interval from equals: 5;
+		assert: interval to equals: minusInfinity;
+		assert: interval size equals: infinity;
+		assert: interval by equals: 1
 ]
 
 { #category : 'test interval protocol' }
 MinusInfinityClassTest >> testToInfinity [
 
 	| interval |
-
 	interval := minusInfinity to: minusInfinity.
 	self
-		assert: interval from = minusInfinity;
-		assert: interval to = minusInfinity;
-		assert: interval size = infinity;
-		assert: interval by = 1
+		assert: interval from equals: minusInfinity;
+		assert: interval to equals: minusInfinity;
+		assert: interval size equals: infinity;
+		assert: interval by equals: 1
 ]
 
 { #category : 'test interval protocol' }
 MinusInfinityClassTest >> testToToFixed [
 
 	| interval |
-
 	interval := minusInfinity to: 5.
 	self
-		assert: interval from = minusInfinity;
-		assert: interval to = 5;
-		assert: interval size = infinity;
-		assert: interval by = 1
+		assert: interval from equals: minusInfinity;
+		assert: interval to equals: 5;
+		assert: interval size equals: infinity;
+		assert: interval by equals: 1
 ]
 
 { #category : 'test arithmetic operations' }
 MinusInfinityClassTest >> testTruncated [
 
-	self assert: minusInfinity truncated = minusInfinity
+	self assert: minusInfinity truncated equals: minusInfinity
 ]
 
 { #category : 'test accessing' }
 MinusInfinityClassTest >> testUnit [
 
-	self assert: minusInfinity unit = NullUnit new
+	self assert: minusInfinity unit equals: NullUnit new
 ]
 
 { #category : 'test accessing' }
 MinusInfinityClassTest >> testUnitNameOf [
 
 	| unit |
-
 	unit := BaseUnit named: 'meter'.
-	self assert: (minusInfinity unitNameOf: unit) = 'meters'
+	self assert: (minusInfinity unitNameOf: unit) equals: 'meters'
 ]

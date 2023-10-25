@@ -17,23 +17,43 @@ IntervalAwareMagnitudeTest >> testBetweenAndNotInclusive [
 { #category : 'test' }
 IntervalAwareMagnitudeTest >> testHash [
 
-	self assert: (TestIntervalAwareMagnitude with: 10) hash = (TestIntervalAwareMagnitude with: 10) hash
+	self
+		assert: (TestIntervalAwareMagnitude with: 10) hash
+		equals: (TestIntervalAwareMagnitude with: 10) hash
 ]
 
 { #category : 'test' }
 IntervalAwareMagnitudeTest >> testMax [
 
-	self assert: ((TestIntervalAwareMagnitude with: 10) max: (TestIntervalAwareMagnitude with: 11)) = (TestIntervalAwareMagnitude with: 11).
-	self assert: ((TestIntervalAwareMagnitude with: 10) max: (TestIntervalAwareMagnitude with: 9)) = (TestIntervalAwareMagnitude with: 10).
-	self assert: ((TestIntervalAwareMagnitude with: 10) max: (TestIntervalAwareMagnitude with: 10)) = (TestIntervalAwareMagnitude with: 10)
+	self
+		assert: ((TestIntervalAwareMagnitude with: 10) max:
+				 (TestIntervalAwareMagnitude with: 11))
+		equals: (TestIntervalAwareMagnitude with: 11).
+	self
+		assert: ((TestIntervalAwareMagnitude with: 10) max:
+				 (TestIntervalAwareMagnitude with: 9))
+		equals: (TestIntervalAwareMagnitude with: 10).
+	self
+		assert: ((TestIntervalAwareMagnitude with: 10) max:
+				 (TestIntervalAwareMagnitude with: 10))
+		equals: (TestIntervalAwareMagnitude with: 10)
 ]
 
 { #category : 'test' }
 IntervalAwareMagnitudeTest >> testMin [
 
-	self assert: ((TestIntervalAwareMagnitude with: 10) min: (TestIntervalAwareMagnitude with: 11)) = (TestIntervalAwareMagnitude with: 10).
-	self assert: ((TestIntervalAwareMagnitude with: 10) min: (TestIntervalAwareMagnitude with: 9)) = (TestIntervalAwareMagnitude with: 9).
-	self assert: ((TestIntervalAwareMagnitude with: 10) min: (TestIntervalAwareMagnitude with: 10)) = (TestIntervalAwareMagnitude with: 10)
+	self
+		assert: ((TestIntervalAwareMagnitude with: 10) min:
+				 (TestIntervalAwareMagnitude with: 11))
+		equals: (TestIntervalAwareMagnitude with: 10).
+	self
+		assert: ((TestIntervalAwareMagnitude with: 10) min:
+				 (TestIntervalAwareMagnitude with: 9))
+		equals: (TestIntervalAwareMagnitude with: 9).
+	self
+		assert: ((TestIntervalAwareMagnitude with: 10) min:
+				 (TestIntervalAwareMagnitude with: 10))
+		equals: (TestIntervalAwareMagnitude with: 10)
 ]
 
 { #category : 'test' }
@@ -56,68 +76,70 @@ IntervalAwareMagnitudeTest >> testNotInclusiveBetweenAndNotInclusive [
 IntervalAwareMagnitudeTest >> testTo [
 
 	| interval |
-	
-	interval := (TestIntervalAwareMagnitude with: 10) to: (TestIntervalAwareMagnitude with: 20).
-
-	self assert: interval from = (TestIntervalAwareMagnitude with: 10).
-	self assert: interval to = (TestIntervalAwareMagnitude with: 20).
-	self assert: interval by = (TestIntervalAwareMagnitude with: 1)
+	interval := (TestIntervalAwareMagnitude with: 10) to:
+	            (TestIntervalAwareMagnitude with: 20).
+	self
+		assert: interval from
+		equals: (TestIntervalAwareMagnitude with: 10).
+	self
+		assert: interval to
+		equals: (TestIntervalAwareMagnitude with: 20).
+	self assert: interval by equals: (TestIntervalAwareMagnitude with: 1)
 ]
 
 { #category : 'test' }
 IntervalAwareMagnitudeTest >> testToBy [
 
 	| interval |
-	
-	interval := (TestIntervalAwareMagnitude with: 10) to: (TestIntervalAwareMagnitude with: 20) by: (TestIntervalAwareMagnitude with: 5).
-
-	self assert: interval from = (TestIntervalAwareMagnitude with: 10).
-	self assert: interval to = (TestIntervalAwareMagnitude with: 20).
-	self assert: interval by = (TestIntervalAwareMagnitude with: 5)
+	interval := (TestIntervalAwareMagnitude with: 10) to:
+	            (TestIntervalAwareMagnitude with: 20) by:
+	            (TestIntervalAwareMagnitude with: 5).
+	self
+		assert: interval from
+		equals: (TestIntervalAwareMagnitude with: 10).
+	self
+		assert: interval to
+		equals: (TestIntervalAwareMagnitude with: 20).
+	self assert: interval by equals: (TestIntervalAwareMagnitude with: 5)
 ]
 
 { #category : 'test' }
 IntervalAwareMagnitudeTest >> testToByDo [
 
 	| number |
-	
-	number := 10.	
-	((TestIntervalAwareMagnitude with: 10) 
-		to: (TestIntervalAwareMagnitude with: 20) 
-		by: (TestIntervalAwareMagnitude with: 2))
-		do: [ :aTestMagnitude |
-			self assert: aTestMagnitude number = number.
-			number := number + 2 ].
-	
-	self assert: number = 22
+	number := 10.
+	((TestIntervalAwareMagnitude with: 10) to:
+	 (TestIntervalAwareMagnitude with: 20) by:
+	 (TestIntervalAwareMagnitude with: 2)) do: [ :aTestMagnitude |
+		self assert: aTestMagnitude number equals: number.
+		number := number + 2 ].
+	self assert: number equals: 22
 ]
 
 { #category : 'test' }
 IntervalAwareMagnitudeTest >> testToNegativeBy [
 
 	| interval number |
-	
-	interval := (TestIntervalAwareMagnitude with: 20) to: (TestIntervalAwareMagnitude with: 10) by: (TestIntervalAwareMagnitude with: -3).
+	interval := (TestIntervalAwareMagnitude with: 20) to:
+	            (TestIntervalAwareMagnitude with: 10) by:
+	            (TestIntervalAwareMagnitude with: -3).
 	number := 20.
 	interval do: [ :each |
-		self assert: each number = number.
+		self assert: each number equals: number.
 		number := number - 3 ].
-	
-	self assert: number = 8
+	self assert: number equals: 8
 ]
 
 { #category : 'test' }
 IntervalAwareMagnitudeTest >> testToReverse [
 
 	| coll number |
-	
-	coll := ((TestIntervalAwareMagnitude with: 10) 
-		to: (TestIntervalAwareMagnitude with: 20) 
-		by: (TestIntervalAwareMagnitude with: 3)) reverse.
+	coll := ((TestIntervalAwareMagnitude with: 10) to:
+	         (TestIntervalAwareMagnitude with: 20) by:
+	         (TestIntervalAwareMagnitude with: 3)) reverse.
 	number := 19.
 	coll do: [ :each |
-		self assert: each number = number.
+		self assert: each number equals: number.
 		number := number - 3 ].
-	
-	self assert: number = 7
+	self assert: number equals: 7
 ]
