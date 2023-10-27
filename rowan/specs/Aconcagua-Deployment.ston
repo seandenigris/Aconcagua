@@ -1,5 +1,5 @@
 RwLoadSpecificationV2 {
-  #specName: 'Aconcagua-CI',
+  #specName: 'Aconcagua-Deployment',
   #projectName : 'Aconcagua',
   #diskUrl : 'Aconcagua',
   #projectSpecFile : 'rowan/project.ston',
