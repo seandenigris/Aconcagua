@@ -1,6 +1,6 @@
 Class {
-	#name : #EvaluationTest,
-	#superclass : #TestCase,
+	#name : 'EvaluationTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'formulaOfTenPesos',
 		'formulaOfTwentyPesos',
@@ -8,23 +8,26 @@ Class {
 		'peso',
 		'dollar'
 	],
-	#category : 'Aconcagua-Tests-MeasureModel'
+	#category : 'Aconcagua-Tests-MeasureModel',
+	#package : 'Aconcagua-Tests',
+	#tag : 'MeasureModel'
 }
 
-{ #category : #'test support' }
+{ #category : 'test support' }
 EvaluationTest >> assertAllTestShouldPassFor: aMessageName [
 
 	self shouldPass: self genericTestsMessageNames for: aMessageName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EvaluationTest >> genericTestsMessageNames [
 
-	^(self class selectors select: [:aSelector | 'performWith*' match: aSelector])
-		asOrderedCollection
+	^ (self class selectors select: [ :aSelector |
+		   (aSelector indexOfSubCollection: #performWith) = 1 ])
+		  asOrderedCollection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EvaluationTest >> messageName: aMessageName [
 
 	messageName := aMessageName
@@ -32,99 +35,137 @@ EvaluationTest >> messageName: aMessageName [
 	
 ]
 
-{ #category : #'generic tests' }
+{ #category : 'generic tests' }
 EvaluationTest >> performWithFloatWithFormula [
 
-	self assert: (1.01 perform: messageName with: formulaOfTenPesos) value =
+	self
+		assert: (1.01 perform: messageName with: formulaOfTenPesos) value
+		equals:
 		(1.01 value perform: messageName with: formulaOfTenPesos value)
-	
 ]
 
-{ #category : #'generic tests' }
+{ #category : 'generic tests' }
 EvaluationTest >> performWithFormulaWithFloat [
 
-	self assert: (formulaOfTenPesos perform: messageName with: 1.01) value = 
+	self
+		assert: (formulaOfTenPesos perform: messageName with: 1.01) value
+		equals:
 		(formulaOfTenPesos value perform: messageName with: 1.01 value)
 ]
 
-{ #category : #'generic tests' }
+{ #category : 'generic tests' }
 EvaluationTest >> performWithFormulaWithFraction [
 
-	self assert: (formulaOfTenPesos perform: messageName with: (1/3)) value = 
-		(formulaOfTenPesos value perform: messageName with: (1/3) value)
+	self
+		assert: (formulaOfTenPesos perform: messageName with: 1 / 3) value
+		equals:
+		(formulaOfTenPesos value perform: messageName with: (1 / 3) value)
 ]
 
-{ #category : #'generic tests' }
+{ #category : 'generic tests' }
 EvaluationTest >> performWithFormulaWithInteger [
 
-	self assert: (formulaOfTenPesos perform: messageName with: 1) value = 
-		(formulaOfTenPesos value perform: messageName with: 1 value)
+	self
+		assert: (formulaOfTenPesos perform: messageName with: 1) value
+		equals: (formulaOfTenPesos value perform: messageName with: 1 value)
 ]
 
-{ #category : #'generic tests' }
+{ #category : 'generic tests' }
 EvaluationTest >> performWithFormulaWithMeasure [
 
-	self assert: (formulaOfTenPesos perform: messageName with: self twentyPesos) value = 
-		(formulaOfTenPesos value perform: messageName with: self twentyPesos value)
+	self
+		assert:
+		(formulaOfTenPesos perform: messageName with: self twentyPesos)
+			value
+		equals: (formulaOfTenPesos value
+				 perform: messageName
+				 with: self twentyPesos value)
 ]
 
-{ #category : #'generic tests' }
+{ #category : 'generic tests' }
 EvaluationTest >> performWithFormulaWithMeasureBag [
 
-	self assert: (formulaOfTenPesos perform: messageName with: (self tenDollars + self tenPesos)) value = 
-		(formulaOfTenPesos value perform: messageName with: (self tenDollars + self tenPesos) value)
+	self
+		assert: (formulaOfTenPesos
+				 perform: messageName
+				 with: self tenDollars + self tenPesos) value
+		equals: (formulaOfTenPesos value
+				 perform: messageName
+				 with: (self tenDollars + self tenPesos) value)
 ]
 
-{ #category : #'generic tests' }
+{ #category : 'generic tests' }
 EvaluationTest >> performWithFormulaWithScaledDecimal [
 
-	self assert: (formulaOfTenPesos perform: messageName with: 1.02s2) value = 
+	self
+		assert: (formulaOfTenPesos perform: messageName with: 1.02s2) value
+		equals:
 		(formulaOfTenPesos value perform: messageName with: 1.02s2 value)
 ]
 
-{ #category : #'generic tests' }
+{ #category : 'generic tests' }
 EvaluationTest >> performWithFormulas [
 
-	self assert: (formulaOfTenPesos perform: messageName with: formulaOfTwentyPesos) value = 
-		(formulaOfTenPesos value perform: messageName with: formulaOfTwentyPesos value)
+	self
+		assert:
+			(formulaOfTenPesos perform: messageName with: formulaOfTwentyPesos)
+				value
+		equals: (formulaOfTenPesos value
+				 perform: messageName
+				 with: formulaOfTwentyPesos value)
 ]
 
-{ #category : #'generic tests' }
+{ #category : 'generic tests' }
 EvaluationTest >> performWithFractionWithFormula [
 
-	self assert: (1/3 perform: messageName with: formulaOfTenPesos) value = 
-		((1/3) value perform: messageName with: formulaOfTenPesos value)
+	self
+		assert: (1 / 3 perform: messageName with: formulaOfTenPesos) value
+		equals:
+		((1 / 3) value perform: messageName with: formulaOfTenPesos value)
 ]
 
-{ #category : #'generic tests' }
+{ #category : 'generic tests' }
 EvaluationTest >> performWithIntegerWithFormula [
 
-	self assert: (1 perform: messageName with: formulaOfTenPesos) value = 
-		(1 value perform: messageName with: formulaOfTenPesos value)
+	self
+		assert: (1 perform: messageName with: formulaOfTenPesos) value
+		equals: (1 value perform: messageName with: formulaOfTenPesos value)
 ]
 
-{ #category : #'generic tests' }
+{ #category : 'generic tests' }
 EvaluationTest >> performWithMeasureBagWithFormula [
 
-	self assert: ((self tenDollars + self tenPesos) perform: messageName with: formulaOfTenPesos) value = 
-		((self tenDollars + self tenPesos) value perform: messageName with:formulaOfTenPesos value )
+	self
+		assert: (self tenDollars + self tenPesos
+				 perform: messageName
+				 with: formulaOfTenPesos) value
+		equals: ((self tenDollars + self tenPesos) value
+				 perform: messageName
+				 with: formulaOfTenPesos value)
 ]
 
-{ #category : #'generic tests' }
+{ #category : 'generic tests' }
 EvaluationTest >> performWithMeasureWithFormula [
 
-	self assert: (self twentyPesos perform: messageName with: formulaOfTenPesos) value = 
-		(self twentyPesos value perform: messageName with: formulaOfTenPesos value)
+	self
+		assert:
+		(self twentyPesos perform: messageName with: formulaOfTenPesos)
+			value
+		equals: (self twentyPesos value
+				 perform: messageName
+				 with: formulaOfTenPesos value)
 ]
 
-{ #category : #'generic tests' }
+{ #category : 'generic tests' }
 EvaluationTest >> performWithScaledDecimalWithFormula [
 
-	self assert: (27.02s2 perform: messageName with: formulaOfTenPesos) value = 
+	self
+		assert: (27.02s2 perform: messageName with: formulaOfTenPesos) value
+		equals:
 		(27.02s2 value perform: messageName with: formulaOfTenPesos value)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 EvaluationTest >> setUp [
 	
 	peso := BaseUnit named: 'Peso'.
@@ -133,7 +174,7 @@ EvaluationTest >> setUp [
 	formulaOfTwentyPesos := DummyEvaluation of: self twentyPesos
 ]
 
-{ #category : #'test support' }
+{ #category : 'test support' }
 EvaluationTest >> shouldFail: aTestsToFail for: aMessageName [
 
 	messageName := aMessageName.
@@ -152,7 +193,7 @@ EvaluationTest >> shouldFail: aTestsToFail for: aMessageName [
 						self assert: anException rightOperand notNil]]]
 ]
 
-{ #category : #'test support' }
+{ #category : 'test support' }
 EvaluationTest >> shouldFail: testsToFail shouldPassRestFor: aMessageName [
 
 	| testToPass |
@@ -163,45 +204,45 @@ EvaluationTest >> shouldFail: testsToFail shouldPassRestFor: aMessageName [
 	self shouldFail: testsToFail for: aMessageName
 ]
 
-{ #category : #'test support' }
+{ #category : 'test support' }
 EvaluationTest >> shouldPass: testsToPass for: aMessageName [
 
 	messageName := aMessageName.
 	testsToPass do: [ :aTestMessageName | self perform: aTestMessageName ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EvaluationTest >> tenDollars [
 	
 	^dollar with: 10
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EvaluationTest >> tenPesos [
 
 	^peso with: 10
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 EvaluationTest >> testAdd [
 
 	self assertAllTestShouldPassFor: #+
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 EvaluationTest >> testDivide [
 
 	self assertAllTestShouldPassFor: #/
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 EvaluationTest >> testIsMeasureBag [
 
 	self deny: formulaOfTenPesos isMeasureBag.
 	self assert: (DummyEvaluation of: (peso with: 1) + (dollar with: 1)) isMeasureBag
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 EvaluationTest >> testModulo [
 
 	| testsToFail |
@@ -210,20 +251,24 @@ EvaluationTest >> testModulo [
 	self shouldFail: testsToFail shouldPassRestFor: #//
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 EvaluationTest >> testMultiply [
 
 	self assertAllTestShouldPassFor: #*
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 EvaluationTest >> testNegated [
 
-	self assert: formulaOfTenPesos negated value = formulaOfTenPesos value negated.
-	self assert: formulaOfTenPesos negated negated value = formulaOfTenPesos value
+	self
+		assert: formulaOfTenPesos negated value
+		equals: formulaOfTenPesos value negated.
+	self
+		assert: formulaOfTenPesos negated negated value
+		equals: formulaOfTenPesos value
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 EvaluationTest >> testRemainder [
 
 	| testsToFail |
@@ -235,22 +280,21 @@ EvaluationTest >> testRemainder [
 	self shouldFail: testsToFail shouldPassRestFor: #\\
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 EvaluationTest >> testSubtract [
 
 	self assertAllTestShouldPassFor: #-
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 EvaluationTest >> testTruncated [
 
 	| formula |
-	
 	formula := DummyEvaluation of: (peso with: 1.3).
-	self assert: formula truncated = (peso with: 1)
+	self assert: formula truncated equals: (peso with: 1)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EvaluationTest >> twentyPesos [
 
 	^peso with: 20

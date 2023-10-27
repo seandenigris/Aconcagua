@@ -1,0 +1,14 @@
+RwLoadSpecificationV2 {
+  #specName: 'Aconcagua-CI',
+  #projectName : 'Aconcagua',
+  #diskUrl : 'Aconcagua',
+  #projectSpecFile : 'rowan/project.ston',
+  #componentNames : [
+      'Tests'
+  ],
+  #customConditionalAttributes : [
+    'sunit',
+    'tests'
+  ],
+  #comment : 'Aconcagua continuous integration setup'
+}

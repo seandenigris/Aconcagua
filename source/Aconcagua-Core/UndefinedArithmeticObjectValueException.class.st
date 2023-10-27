@@ -1,37 +1,39 @@
 Class {
-	#name : #UndefinedArithmeticObjectValueException,
-	#superclass : #Error,
+	#name : 'UndefinedArithmeticObjectValueException',
+	#superclass : 'Error',
 	#instVars : [
 		'arithmeticObject'
 	],
-	#category : 'Aconcagua-Core-ArithmeticModel'
+	#category : 'Aconcagua-Core-ArithmeticModel',
+	#package : 'Aconcagua-Core',
+	#tag : 'ArithmeticModel'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 UndefinedArithmeticObjectValueException class >> arithmeticObject: anArithmeticObject [
 
 	^self new initializeArithmeticObject: anArithmeticObject
 ]
 
-{ #category : #signaling }
+{ #category : 'signaling' }
 UndefinedArithmeticObjectValueException class >> signalArithmeticObject: anArithmeticObject [
 
 	(self arithmeticObject: anArithmeticObject) signal
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 UndefinedArithmeticObjectValueException >> arithmeticObject [
 
 	^arithmeticObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 UndefinedArithmeticObjectValueException >> description [
 
 	^'Undefined value of arithmetical operation: "<1p>"' expandMacrosWith: arithmeticObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 UndefinedArithmeticObjectValueException >> initializeArithmeticObject: anArithmeticObject [
 
 	arithmeticObject := anArithmeticObject.

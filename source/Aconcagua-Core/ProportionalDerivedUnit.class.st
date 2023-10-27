@@ -1,6 +1,6 @@
 Class {
-	#name : #ProportionalDerivedUnit,
-	#superclass : #DerivedUnit,
+	#name : 'ProportionalDerivedUnit',
+	#superclass : 'DerivedUnit',
 	#instVars : [
 		'nameForOne',
 		'nameForMany',
@@ -8,10 +8,12 @@ Class {
 		'baseUnit',
 		'conversionFactor'
 	],
-	#category : 'Aconcagua-Core-MeasureModel'
+	#category : 'Aconcagua-Core-MeasureModel',
+	#package : 'Aconcagua-Core',
+	#tag : 'MeasureModel'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ProportionalDerivedUnit class >> baseUnit: aUnit conversionFactor: aNumber nameForOne: aString nameForMany: anotherString sign: aSignString [
 
 	^self new 
@@ -22,7 +24,7 @@ ProportionalDerivedUnit class >> baseUnit: aUnit conversionFactor: aNumber nameF
 		sign: aSignString
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ProportionalDerivedUnit class >> baseUnit: aUnit conversionFactor: aNumber named: aString [
 
 	^self 
@@ -33,7 +35,7 @@ ProportionalDerivedUnit class >> baseUnit: aUnit conversionFactor: aNumber named
 		sign: self defaultSign
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ProportionalDerivedUnit class >> baseUnit: aUnit conversionFactor: aNumber named: aString sign: aSignString [
 
 	^self 
@@ -44,31 +46,31 @@ ProportionalDerivedUnit class >> baseUnit: aUnit conversionFactor: aNumber named
 		sign: aSignString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProportionalDerivedUnit >> baseUnit [
 
 	^baseUnit
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProportionalDerivedUnit >> conversionFactor [
 	
 	^conversionFactor
 ]
 
-{ #category : #'converting - private' }
+{ #category : 'converting - private' }
 ProportionalDerivedUnit >> convertAmountFromBaseUnit: aNumber [
 
 	^aNumber / conversionFactor
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 ProportionalDerivedUnit >> convertAmountToBaseUnit: aNumber [
 
 	^aNumber * conversionFactor
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ProportionalDerivedUnit >> initializeBaseUnit: aUnit conversionFactor: aNumber nameForOne: aString nameForMany: anotherString sign: aSignString [
 
 	baseUnit := aUnit.
@@ -78,19 +80,19 @@ ProportionalDerivedUnit >> initializeBaseUnit: aUnit conversionFactor: aNumber n
 	sign := aSignString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProportionalDerivedUnit >> nameForMany [
 
 	^nameForMany
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProportionalDerivedUnit >> nameForOne [
 
 	^nameForOne
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ProportionalDerivedUnit >> sign [
 
 	^sign

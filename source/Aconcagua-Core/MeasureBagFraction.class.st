@@ -1,29 +1,31 @@
 Class {
-	#name : #MeasureBagFraction,
-	#superclass : #Fraction,
-	#category : 'Aconcagua-Core-MeasureModel'
+	#name : 'MeasureBagFraction',
+	#superclass : 'Fraction',
+	#category : 'Aconcagua-Core-MeasureModel',
+	#package : 'Aconcagua-Core',
+	#tag : 'MeasureModel'
 }
 
-{ #category : #'arithmetic operations' }
+{ #category : 'arithmetic operations' }
 MeasureBagFraction >> = anObject [
 
 	^self class = anObject class ifTrue:[ (numerator * anObject denominator) = (denominator * anObject numerator)  ]
 	ifFalse:[super = anObject 		]
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : 'arithmetic operations' }
 MeasureBagFraction >> isFraction [
 
 	^false
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MeasureBagFraction >> numerator: aNumerator denominator: aDenominator [
 
 	self setNumerator: aNumerator denominator: aDenominator
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 MeasureBagFraction >> printOn: aStream base: base [
 
 	aStream nextPut: $(.
@@ -33,7 +35,7 @@ MeasureBagFraction >> printOn: aStream base: base [
 	aStream nextPut: $)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MeasureBagFraction >> setNumerator: aNumerator denominator: aDenominator [
 
 	aDenominator = 0
@@ -43,7 +45,7 @@ MeasureBagFraction >> setNumerator: aNumerator denominator: aDenominator [
 			denominator := aDenominator]
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : 'arithmetic operations' }
 MeasureBagFraction >> truncated [
 
 	InvalidUnaryOperationException signalOperationName: 'truncated' operand: self

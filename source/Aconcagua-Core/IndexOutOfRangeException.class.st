@@ -1,14 +1,16 @@
 Class {
-	#name : #IndexOutOfRangeException,
-	#superclass : #Error,
+	#name : 'IndexOutOfRangeException',
+	#superclass : 'Error',
 	#instVars : [
 		'index',
 		'collection'
 	],
-	#category : 'Aconcagua-Core-ArithmeticModel'
+	#category : 'Aconcagua-Core-ArithmeticModel',
+	#package : 'Aconcagua-Core',
+	#tag : 'ArithmeticModel'
 }
 
-{ #category : #'instance creating' }
+{ #category : 'instance creating' }
 IndexOutOfRangeException class >> index: anIndex collection: aCollection [
 	
 	^self new initializeIndex: anIndex collection: aCollection
@@ -16,19 +18,19 @@ IndexOutOfRangeException class >> index: anIndex collection: aCollection [
 	
 ]
 
-{ #category : #signaling }
+{ #category : 'signaling' }
 IndexOutOfRangeException class >> signalIndex: anIndex collection: aCollection [
 	
 	(self index: anIndex collection: aCollection) signal
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 IndexOutOfRangeException >> collection [
 
 	^collection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 IndexOutOfRangeException >> description [
 
 	^index isNil 
@@ -36,13 +38,13 @@ IndexOutOfRangeException >> description [
 		ifFalse: [ 'Index <1p> out of range for <2p>' expandMacrosWith: index with: collection ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 IndexOutOfRangeException >> index [
 
 	^index
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 IndexOutOfRangeException >> initializeIndex: anIndex collection: aCollection [
 
 	index := anIndex.	

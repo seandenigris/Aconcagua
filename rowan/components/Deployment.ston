@@ -1,0 +1,21 @@
+RwSimpleProjectLoadComponentV2 {
+  #name : 'Deployment',
+  #projectNames : [ 'Buoy' ],
+  #componentNames : [	],
+  #packageNames : [
+    'Aconcagua-Core',
+    'Aconcagua-GS64-Extensions',
+    'Aconcagua-Extensions'
+  ],
+  #conditionalPackageMapSpecs : {
+    'gemstone' : {
+      'allusers' : {
+        #packageNameToPlatformPropertiesMap : {
+          'Aconcagua-Core' : { 'symbolDictName' : 'Aconcagua' },
+          'Aconcagua-GS64-Extensions' : { 'symbolDictName' : 'Aconcagua' },
+          'Aconcagua-Extensions' : { 'symbolDictName' : 'Globals' }
+        }
+      }
+    }
+  }
+}

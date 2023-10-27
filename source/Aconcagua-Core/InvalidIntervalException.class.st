@@ -1,33 +1,35 @@
 Class {
-	#name : #InvalidIntervalException,
-	#superclass : #Error,
+	#name : 'InvalidIntervalException',
+	#superclass : 'Error',
 	#instVars : [
 		'from',
 		'to',
 		'by'
 	],
-	#category : 'Aconcagua-Core-ArithmeticModel'
+	#category : 'Aconcagua-Core-ArithmeticModel',
+	#package : 'Aconcagua-Core',
+	#tag : 'ArithmeticModel'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 InvalidIntervalException class >> from: aFrom to: aTo by: aBy [
 
 	^self new initializeFrom: aFrom to: aTo by: aBy
 ]
 
-{ #category : #signaling }
+{ #category : 'signaling' }
 InvalidIntervalException class >> signalFrom: aFrom to: aTo by: aBy [
 
 	(self from: aFrom to: aTo by: aBy) signal
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 InvalidIntervalException >> by [
 
 	^by
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 InvalidIntervalException >> description [
 
 	^'An interval cannot be created from <1p> to <2p> with an increase of <3p>'
@@ -36,13 +38,13 @@ InvalidIntervalException >> description [
 		with: by
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 InvalidIntervalException >> from [
 
 	^from
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 InvalidIntervalException >> initializeFrom: aFrom to: aTo by: aBy [
 
 	from := aFrom.
@@ -50,7 +52,7 @@ InvalidIntervalException >> initializeFrom: aFrom to: aTo by: aBy [
 	by := aBy.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 InvalidIntervalException >> to [
 
 	^to

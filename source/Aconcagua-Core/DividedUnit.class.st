@@ -1,42 +1,44 @@
 Class {
-	#name : #DividedUnit,
-	#superclass : #CompoundUnit,
+	#name : 'DividedUnit',
+	#superclass : 'CompoundUnit',
 	#instVars : [
 		'numerator',
 		'denominator'
 	],
-	#category : 'Aconcagua-Core-MeasureModel'
+	#category : 'Aconcagua-Core-MeasureModel',
+	#package : 'Aconcagua-Core',
+	#tag : 'MeasureModel'
 }
 
-{ #category : #'instance creation - private' }
+{ #category : 'instance creation - private' }
 DividedUnit class >> dividedUnit: aDividedUnit dividedUnit: anotherDividedUnit [
 
 	^(aDividedUnit numerator * anotherDividedUnit denominator) / (aDividedUnit denominator * anotherDividedUnit numerator)
 
 ]
 
-{ #category : #'instance creation - private' }
+{ #category : 'instance creation - private' }
 DividedUnit class >> dividedUnit: aDividedUnit multipliedUnit: aMultipliedUnit [
 
 	^(aDividedUnit numerator) / (aDividedUnit denominator * aMultipliedUnit)
 
 ]
 
-{ #category : #'instance creation - private' }
+{ #category : 'instance creation - private' }
 DividedUnit class >> dividedUnit: aDividedUnit simpleUnit: aUnit [
 
 	^(aDividedUnit numerator) / (aDividedUnit denominator * aUnit)
 
 ]
 
-{ #category : #'instance creation - private' }
+{ #category : 'instance creation - private' }
 DividedUnit class >> multipliedUnit: aMultipliedUnit dividedUnit: aDividedUnit [
 
 	^(aMultipliedUnit * aDividedUnit denominator) / (aDividedUnit numerator)
 
 ]
 
-{ #category : #'instance creation - private' }
+{ #category : 'instance creation - private' }
 DividedUnit class >> multipliedUnit: aMultipliedUnit multipliedUnit: anotherMultipliedUnit [
 
 	| numeratorFactors denominatorFactors numerator denominator |
@@ -55,7 +57,7 @@ DividedUnit class >> multipliedUnit: aMultipliedUnit multipliedUnit: anotherMult
 		ifFalse: [self new initializeNumerator: numerator denominator: denominator]
 ]
 
-{ #category : #'instance creation - private' }
+{ #category : 'instance creation - private' }
 DividedUnit class >> multipliedUnit: aMultipliedUnit simpleUnit: aUnit [
 
 	| numeratorFactors |
@@ -68,33 +70,33 @@ DividedUnit class >> multipliedUnit: aMultipliedUnit simpleUnit: aUnit [
 
 ]
 
-{ #category : #'instance creation - private' }
+{ #category : 'instance creation - private' }
 DividedUnit class >> nullUnit: aNullUnit dividedUnit: aDividedUnit [ 
 	
 	^self new initializeNumerator: aDividedUnit denominator denominator: aDividedUnit numerator.
 ]
 
-{ #category : #'instance creation - private' }
+{ #category : 'instance creation - private' }
 DividedUnit class >> nullUnit: aNullUnit multipliedUnit: aMultipliedUnit [ 
 	
 	^self new initializeNumerator: aNullUnit denominator: aMultipliedUnit
 ]
 
-{ #category : #'instance creation - private' }
+{ #category : 'instance creation - private' }
 DividedUnit class >> nullUnit: aNullUnit simpleUnit: aSimpleUnit [ 
 
 	^self new initializeNumerator: aNullUnit denominator: aSimpleUnit
 	
 ]
 
-{ #category : #'instance creation - private' }
+{ #category : 'instance creation - private' }
 DividedUnit class >> simpleUnit: aUnit dividedUnit: aDividedUnit [
 
 	^(aUnit * aDividedUnit denominator) / (aDividedUnit numerator)
 
 ]
 
-{ #category : #'instance creation - private' }
+{ #category : 'instance creation - private' }
 DividedUnit class >> simpleUnit: aUnit multipliedUnit: aMultipliedUnit [
 
 	| denominatorFactors |
@@ -106,7 +108,7 @@ DividedUnit class >> simpleUnit: aUnit multipliedUnit: aMultipliedUnit [
 	^self new initializeNumerator: NullUnit new denominator: (MultipliedUnit factors: denominatorFactors)
 ]
 
-{ #category : #'instance creation - private' }
+{ #category : 'instance creation - private' }
 DividedUnit class >> simpleUnit: aUnit simpleUnit: anotherUnit [
 
 	^aUnit=anotherUnit
@@ -114,7 +116,7 @@ DividedUnit class >> simpleUnit: aUnit simpleUnit: anotherUnit [
 		ifFalse: [ self new initializeNumerator: aUnit denominator: anotherUnit ]
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DividedUnit >> = anObject [
 
 	^self class = anObject class 
@@ -122,105 +124,105 @@ DividedUnit >> = anObject [
 		and: [ denominator = anObject denominator ]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DividedUnit >> denominator [
 
 	^denominator
 ]
 
-{ #category : #'mathematic operations' }
+{ #category : 'mathematic operations' }
 DividedUnit >> divFrom: aNumber [
 
 	^aNumber * self reciprocal
 ]
 
-{ #category : #'mathematic operations' }
+{ #category : 'mathematic operations' }
 DividedUnit >> divideByUnit: aUnit [
 
 	^aUnit divideDividedUnit: self
 ]
 
-{ #category : #'mathematic operations - private' }
+{ #category : 'mathematic operations - private' }
 DividedUnit >> divideDividedUnit: aDividedUnit [
 
 	^self class dividedUnit: self dividedUnit: aDividedUnit
 ]
 
-{ #category : #'mathematic operations - private' }
+{ #category : 'mathematic operations - private' }
 DividedUnit >> divideMultipliedUnit: aMultipliedUnit [
 
 	^self class dividedUnit: self multipliedUnit: aMultipliedUnit
 ]
 
-{ #category : #'mathematic operations - private' }
+{ #category : 'mathematic operations - private' }
 DividedUnit >> divideNullUnit: aNullUnit [ 
 	
 	^self class nullUnit: aNullUnit dividedUnit: self
 ]
 
-{ #category : #'mathematic operations - private' }
+{ #category : 'mathematic operations - private' }
 DividedUnit >> divideSimpleUnit: aUnit [
 
 	^self class dividedUnit: self simpleUnit: aUnit
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DividedUnit >> hash [
 
 	^numerator hash bitXor: denominator hash
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 DividedUnit >> initializeNumerator: aUnit denominator: anotherUnit [
 
 	numerator := aUnit.
 	denominator := anotherUnit
 ]
 
-{ #category : #'mathematic operations' }
+{ #category : 'mathematic operations' }
 DividedUnit >> multiplyByUnit: aUnit [
 
 	^aUnit multiplyDividedUnit: self
 ]
 
-{ #category : #'mathematic operations - private' }
+{ #category : 'mathematic operations - private' }
 DividedUnit >> multiplyDividedUnit: aDividedUnit [
 
 	^MultipliedUnit dividedUnit: aDividedUnit dividedUnit: self
 ]
 
-{ #category : #'mathematic operations - private' }
+{ #category : 'mathematic operations - private' }
 DividedUnit >> multiplyMultipliedUnit: aMultipliedUnit [
 
 	^MultipliedUnit multipliedUnit: aMultipliedUnit dividedUnit: self
 ]
 
-{ #category : #'mathematic operations - private' }
+{ #category : 'mathematic operations - private' }
 DividedUnit >> multiplySimpleUnit: aUnit [
 
 	^MultipliedUnit simpleUnit: aUnit dividedUnit: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DividedUnit >> nameForMany [
 
 	^numerator nameForMany asString , '/' 
 		, denominator nameForMany asString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DividedUnit >> nameForOne [
 
 	^numerator name asString , '/' , denominator name asString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DividedUnit >> numerator [
 
 	^numerator
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DividedUnit >> sign [
 
 	^numerator sign, '/', denominator sign

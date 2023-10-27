@@ -1,96 +1,98 @@
 Class {
-	#name : #Measure,
-	#superclass : #MeasureBehavior,
+	#name : 'Measure',
+	#superclass : 'MeasureBehavior',
 	#instVars : [
 		'amount',
 		'unit'
 	],
-	#category : #'Aconcagua-Core-MeasureModel'
+	#category : 'Aconcagua-Core-MeasureModel',
+	#package : 'Aconcagua-Core',
+	#tag : 'MeasureModel'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 Measure class >> amount: aNumber unit: aUnit [
 
 	^self new initializeAmount: aNumber unit: aUnit
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : 'arithmetic operations' }
 Measure >> * aMeasure [
 
 	^aMeasure multiplyMeasure: self
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : 'arithmetic operations' }
 Measure >> + aMeasure [
 
 	^aMeasure addMeasure: self.
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : 'arithmetic operations' }
 Measure >> / aMeasure [
 
 	^aMeasure divideMeasure: self
 
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : 'arithmetic operations' }
 Measure >> // aMeasure [
 
 	^aMeasure moduloMeasure: self
 ]
 
-{ #category : #'magnitude protocol' }
+{ #category : 'magnitude protocol' }
 Measure >> < aMeasure [
 
 	^aMeasure greaterThanMeasure: self
 ]
 
-{ #category : #'magnitude protocol' }
+{ #category : 'magnitude protocol' }
 Measure >> <= aMeasure [
 	"This implemented thus so that the CanNotConvertMeasureException exception rises correctly"
 
 	^(self < aMeasure) or: [ self = aMeasure ]
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 Measure >> = anObject [
 
 	^anObject equalsMeasure: self 
 		
 ]
 
-{ #category : #'magnitude protocol' }
+{ #category : 'magnitude protocol' }
 Measure >> > aMeasure [
 
 	^aMeasure lessThanMeasure: self
 ]
 
-{ #category : #'magnitude protocol' }
+{ #category : 'magnitude protocol' }
 Measure >> >= aMeasure [
 	"This implemented thus so that the CanNotConvertMeasureException exception rises correctly"
 
 	^(self > aMeasure) or: [ self = aMeasure ]
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : 'arithmetic operations' }
 Measure >> \\ aMeasure [
 
 	^aMeasure remainderMeasure: self
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : 'arithmetic operations' }
 Measure >> abs [
 
 	^self unit with: 	amount abs
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> addInfinity: anInfinity [
 
 	^anInfinity
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> addMeasure: aMeasure [ 
 	"I delegate the responsibility to MeasureBag since this it verifies if the measures are of the same domain.
 	When causing that bag has this responsibility, the code that checks this this in a single place and is not created bag
@@ -99,19 +101,19 @@ Measure >> addMeasure: aMeasure [
 	^MeasureBag with: aMeasure with: self
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> addMeasureBag: aMeasureBag [
 
 	^aMeasureBag addMeasure: self
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> addMinusInfinity: aMinusInfinity [
 
 	^aMinusInfinity
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> addSameDomainMeasure: aMeasure [
 
 	^(self sameUnitAs: aMeasure) 
@@ -122,39 +124,39 @@ Measure >> addSameDomainMeasure: aMeasure [
 				unit: self baseUnit]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Measure >> amount [
 	
 	^amount
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Measure >> atBaseUnit: aBaseUnit ifNone: aBlock [
 
 	^self baseUnit = aBaseUnit ifTrue: [self] ifFalse: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Measure >> baseUnit [
 	
 	^self unit baseUnit
 ]
 
-{ #category : #'magnitude protocol' }
+{ #category : 'magnitude protocol' }
 Measure >> between: min and: max [
 	"The comparison this done thus so that if there is error of conversion is generated the exception correctly"
 
 	 ^(self >= min) and: [self <= max]
 ]
 
-{ #category : #'magnitude protocol' }
+{ #category : 'magnitude protocol' }
 Measure >> between: min andNotInclusive: max [
 	"The comparison this done thus so that if there is error of conversion is generated the exception correctly"
 
 	 ^self >= min and: [self < max]
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 Measure >> closeTo: aMeasure [ 
 	"If the unit is the same one, verifies only the amount.
 	If no, if it is of the same domain it turns the amount and it compares.
@@ -168,7 +170,7 @@ Measure >> closeTo: aMeasure [
 				ifFalse: [self isNothing and: [aMeasure isNothing]]]
 ]
 
-{ #category : #'magnitude protocol - private' }
+{ #category : 'magnitude protocol - private' }
 Measure >> compareGreaterThan: aNumber [
 
 	^aNumber = 0 
@@ -177,19 +179,19 @@ Measure >> compareGreaterThan: aNumber [
 	
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 Measure >> convertAmountToBaseUnit [
 	
 	^self unit convertAmountToBaseUnit: self amount
 ]
 
-{ #category : #'converting - private' }
+{ #category : 'converting - private' }
 Measure >> convertInSameDomainTo: aTargetUnit [
 
 	^aTargetUnit convertFromBaseUnit: (unit convertToBaseUnit: self)
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 Measure >> convertTo: aTargetUnit [
 
 	^(unit sameDomainAs: aTargetUnit) 
@@ -197,13 +199,13 @@ Measure >> convertTo: aTargetUnit [
 		ifFalse: [CanNotConvertMeasureException signalSourceMeasure: self targetUnit: aTargetUnit]
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 Measure >> convertToBaseUnit [
 
 	^self convertTo: self baseUnit
 ]
 
-{ #category : #'bag creation - private' }
+{ #category : 'bag creation - private' }
 Measure >> createBagWith: aMeasure [
 
 	^self isNothing
@@ -211,7 +213,7 @@ Measure >> createBagWith: aMeasure [
 		ifFalse: [aMeasure createBagWithMeasure: self]
 ]
 
-{ #category : #'bag creation - private' }
+{ #category : 'bag creation - private' }
 Measure >> createBagWithMeasure: aMeasure [
 
 	^self isNothing
@@ -220,7 +222,7 @@ Measure >> createBagWithMeasure: aMeasure [
 			[MeasureBag measures: (OrderedCollection with: self with: aMeasure)]
 ]
 
-{ #category : #'bag creation - private' }
+{ #category : 'bag creation - private' }
 Measure >> createBagWithNumber: aNumber [
 
 	^self isNothing
@@ -228,19 +230,19 @@ Measure >> createBagWithNumber: aNumber [
 		ifFalse: [MeasureBag measures: (OrderedCollection with: self with: aNumber)]
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> divFrom: aNumber [
 
 	^self divideMeasure: aNumber
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> divideInfinity: anInfinity [
 
 	^0
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> divideMeasure: aMeasure [
 
 	| numerator denominator |
@@ -250,19 +252,19 @@ Measure >> divideMeasure: aMeasure [
 		with: numerator amount / denominator amount
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> divideMeasureBag: aMeasureBag [
 
 	^aMeasureBag divideByMeasure: self
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> divideMinusInfinity: aMinusInfinity [
 
 	^0
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 Measure >> equalsMeasure: aMeasure [ 
 	"If the unit is the same one, verifies only the amount.
 	If no, if it is of the same domain it turns the amount and it compares.
@@ -276,19 +278,19 @@ Measure >> equalsMeasure: aMeasure [
 				ifFalse: [self isNothing and: [aMeasure isNothing]]]
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 Measure >> equalsMeasureBag: aMeasureBag [
 
 	^aMeasureBag equalsMeasure: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Measure >> floor [
 	
 	^unit with: amount floor
 ]
 
-{ #category : #'magnitude protocol - private' }
+{ #category : 'magnitude protocol - private' }
 Measure >> greaterThanMeasure: aMeasure [ 
 	"If the unit is the same one, verifies only the amount.
 	aMeasure converts to baseUnit so that if there is some error of conversion this jumps fast and generates
@@ -301,38 +303,38 @@ Measure >> greaterThanMeasure: aMeasure [
 				< self convertAmountToBaseUnit]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Measure >> hash [
 
 	^self convertAmountToBaseUnit hash
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 Measure >> initializeAmount: aNumber unit: aUnit [ 
 
 	amount := aNumber.
 	unit := aUnit
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 Measure >> isFixed [
 
 	^amount isFixed
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 Measure >> isMeasureBag [
 
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 Measure >> isNothing [
 
 	^self convertToBaseUnit amount = self baseUnit nothingAmount
 ]
 
-{ #category : #'magnitude protocol - private' }
+{ #category : 'magnitude protocol - private' }
 Measure >> lessThanMeasure: aMeasure [ 
 	"If the unit is the same one, verifies only the amount.
 	aMeasure converts to baseUnit so that if there is some error of conversion this jumps fast and generates
@@ -345,7 +347,7 @@ Measure >> lessThanMeasure: aMeasure [
 				> self convertAmountToBaseUnit]
 ]
 
-{ #category : #'magnitude protocol' }
+{ #category : 'magnitude protocol' }
 Measure >> max: aMeasure [
 
 	 ^self < aMeasure
@@ -353,7 +355,7 @@ Measure >> max: aMeasure [
 		ifFalse: [ self ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Measure >> measures [
 
 	^self isNothing
@@ -361,7 +363,7 @@ Measure >> measures [
 		ifFalse: [Array with: self]
 ]
 
-{ #category : #'magnitude protocol' }
+{ #category : 'magnitude protocol' }
 Measure >> min: aMeasure [
 
 	 ^self < aMeasure
@@ -369,13 +371,13 @@ Measure >> min: aMeasure [
 		ifFalse: [ aMeasure ]
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> moduloInfinity: anInfinity [
 
 	^0
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> moduloMeasure: aMeasure [
 
 	| numerator denominator |
@@ -385,25 +387,25 @@ Measure >> moduloMeasure: aMeasure [
 		with: numerator amount // denominator amount
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> moduloMeasureBag: aMeasureBag [
 
 	^aMeasureBag moduloByMeasure: self
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> moduloMinusInfinity: aMinusInfinity [
 
 	^0
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> multiplyInfinity: anInfinity [
 
 	^anInfinity
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> multiplyMeasure: aMeasure [
 
 	| leftFactor rightFactor |
@@ -413,63 +415,63 @@ Measure >> multiplyMeasure: aMeasure [
 		with: leftFactor amount * rightFactor amount
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> multiplyMeasureBag: aMeasureBag [
 
 	^aMeasureBag multiplyMeasure: self
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> multiplyMinusInfinity: aMinusInfinity [
 
 	^aMinusInfinity
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : 'arithmetic operations' }
 Measure >> negated [
 
 	^self class amount: amount negated unit: unit
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 Measure >> negative [
 
 	^amount negative
 ]
 
-{ #category : #'magnitude protocol' }
+{ #category : 'magnitude protocol' }
 Measure >> notInclusiveBetween: min and: max [
 	"The comparison this done thus so that if there is error of conversion is generated the exception correctly"
 
 	 ^self > min and: [self <= max]
 ]
 
-{ #category : #'magnitude protocol' }
+{ #category : 'magnitude protocol' }
 Measure >> notInclusiveBetween: min andNotInclusive: max [
 	"The comparison this done thus so that if there is error of conversion is generated the exception correctly"
 
 	 ^self > min and: [self < max]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 Measure >> positive [
 
 	^amount positive
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 Measure >> printOn: aStream [
 
 	self unit printMeasure: self on: aStream
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> quoFrom: aNumber [
 
 	^NullUnit new / unit with: (aNumber quo: amount)
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> remFrom: aNumber [
 
 	^aNumber isNothing
@@ -477,13 +479,13 @@ Measure >> remFrom: aNumber [
 		ifFalse: [ (unit with: (amount rem: aNumber)) / self ]
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> remainderInfinity: anInfinity [
 
 	^0
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> remainderMeasure: aMeasure [
 
 	| numerator denominator |
@@ -492,7 +494,7 @@ Measure >> remainderMeasure: aMeasure [
 	^numerator baseUnit with: numerator amount \\ denominator amount
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> remainderMeasureBag: aMeasureBag [
 
 	InvalidBinaryOperationException 
@@ -501,73 +503,73 @@ Measure >> remainderMeasureBag: aMeasureBag [
 		rightOperand: self
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> remainderMinusInfinity: aMinusInfinity [
 
 	^0
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : 'arithmetic operations' }
 Measure >> roundTo: aNumber [
 	
 	^self class amount: (amount roundTo: aNumber) unit: unit
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 Measure >> sameDomainAs: aMeasure [ 
 	
 	^self unit sameDomainAs: aMeasure unit
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 Measure >> sameUnitAs: aMeasure [ 
 	
 	^unit = aMeasure unit
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> subtractFrom: aNumber [
 
 	^self negated addMeasure: aNumber
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> subtractInfinity: anInfinity [
 
 	^anInfinity
 ]
 
-{ #category : #'arithmetic operations - private' }
+{ #category : 'arithmetic operations - private' }
 Measure >> subtractMinusInfinity: aMinusInfinity [
 
 	^aMinusInfinity
 ]
 
-{ #category : #'interval protocol' }
+{ #category : 'interval protocol' }
 Measure >> to: stop [
 
 	 ^self to: stop by: (unit with: 1)
 ]
 
-{ #category : #'interval protocol' }
+{ #category : 'interval protocol' }
 Measure >> to: stop by: step [
 
 	 ^ArithmeticObjectInterval from: self to: stop by: step
 ]
 
-{ #category : #'arithmetic operations' }
+{ #category : 'arithmetic operations' }
 Measure >> truncated [
 	
 	^self class amount: amount truncated unit: unit
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Measure >> unit [
 
 	^unit
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Measure >> unitNameOf: aUnit [
 
 	^self amount abs = 1 ifTrue: [aUnit nameForOne] ifFalse: [aUnit nameForMany]

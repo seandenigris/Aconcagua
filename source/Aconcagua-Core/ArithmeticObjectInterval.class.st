@@ -1,6 +1,6 @@
 Class {
-	#name : #ArithmeticObjectInterval,
-	#superclass : #SequenceableCollection,
+	#name : 'ArithmeticObjectInterval',
+	#superclass : 'SequenceableCollection',
 	#instVars : [
 		'from',
 		'to',
@@ -8,24 +8,26 @@ Class {
 		'size',
 		'intervalStrategy'
 	],
-	#category : 'Aconcagua-Core-ArithmeticModel'
+	#category : 'Aconcagua-Core-ArithmeticModel',
+	#package : 'Aconcagua-Core',
+	#tag : 'ArithmeticModel'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ArithmeticObjectInterval class >> defaultIntervalStrategy [
 
 	^ArithmeticObjectIntervalStrategy new
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ArithmeticObjectInterval class >> from: start to: stop by: step [
 
 	^self from: start to: stop by: step intervalStrategy: self defaultIntervalStrategy
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ArithmeticObjectInterval class >> from: start to: stop by: step intervalStrategy: anIntervalStrategy [
 
 	(anIntervalStrategy isValidIntervalFrom: start to: stop by: step) 
@@ -35,7 +37,7 @@ ArithmeticObjectInterval class >> from: start to: stop by: step intervalStrategy
 
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 ArithmeticObjectInterval >> = aCollection [
 
 	^self == aCollection 
@@ -45,13 +47,13 @@ ArithmeticObjectInterval >> = aCollection [
 				and: [to = aCollection to]]]]
 ]
 
-{ #category : #'adding/removing' }
+{ #category : 'adding/removing' }
 ArithmeticObjectInterval >> add: newObject [
 
 	self shouldNotImplement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ArithmeticObjectInterval >> at: anIndex [
 
 	(anIndex < 1 or: [ anIndex > self size ]) ifTrue: [ IndexOutOfRangeException signalIndex: anIndex collection: self ].
@@ -61,19 +63,19 @@ ArithmeticObjectInterval >> at: anIndex [
 
 ]
 
-{ #category : #'adding/removing' }
+{ #category : 'adding/removing' }
 ArithmeticObjectInterval >> at: anInteger put: anObject [
 
 	self shouldNotImplement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ArithmeticObjectInterval >> by [
 
 	^by
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 ArithmeticObjectInterval >> copyAndGrowBy: anInteger [
 
 	| newSequenceableCollection |
@@ -83,13 +85,13 @@ ArithmeticObjectInterval >> copyAndGrowBy: anInteger [
 	^newSequenceableCollection
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 ArithmeticObjectInterval >> deepCopy [
 
 	^self shallowCopy
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 ArithmeticObjectInterval >> do: aBlock [
 
 	| element |
@@ -104,7 +106,7 @@ ArithmeticObjectInterval >> do: aBlock [
 		aBlock value: element ].
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 ArithmeticObjectInterval >> doWithIndex: aBlock [
 
 	| index |
@@ -116,19 +118,19 @@ ArithmeticObjectInterval >> doWithIndex: aBlock [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ArithmeticObjectInterval >> from [
 
 	^from
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 ArithmeticObjectInterval >> hash [
 
 	^from hash bitXor: (to hash bitXor: by hash)
 ]
 
-{ #category : #querying }
+{ #category : 'querying' }
 ArithmeticObjectInterval >> includes: anObject [
 
 	| incrementsToObject |
@@ -137,7 +139,7 @@ ArithmeticObjectInterval >> includes: anObject [
 	^0 <= incrementsToObject and: [incrementsToObject < size and: [incrementsToObject isInteger]]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ArithmeticObjectInterval >> initializeFrom: aStart to: aStop by: aStep intervalStrategy: anIntervalStrategy [
 
 	from := aStart.
@@ -148,14 +150,14 @@ ArithmeticObjectInterval >> initializeFrom: aStart to: aStop by: aStep intervalS
 	self initializeSize.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ArithmeticObjectInterval >> initializeSize [
 
 	size := (intervalStrategy stepsFrom: from to: to by: by) truncated + 1
 
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 ArithmeticObjectInterval >> printOn: aStream [
 
 	aStream nextPutAll: 'Interval from: '.
@@ -166,7 +168,7 @@ ArithmeticObjectInterval >> printOn: aStream [
 	self by printOn: aStream
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 ArithmeticObjectInterval >> reject: aBlock [
 
 	| index answer |
@@ -181,13 +183,13 @@ ArithmeticObjectInterval >> reject: aBlock [
 	^answer copyFrom: 1 to: index
 ]
 
-{ #category : #'adding/removing' }
+{ #category : 'adding/removing' }
 ArithmeticObjectInterval >> remove: oldObject ifAbsent: anExceptionBlock [
 
 	self shouldNotImplement
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 ArithmeticObjectInterval >> reverse [
 
 	| answer index |
@@ -202,7 +204,7 @@ ArithmeticObjectInterval >> reverse [
 	^answer
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 ArithmeticObjectInterval >> reverseDo: aBlock [
 
 	| steps |
@@ -212,7 +214,7 @@ ArithmeticObjectInterval >> reverseDo: aBlock [
 		steps := steps - 1. ].
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 ArithmeticObjectInterval >> select: aBlock [
 
 	| index answer |
@@ -227,25 +229,25 @@ ArithmeticObjectInterval >> select: aBlock [
 	^answer copyFrom: 1 to: index
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 ArithmeticObjectInterval >> shallowCopy [
 
 	^self class from: from to: to by: by
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ArithmeticObjectInterval >> size [
 
 	^size	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ArithmeticObjectInterval >> species [
 
 	^Array
 ]
 
-{ #category : #storing }
+{ #category : 'storing' }
 ArithmeticObjectInterval >> storeOn: aStream [
 
 	"Append to the argument aStream a sequence of characters that is a
@@ -266,7 +268,7 @@ ArithmeticObjectInterval >> storeOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ArithmeticObjectInterval >> to [
 
 	^to
