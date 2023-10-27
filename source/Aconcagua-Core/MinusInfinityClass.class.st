@@ -12,6 +12,7 @@ Class {
 { #category : 'initialization' }
 MinusInfinityClass class >> initialize [
 
+	<ignoreForCoverage>
 	self initializeUniqueInstance
 ]
 
