@@ -3,7 +3,10 @@ Class {
 	#superclass : 'Object',
 	#category : 'Aconcagua-Core-ArithmeticModel',
 	#package : 'Aconcagua-Core',
-	#tag : 'ArithmeticModel'
+	#tag : 'ArithmeticModel',
+	#'gs_options' : [
+		'instancesInvariant'
+	]
 }
 
 { #category : 'constants' }
@@ -79,10 +82,11 @@ ArithmeticObject >> \\ aMeasure [
 ]
 
 { #category : 'arithmetic operations - private' }
-ArithmeticObject >> adaptToNumber: aNumber andSend: aSelector [ 
-	^ (NumberToArithmeticObjectAdapter number: aNumber) 
-		perform: aSelector
-		with: self
+ArithmeticObject >> adaptToNumber: aNumber andSend: aSelector [
+
+	^ (NumberToArithmeticObjectAdapter number: aNumber)
+		  perform: aSelector
+		  with: self
 ]
 
 { #category : 'arithmetic operations - private' }
