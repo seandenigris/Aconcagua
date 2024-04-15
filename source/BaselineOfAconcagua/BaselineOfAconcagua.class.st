@@ -30,6 +30,12 @@ BaselineOfAconcagua >> baseline: spec [
 			group: 'Development' with: 'Tests' ]
 ]
 
+{ #category : 'postload' }
+BaselineOfAconcagua >> configureArithmeticObjectInstancesAsInvariant [
+
+	ArithmeticObject makeInstancesInvariant
+]
+
 { #category : 'baselines' }
 BaselineOfAconcagua >> projectClass [
 
