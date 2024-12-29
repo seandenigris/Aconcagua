@@ -1,12 +1,10 @@
 Class {
-	#name : 'InvalidOperationException',
-	#superclass : 'Error',
-	#category : 'Aconcagua-Core-ArithmeticModel',
-	#package : 'Aconcagua-Core',
-	#tag : 'ArithmeticModel'
+	#name : #InvalidOperationException,
+	#superclass : #Error,
+	#category : 'Aconcagua-Core-ArithmeticModel'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 InvalidOperationException >> operationName [
 
 	self subclassResponsibility

@@ -1,48 +1,46 @@
 Class {
-	#name : 'CompoundUnit',
-	#superclass : 'UnitBehavior',
-	#category : 'Aconcagua-Core-MeasureModel',
-	#package : 'Aconcagua-Core',
-	#tag : 'MeasureModel'
+	#name : #CompoundUnit,
+	#superclass : #UnitBehavior,
+	#category : 'Aconcagua-Core-MeasureModel'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 CompoundUnit >> baseUnit [
 
 	^self
 ]
 
-{ #category : 'converting' }
+{ #category : #converting }
 CompoundUnit >> convertAmountToBaseUnit: aNumber [
 
 	^aNumber
 ]
 
-{ #category : 'converting - private' }
+{ #category : #'converting - private' }
 CompoundUnit >> convertFromBaseUnit: aMeasure [ 
 
 	^aMeasure
 ]
 
-{ #category : 'converting - private' }
+{ #category : #'converting - private' }
 CompoundUnit >> convertToBaseUnit: aMeasure [ 
 
 	^aMeasure
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 CompoundUnit >> hash [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 CompoundUnit >> nothingAmount [
 
 	^0
 ]
 
-{ #category : 'measurement creation' }
+{ #category : #'measurement creation' }
 CompoundUnit >> with: aNumber [
 
 	^Measure amount: aNumber unit: self

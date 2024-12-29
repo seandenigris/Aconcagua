@@ -1,19 +1,17 @@
 Class {
-	#name : 'UnitBehavior',
-	#superclass : 'Object',
-	#category : 'Aconcagua-Core-MeasureModel',
-	#package : 'Aconcagua-Core',
-	#tag : 'MeasureModel'
+	#name : #UnitBehavior,
+	#superclass : #Object,
+	#category : 'Aconcagua-Core-MeasureModel'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 UnitBehavior class >> defaultSign [
 
 	^'NO SIGN'
 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 UnitBehavior class >> nameForManyEndString [
 
 	^'s'
@@ -21,7 +19,7 @@ UnitBehavior class >> nameForManyEndString [
 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 UnitBehavior class >> nameForManyFrom: aString [
 
 	^aString , self nameForManyEndString.
@@ -29,50 +27,50 @@ UnitBehavior class >> nameForManyFrom: aString [
 
 ]
 
-{ #category : 'mathematic operations' }
+{ #category : #'mathematic operations' }
 UnitBehavior >> * aNumberOrUnit [
 
 	^aNumberOrUnit multiplyByUnit: self
 ]
 
-{ #category : 'mathematic operations' }
+{ #category : #'mathematic operations' }
 UnitBehavior >> / aNumberOrUnit [
 
 	^aNumberOrUnit divideByUnit: self
 ]
 
-{ #category : 'mathematic operations' }
+{ #category : #'mathematic operations' }
 UnitBehavior >> adaptToNumber: aNumber andSend: aSelector [ 
 	^ (NumberToArithmeticObjectAdapter number: aNumber) 
 		perform: aSelector
 		with: self
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 UnitBehavior >> baseUnit [
 
 	^self subclassResponsibility
 ]
 
-{ #category : 'converting' }
+{ #category : #converting }
 UnitBehavior >> convertAmountToBaseUnit: aNumber [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'converting - private' }
+{ #category : #'converting - private' }
 UnitBehavior >> convertToBaseUnit: aMeasure [ 
 	
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 UnitBehavior >> denominator [
 
 	^NullUnit new
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 UnitBehavior >> denominatorOf: aNumber [
 
 	^self denominator with: aNumber denominator
@@ -80,165 +78,165 @@ UnitBehavior >> denominatorOf: aNumber [
 
 ]
 
-{ #category : 'mathematic operations' }
+{ #category : #'mathematic operations' }
 UnitBehavior >> divideByUnit: aNumberOrUnit [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'mathematic operations - private' }
+{ #category : #'mathematic operations - private' }
 UnitBehavior >> divideDividedUnit: aDividedUnit [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'mathematic operations - private' }
+{ #category : #'mathematic operations - private' }
 UnitBehavior >> divideInfinity: anInfinity [
 
 	^((NullUnit new / self) * anInfinity unit) with: anInfinity amount
 ]
 
-{ #category : 'mathematic operations - private' }
+{ #category : #'mathematic operations - private' }
 UnitBehavior >> divideMeasure: aMeasure [
 
 	^((NullUnit new / self) * aMeasure unit) with: aMeasure amount
 ]
 
-{ #category : 'mathematic operations - private' }
+{ #category : #'mathematic operations - private' }
 UnitBehavior >> divideMinusInfinity: aMinusInfinity [
 
 	^((NullUnit new / self) * aMinusInfinity unit) with: aMinusInfinity amount
 ]
 
-{ #category : 'mathematic operations - private' }
+{ #category : #'mathematic operations - private' }
 UnitBehavior >> divideMultipliedUnit: aMultipliedUnit [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'mathematic operations - private' }
+{ #category : #'mathematic operations - private' }
 UnitBehavior >> divideNullUnit: aNullUnit [ 
 
 	self subclassResponsibility
 ]
 
-{ #category : 'mathematic operations - private' }
+{ #category : #'mathematic operations - private' }
 UnitBehavior >> divideSimpleUnit: aUnit [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 UnitBehavior >> doNotImplementHash [ 
 	
 	"Do not implement hash because its behavior is the same as object
 	See representSameEntityAs:"
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 UnitBehavior >> isZero [
 
 	^self isNothing
 ]
 
-{ #category : 'mathematic operations' }
+{ #category : #'mathematic operations' }
 UnitBehavior >> multiplyByUnit: aNumberOrUnit [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'mathematic operations - private' }
+{ #category : #'mathematic operations - private' }
 UnitBehavior >> multiplyDividedUnit: aDividedUnit [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'mathematic operations - private' }
+{ #category : #'mathematic operations - private' }
 UnitBehavior >> multiplyInfinity: anInfinity [
 
 	^(anInfinity unit * self) with: anInfinity amount
 ]
 
-{ #category : 'mathematic operations - private' }
+{ #category : #'mathematic operations - private' }
 UnitBehavior >> multiplyMeasure: aMeasure [
 
 	^(aMeasure unit * self) with: aMeasure amount
 ]
 
-{ #category : 'mathematic operations - private' }
+{ #category : #'mathematic operations - private' }
 UnitBehavior >> multiplyMinusInfinity: aMinusInfinity [
 
 	^(aMinusInfinity unit * self) with: aMinusInfinity amount
 ]
 
-{ #category : 'mathematic operations - private' }
+{ #category : #'mathematic operations - private' }
 UnitBehavior >> multiplyMultipliedUnit: aMultipliedUnit [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'mathematic operations - private' }
+{ #category : #'mathematic operations - private' }
 UnitBehavior >> multiplySimpleUnit: aUnit [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 UnitBehavior >> name [
 
 	^self nameForOne
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 UnitBehavior >> nameFor: aNumber [
 	"It returns the name that must be used to identify an amount <aNumber> of receiver"
 
 	^aNumber unitNameOf: self
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 UnitBehavior >> nameForMany [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 UnitBehavior >> nameForOne [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 UnitBehavior >> nameForUndefinedAmount [
 
 	^self nameForMany
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 UnitBehavior >> nothingAmount [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 UnitBehavior >> nullMeasure [
 
 	^Measure amount: self baseUnit nothingAmount unit: self baseUnit
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 UnitBehavior >> numerator [
 
 	^self
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 UnitBehavior >> numeratorOf: aNumber [
 
 	^self numerator with: aNumber numerator
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 UnitBehavior >> printMeasure: aMeasure on: aStream [
 	"If you need more flexibility, override in subclasses. E.g. '10 dollars' might want to print as '$10'"
 
@@ -247,32 +245,32 @@ UnitBehavior >> printMeasure: aMeasure on: aStream [
 	aStream nextPutAll: (aMeasure unit nameFor: aMeasure amount) asString
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 UnitBehavior >> printOn: aStream [
 
 	aStream nextPutAll: self name asString
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 UnitBehavior >> reciprocal [
 
 	^self denominator / self numerator
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 UnitBehavior >> sameDomainAs: aUnit [
 
 	^self baseUnit=aUnit baseUnit
 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 UnitBehavior >> sign [
 
 	self subclassResponsibility
 ]
 
-{ #category : 'measurement creation' }
+{ #category : #'measurement creation' }
 UnitBehavior >> with: aNumber [
 
 	self subclassResponsibility

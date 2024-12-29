@@ -1,29 +1,27 @@
 Class {
-	#name : 'IndeterminateOperationException',
-	#superclass : 'Error',
+	#name : #IndeterminateOperationException,
+	#superclass : #Error,
 	#instVars : [
 		'operation',
 		'leftOperand',
 		'rightOperand'
 	],
-	#category : 'Aconcagua-Core-MeasureModel',
-	#package : 'Aconcagua-Core',
-	#tag : 'MeasureModel'
+	#category : 'Aconcagua-Core-MeasureModel'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 IndeterminateOperationException class >> operation: anOperation leftOperand: aLeftOperand rightOperand: aRightOperand [
 
 	^self new initializeOperation: anOperation leftOperand: aLeftOperand rightOperand: aRightOperand
 ]
 
-{ #category : 'signaling' }
+{ #category : #signaling }
 IndeterminateOperationException class >> signalOperation: anOperation leftOperand: aLeftOperand rightOperand: aRightOperand [
 
 	(self operation: anOperation leftOperand: aLeftOperand rightOperand: aRightOperand) signal
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 IndeterminateOperationException >> description [
 
 	^'The <1s> operation is indeterminate between <2p> and <3p>'
@@ -32,7 +30,7 @@ IndeterminateOperationException >> description [
 		with: rightOperand
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 IndeterminateOperationException >> initializeOperation: anOperation leftOperand: aLeftOperand rightOperand: aRightOperand [
 
 	operation := anOperation.

@@ -1,29 +1,27 @@
 Class {
-	#name : 'BaseUnit',
-	#superclass : 'SimpleUnit',
+	#name : #BaseUnit,
+	#superclass : #SimpleUnit,
 	#instVars : [
 		'nameForOne',
 		'nameForMany',
 		'sign'
 	],
-	#category : 'Aconcagua-Core-MeasureModel',
-	#package : 'Aconcagua-Core',
-	#tag : 'MeasureModel'
+	#category : 'Aconcagua-Core-MeasureModel'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 BaseUnit class >> nameForOne: aString nameForMany: anotherString [
 
 	^self nameForOne: aString nameForMany: anotherString sign: self defaultSign
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 BaseUnit class >> nameForOne: aString nameForMany: anotherString sign: aSignString [
 
 	^self new initializeNameForOne: aString nameForMany: anotherString sign: aSignString
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 BaseUnit class >> named: aString [ 
 
 	^self 
@@ -33,7 +31,7 @@ BaseUnit class >> named: aString [
 
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 BaseUnit class >> named: aString sign: aSignString [
 
 	^self 
@@ -43,32 +41,32 @@ BaseUnit class >> named: aString sign: aSignString [
 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 BaseUnit >> baseUnit [
 	
 	^self
 ]
 
-{ #category : 'converting' }
+{ #category : #converting }
 BaseUnit >> convertAmountToBaseUnit: aNumber [
 
 	^aNumber
 
 ]
 
-{ #category : 'converting - private' }
+{ #category : #'converting - private' }
 BaseUnit >> convertFromBaseUnit: aMeasure [ 
 	
 	^aMeasure
 ]
 
-{ #category : 'converting - private' }
+{ #category : #'converting - private' }
 BaseUnit >> convertToBaseUnit: aMeasure [ 
 	
 	^aMeasure
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 BaseUnit >> initializeNameForOne: aString nameForMany: anotherString sign: aSignString [
 
 	nameForOne := aString.
@@ -76,25 +74,25 @@ BaseUnit >> initializeNameForOne: aString nameForMany: anotherString sign: aSign
 	sign := aSignString.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 BaseUnit >> nameForMany [
 
 	^nameForMany
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 BaseUnit >> nameForOne [
 
 	^nameForOne
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 BaseUnit >> nothingAmount [
 
 	^0
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 BaseUnit >> sign [
 
 	^sign

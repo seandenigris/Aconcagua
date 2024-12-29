@@ -1,29 +1,27 @@
 Class {
-	#name : 'InvalidBinaryOperationException',
-	#superclass : 'InvalidOperationException',
+	#name : #InvalidBinaryOperationException,
+	#superclass : #InvalidOperationException,
 	#instVars : [
 		'operationName',
 		'leftOperand',
 		'rightOperand'
 	],
-	#category : 'Aconcagua-Core-ArithmeticModel',
-	#package : 'Aconcagua-Core',
-	#tag : 'ArithmeticModel'
+	#category : 'Aconcagua-Core-ArithmeticModel'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 InvalidBinaryOperationException class >> operationName: anOperationName leftOperand: aLeftOperand rightOperand: aRightOperand [
 
 	^self new initializeOperationName: anOperationName leftOperand: aLeftOperand rightOperand: aRightOperand
 ]
 
-{ #category : 'signaling' }
+{ #category : #signaling }
 InvalidBinaryOperationException class >> signalOperationName: anOperationName leftOperand: aLeftOperand rightOperand: aRightOperand [
 
 	(self operationName: anOperationName leftOperand: aLeftOperand rightOperand: aRightOperand) signal
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 InvalidBinaryOperationException >> description [
 
 	^'Attempt to make the operation <1s> between <2p> and <3p> which is invalid'
@@ -32,7 +30,7 @@ InvalidBinaryOperationException >> description [
 		with: rightOperand
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 InvalidBinaryOperationException >> initializeOperationName: anOperationName leftOperand: aLeftOperand rightOperand: aRightOperand [
 
 	operationName := anOperationName.
@@ -40,19 +38,19 @@ InvalidBinaryOperationException >> initializeOperationName: anOperationName left
 	rightOperand := aRightOperand.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 InvalidBinaryOperationException >> leftOperand [
 
 	^leftOperand
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 InvalidBinaryOperationException >> operationName [
 
 	^operationName
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 InvalidBinaryOperationException >> rightOperand [
 
 	^rightOperand

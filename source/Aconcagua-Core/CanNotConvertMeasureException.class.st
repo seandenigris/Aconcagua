@@ -1,28 +1,26 @@
 Class {
-	#name : 'CanNotConvertMeasureException',
-	#superclass : 'InvalidOperationException',
+	#name : #CanNotConvertMeasureException,
+	#superclass : #InvalidOperationException,
 	#instVars : [
 		'targetUnit',
 		'sourceMeasure'
 	],
-	#category : 'Aconcagua-Core-MeasureModel',
-	#package : 'Aconcagua-Core',
-	#tag : 'MeasureModel'
+	#category : 'Aconcagua-Core-MeasureModel'
 }
 
-{ #category : 'signaling' }
+{ #category : #signaling }
 CanNotConvertMeasureException class >> signalSourceMeasure: aSourceMeasure targetUnit: aTargetUnit [
 
 	^(self sourceMeasure: aSourceMeasure targetUnit: aTargetUnit) signal
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 CanNotConvertMeasureException class >> sourceMeasure: aSourceMeasure targetUnit: aTargetUnit [
 
 	^self new initializeWith: aSourceMeasure targetUnit: aTargetUnit
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 CanNotConvertMeasureException >> description [
 
 	^'It is not possible to convert <1p> to <2p>'
@@ -30,32 +28,32 @@ CanNotConvertMeasureException >> description [
 		with: targetUnit
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 CanNotConvertMeasureException >> initializeWith: aSourceMeasure targetUnit: aTargetUnit [ 
 
 	sourceMeasure := aSourceMeasure.
 	targetUnit := aTargetUnit
 ]
 
-{ #category : 'priv handling' }
+{ #category : #'priv handling' }
 CanNotConvertMeasureException >> isResumable [
 
 	^true
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 CanNotConvertMeasureException >> operationName [
 
 	^'convertTo:'
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 CanNotConvertMeasureException >> sourceMeasure [
 
 	^sourceMeasure
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 CanNotConvertMeasureException >> targetUnit [
 
 	^targetUnit

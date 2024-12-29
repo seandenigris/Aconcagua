@@ -1,47 +1,45 @@
 Class {
-	#name : 'CachedEvaluation',
-	#superclass : 'Evaluation',
+	#name : #CachedEvaluation,
+	#superclass : #Evaluation,
 	#instVars : [
 		'cachedValue',
 		'evaluation'
 	],
-	#category : 'Aconcagua-Core-MeasureModel',
-	#package : 'Aconcagua-Core',
-	#tag : 'MeasureModel'
+	#category : 'Aconcagua-Core-MeasureModel'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 CachedEvaluation class >> for: anEvaluation [
 
 	^self new initializeFor: anEvaluation
 ]
 
-{ #category : 'evaluating' }
+{ #category : #evaluating }
 CachedEvaluation >> computeValue [
 
 	^evaluation value
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 CachedEvaluation >> initializeCachedValue [
 
 	cachedValue := self computeValue
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 CachedEvaluation >> initializeFor: anEvaluation [
 
 	evaluation := anEvaluation
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 CachedEvaluation >> printOn: aStream [
 
 	aStream nextPutAll: 'Cache for: '.
 	evaluation printOn: aStream
 ]
 
-{ #category : 'evaluating' }
+{ #category : #evaluating }
 CachedEvaluation >> value [
 
 	cachedValue isNil ifTrue: [self initializeCachedValue].

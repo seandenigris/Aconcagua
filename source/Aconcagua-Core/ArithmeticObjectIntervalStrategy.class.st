@@ -1,45 +1,43 @@
 Class {
-	#name : 'ArithmeticObjectIntervalStrategy',
-	#superclass : 'IntervalStrategy',
+	#name : #ArithmeticObjectIntervalStrategy,
+	#superclass : #IntervalStrategy,
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : 'Aconcagua-Core-ArithmeticModel',
-	#package : 'Aconcagua-Core',
-	#tag : 'ArithmeticModel'
+	#category : 'Aconcagua-Core-ArithmeticModel'
 }
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 ArithmeticObjectIntervalStrategy class >> initialize [
 
 	self initializeUniqueInstance
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 ArithmeticObjectIntervalStrategy class >> initializeUniqueInstance [
 
 	uniqueInstance := self basicNew
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 ArithmeticObjectIntervalStrategy class >> new [
 
 	^uniqueInstance
 ]
 
-{ #category : 'enumerating' }
+{ #category : #enumerating }
 ArithmeticObjectIntervalStrategy >> advanceFrom: from by: by [
 
 	^from + by
 ]
 
-{ #category : 'enumerating' }
+{ #category : #enumerating }
 ArithmeticObjectIntervalStrategy >> advanceFrom: from steps: steps by: by [
 
 	^from + (steps * by)
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 ArithmeticObjectIntervalStrategy >> isValidIntervalFrom: aStart to: aStop by: aStep [
 
 	^(aStep = 0) not and: [ | steps |
@@ -47,7 +45,7 @@ ArithmeticObjectIntervalStrategy >> isValidIntervalFrom: aStart to: aStop by: aS
 		steps isMeasureBag not and: [ steps >= 0 ]]
 ]
 
-{ #category : 'enumerating' }
+{ #category : #enumerating }
 ArithmeticObjectIntervalStrategy >> stepsFrom: from to: to by: by [
 
 	^to - from / by

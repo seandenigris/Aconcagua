@@ -1,18 +1,16 @@
 Class {
-	#name : 'MeasureBehavior',
-	#superclass : 'ArithmeticObject',
-	#category : 'Aconcagua-Core-MeasureModel',
-	#package : 'Aconcagua-Core',
-	#tag : 'MeasureModel'
+	#name : #MeasureBehavior,
+	#superclass : #ArithmeticObject,
+	#category : 'Aconcagua-Core-MeasureModel'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 MeasureBehavior >> hash [ 
 	
 	self subclassResponsibility
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 MeasureBehavior >> isZero [
 
 	^self isNothing

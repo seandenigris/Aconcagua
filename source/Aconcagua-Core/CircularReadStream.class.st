@@ -1,35 +1,33 @@
 Class {
-	#name : 'CircularReadStream',
-	#superclass : 'Object',
+	#name : #CircularReadStream,
+	#superclass : #Object,
 	#instVars : [
 		'collection',
 		'position',
 		'unit'
 	],
-	#category : 'Aconcagua-Core-MeasureModel',
-	#package : 'Aconcagua-Core',
-	#tag : 'MeasureModel'
+	#category : 'Aconcagua-Core-MeasureModel'
 }
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 CircularReadStream class >> on: aCollection moving: aUnit [
 
 	^self on: aCollection moving: aUnit startingCircleAtIndex: 1
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 CircularReadStream class >> on: aCollection moving: aUnit startingCircleAt: anObject [
 
 	^self on: aCollection moving: aUnit startingCircleAtIndex: (aCollection indexOf: anObject)
 ]
 
-{ #category : 'instance creation' }
+{ #category : #'instance creation' }
 CircularReadStream class >> on: aCollection moving: aUnit startingCircleAtIndex: anIndex [
 
 	^self new initializeOn: aCollection moving: aUnit startingCircleAtIndex: anIndex
 ]
 
-{ #category : 'enumerating - private' }
+{ #category : #'enumerating - private' }
 CircularReadStream >> advancePositions: aMeasure [
 
 	| amount |
@@ -38,37 +36,37 @@ CircularReadStream >> advancePositions: aMeasure [
 	position := ((position - 1 + amount) \\ collection size) + 1
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 CircularReadStream >> atBegin [
 
 	^position = 1
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 CircularReadStream >> atEnd [
 
 	^position = collection size
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 CircularReadStream >> current [
 
 	^collection at: position
 ]
 
-{ #category : 'querying' }
+{ #category : #querying }
 CircularReadStream >> distanceFrom: anObject [
 
 	^self distanceFrom: anObject toObjectPosition: position
 ]
 
-{ #category : 'querying' }
+{ #category : #querying }
 CircularReadStream >> distanceFrom: anObject to: anotherObject [
 
 	^self distanceFrom: anObject toObjectPosition: (collection indexOf: anotherObject)
 ]
 
-{ #category : 'querying' }
+{ #category : #querying }
 CircularReadStream >> distanceFrom: anObject toObjectPosition: aToObjectPosition [
 
 	| fromObjectPosition steps |
@@ -80,25 +78,25 @@ CircularReadStream >> distanceFrom: anObject toObjectPosition: aToObjectPosition
 	^unit with: steps
 ]
 
-{ #category : 'querying' }
+{ #category : #querying }
 CircularReadStream >> distanceTo: anObject [
 
 	^self distanceTo: anObject from: self current
 ]
 
-{ #category : 'querying' }
+{ #category : #querying }
 CircularReadStream >> distanceTo: anObject from: anotherObject [
 
 	^self distanceFrom: anotherObject to: anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 CircularReadStream >> first [
 
 	^collection first
 ]
 
-{ #category : 'conditional protocol' }
+{ #category : #'conditional protocol' }
 CircularReadStream >> ifAtBeginDo: aBlock else: anotherBlock [
 
 	^self atBegin
@@ -106,7 +104,7 @@ CircularReadStream >> ifAtBeginDo: aBlock else: anotherBlock [
 		ifFalse: anotherBlock
 ]
 
-{ #category : 'conditional protocol' }
+{ #category : #'conditional protocol' }
 CircularReadStream >> ifAtEndDo: aBlock else: anotherBlock [
 
 	^self atEnd
@@ -114,7 +112,7 @@ CircularReadStream >> ifAtEndDo: aBlock else: anotherBlock [
 		ifFalse: anotherBlock
 ]
 
-{ #category : 'initialization' }
+{ #category : #initialization }
 CircularReadStream >> initializeOn: aCollection moving: aUnit startingCircleAtIndex: anIndex [
 
 	collection := (aCollection copyFrom: anIndex to: aCollection size), (aCollection copyFrom: 1 to: anIndex - 1).
@@ -122,50 +120,50 @@ CircularReadStream >> initializeOn: aCollection moving: aUnit startingCircleAtIn
 	self upToBegin
 ]
 
-{ #category : 'collection protocol' }
+{ #category : #'collection protocol' }
 CircularReadStream >> inject: aMeasure into: aBlock [
 
 	^collection inject: aMeasure into: aBlock
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 CircularReadStream >> isPrevious: anObject to: anotherObject [
 
 	^(collection indexOf: anObject) < (collection indexOf: anotherObject)
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 CircularReadStream >> last [
 
 	^collection last
 ]
 
-{ #category : 'enumerating' }
+{ #category : #enumerating }
 CircularReadStream >> next [
 
 	^self next: (unit with: 1)
 ]
 
-{ #category : 'enumerating' }
+{ #category : #enumerating }
 CircularReadStream >> next: aMeasure [
 
 	self advancePositions: aMeasure.
 	^self current
 ]
 
-{ #category : 'enumerating' }
+{ #category : #enumerating }
 CircularReadStream >> previous [
 
 	^self previous: (unit with: 1)
 ]
 
-{ #category : 'enumerating' }
+{ #category : #enumerating }
 CircularReadStream >> previous: aMeasure [
 
 	^self next: aMeasure negated
 ]
 
-{ #category : 'querying' }
+{ #category : #querying }
 CircularReadStream >> relativeDistanceFrom: anObject to: anotherObject [
 
 	^(collection indexOf: anObject) > (collection indexOf: anotherObject)
@@ -174,19 +172,19 @@ CircularReadStream >> relativeDistanceFrom: anObject to: anotherObject [
 
 ]
 
-{ #category : 'positioning' }
+{ #category : #positioning }
 CircularReadStream >> upTo: anObject [
 
 	position := collection indexOf: anObject
 ]
 
-{ #category : 'positioning' }
+{ #category : #positioning }
 CircularReadStream >> upToBegin [
 
 	position := 1
 ]
 
-{ #category : 'positioning' }
+{ #category : #positioning }
 CircularReadStream >> upToEnd [
 
 	position := collection size
