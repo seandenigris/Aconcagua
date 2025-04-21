@@ -56,6 +56,12 @@ ArithmeticObject >> isZero [
   ^ self subclassResponsibility
 ]
 
+{ #category : 'private' }
+ArithmeticObject >> productWithPartsPerFractionRatio: number [
+
+  ^ self subclassResponsibility
+]
+
 { #category : 'arithmetic' }
 ArithmeticObject >> raisedToInteger: exponent [
 
