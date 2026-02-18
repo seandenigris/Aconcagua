@@ -48,6 +48,15 @@ QuantityTest >> setUp [
 ]
 
 { #category : 'tests - arithmetic' }
+QuantityTest >> testAbs [
+
+  self
+    assert: ( 0 * meter ) abs equals: 0 * meter;
+    assert: ( 2 * meter ) abs equals: 2 * meter;
+    assert: ( -2 * meter ) abs equals: 2 * meter
+]
+
+{ #category : 'tests - arithmetic' }
 QuantityTest >> testAddition [
 
   | oneMeter oneHundredCentimeters |
@@ -526,6 +535,15 @@ QuantityTest >> testIntervalWithStep [
     ( #( 100 110 120 130 140 150 160 170 180 190 200 ) collect: [ :value | value * centimeter ] )
 ]
 
+{ #category : 'tests - testing' }
+QuantityTest >> testIsZero [
+
+  self
+    assert: ( 0 * meter ) isZero;
+    deny: ( 2 * meter ) isZero;
+    deny: ( -2 * meter ) isZero
+]
+
 { #category : 'tests - magnitude' }
 QuantityTest >> testLessThan [
 
@@ -646,6 +664,24 @@ QuantityTest >> testMultiplicationWithArithmeticFormulas [
     assert: twoMeters * ( product * second ) equals: 6 * meter * second;
     assert: ( twoMeters * ( product * second ) ) printString equals: '6 m·s';
     assert: ( twoMeters * ( product * second inverse ) ) printString equals: '6 m/s'
+]
+
+{ #category : 'tests - testing' }
+QuantityTest >> testNegative [
+
+  self
+    deny: ( 0 * meter ) negative;
+    deny: ( 2 * meter ) negative;
+    assert: ( -2 * meter ) negative
+]
+
+{ #category : 'tests - testing' }
+QuantityTest >> testPositive [
+
+  self
+    assert: ( 0 * meter ) positive;
+    assert: ( 2 * meter ) positive;
+    deny: ( -2 * meter ) positive
 ]
 
 { #category : 'tests - printing' }
@@ -793,4 +829,12 @@ QuantityTest >> testSummation [
     should: [ ( Summation ofAll: { 2 * meter . 5 * second } ) value ]
     raise: ArithmeticError
     withMessageText: 'Cannot add incommensurable quantities'
+]
+
+{ #category : 'tests - arithmetic' }
+QuantityTest >> testTruncated [
+
+  self
+    assert: ( 1 / 2 * meter ) truncated equals: 0 * meter;
+    assert: ( 7 / 2 * centimeter ) truncated equals: 3 * centimeter
 ]

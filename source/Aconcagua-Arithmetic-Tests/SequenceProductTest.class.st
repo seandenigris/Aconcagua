@@ -9,6 +9,15 @@ Class {
 }
 
 { #category : 'tests - arithmetic' }
+SequenceProductTest >> testAbs [
+
+  self
+    assert: ( SequenceProduct ofAll: #( 0 1 ) ) abs equals: 0;
+    assert: ( SequenceProduct ofAll: #( 1 3 ) ) abs equals: 3;
+    assert: ( SequenceProduct ofAll: #( -1 3 ) ) abs equals: 3
+]
+
+{ #category : 'tests - arithmetic' }
 SequenceProductTest >> testAddition [
 
   | product |
@@ -131,6 +140,15 @@ SequenceProductTest >> testGreaterThanEquals [
     deny: 0.1s2 >= product
 ]
 
+{ #category : 'tests - testing' }
+SequenceProductTest >> testIsZero [
+
+  self
+    assert: ( SequenceProduct ofAll: #( 0 1 ) ) isZero;
+    deny: ( SequenceProduct ofAll: #( 1 3 ) ) isZero;
+    deny: ( SequenceProduct ofAll: #( -1 3 ) ) isZero
+]
+
 { #category : 'tests - magnitude' }
 SequenceProductTest >> testLessThan [
 
@@ -233,6 +251,24 @@ SequenceProductTest >> testMultiplicationByPartsPerFraction [
     assert: 50 percent * product equals: 3
 ]
 
+{ #category : 'tests - testing' }
+SequenceProductTest >> testNegative [
+
+  self
+    deny: ( SequenceProduct ofAll: #( 0 1 ) ) negative;
+    deny: ( SequenceProduct ofAll: #( 1 3 ) ) negative;
+    assert: ( SequenceProduct ofAll: #( -1 3 ) ) negative
+]
+
+{ #category : 'tests - testing' }
+SequenceProductTest >> testPositive [
+
+  self
+    assert: ( SequenceProduct ofAll: #( 0 1 ) ) positive;
+    assert: ( SequenceProduct ofAll: #( 1 3 ) ) positive;
+    deny: ( SequenceProduct ofAll: #( -1 3 ) ) positive
+]
+
 { #category : 'tests - printing' }
 SequenceProductTest >> testPrintString [
 
@@ -321,4 +357,12 @@ SequenceProductTest >> testSubtraction [
   self
     assert: product - 0.1s2 equals: 5.9s2;
     assert: 0.1s2 - product equals: -5.9s2
+]
+
+{ #category : 'tests - arithmetic' }
+SequenceProductTest >> testTruncated [
+
+  self
+    assert: ( SequenceProduct ofAll: #( 1 2 ) ) truncated equals: 2;
+    assert: ( SequenceProduct ofAll: { 3 . ( 3 / 4 ) } ) truncated equals: 2
 ]

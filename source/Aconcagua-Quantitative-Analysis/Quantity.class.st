@@ -82,6 +82,12 @@ Quantity >> = arithmeticObject [
       checkAgainst: arithmeticObject
 ]
 
+{ #category : 'arithmetic' }
+Quantity >> abs [
+
+  ^ self class with: numericalValue abs basedOn: unit
+]
+
 { #category : 'private' }
 Quantity >> additionWithQuantity: augend [
 
@@ -154,6 +160,12 @@ Quantity >> negated [
   ^ self class with: numericalValue negated basedOn: unit
 ]
 
+{ #category : 'testing' }
+Quantity >> negative [ 
+
+  ^ self numericalValueInCanonicalUnit negative
+]
+
 { #category : 'accessing' }
 Quantity >> numericalValue [
 
@@ -164,6 +176,12 @@ Quantity >> numericalValue [
 Quantity >> numericalValueInCanonicalUnit [
 
   ^ unit valueInCanonicalUnit: numericalValue
+]
+
+{ #category : 'testing' }
+Quantity >> positive [
+
+  ^ self numericalValueInCanonicalUnit positive
 ]
 
 { #category : 'printing' }
@@ -228,6 +246,12 @@ Quantity >> to: aQuantity [
 Quantity >> to: end by: step [
 
   ^ DiscreteInterval from: self to: end by: step
+]
+
+{ #category : 'truncation and round off' }
+Quantity >> truncated [
+
+  ^ self class with: numericalValue truncated basedOn: unit
 ]
 
 { #category : 'accessing' }

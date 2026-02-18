@@ -57,6 +57,12 @@ ArithmeticFormula >> = arithmeticObject [
   ^ self value = arithmeticObject value
 ]
 
+{ #category : 'arithmetic' }
+ArithmeticFormula >> abs [
+
+  ^ self value abs
+]
+
 { #category : 'private' }
 ArithmeticFormula >> defaultArithmeticContext [
 
@@ -73,6 +79,18 @@ ArithmeticFormula >> hash [
 ArithmeticFormula >> isZero [
 
   ^ self value isZero
+]
+
+{ #category : 'testing' }
+ArithmeticFormula >> negative [
+
+  ^ self value negative
+]
+
+{ #category : 'testing' }
+ArithmeticFormula >> positive [
+
+  ^ self value positive
 ]
 
 { #category : 'printing' }
@@ -103,6 +121,12 @@ ArithmeticFormula >> raisedToInteger: exponent [
 ArithmeticFormula >> reciprocal [
 
   ^ self value reciprocal
+]
+
+{ #category : 'truncation and round off' }
+ArithmeticFormula >> truncated [
+
+	^self value truncated
 ]
 
 { #category : 'evaluating' }

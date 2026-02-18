@@ -44,6 +44,12 @@ ArithmeticObject >> / denominator [
   ^ self subclassResponsibility
 ]
 
+{ #category : 'arithmetic' }
+ArithmeticObject >> abs [
+
+  ^ self subclassResponsibility
+]
+
 { #category : 'testing' }
 ArithmeticObject >> isDimensionless [
 
@@ -52,6 +58,18 @@ ArithmeticObject >> isDimensionless [
 
 { #category : 'testing' }
 ArithmeticObject >> isZero [
+
+  ^ self subclassResponsibility
+]
+
+{ #category : 'testing' }
+ArithmeticObject >> negative [
+
+  ^ self subclassResponsibility
+]
+
+{ #category : 'testing' }
+ArithmeticObject >> positive [
 
   ^ self subclassResponsibility
 ]
@@ -72,6 +90,12 @@ ArithmeticObject >> raisedToInteger: exponent [
 ArithmeticObject >> squared [
 
   ^ self raisedToInteger: 2
+]
+
+{ #category : 'truncation and round off' }
+ArithmeticObject >> truncated [
+
+  ^ self subclassResponsibility
 ]
 
 { #category : 'evaluating' }

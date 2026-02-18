@@ -9,6 +9,15 @@ Class {
 }
 
 { #category : 'tests - arithmetic' }
+SummationTest >> testAbs [
+
+  self
+    assert: ( Summation ofAll: #( 1 -1 ) ) abs equals: 0;
+    assert: ( Summation ofAll: #( 2 -1 ) ) abs equals: 1;
+    assert: ( Summation ofAll: #( 1 -2 ) ) abs equals: 1
+]
+
+{ #category : 'tests - arithmetic' }
 SummationTest >> testAddition [
 
   | sum |
@@ -140,6 +149,15 @@ SummationTest >> testIsDimensionless [
   self assert: sum isDimensionless
 ]
 
+{ #category : 'tests - testing' }
+SummationTest >> testIsZero [
+
+  self
+    assert: ( Summation ofAll: #( 1 -1 ) ) isZero;
+    deny: ( Summation ofAll: #( 2 -1 ) ) isZero;
+    deny: ( Summation ofAll: #( 1 -2 ) ) isZero
+]
+
 { #category : 'tests - magnitude' }
 SummationTest >> testLessThan [
 
@@ -239,6 +257,24 @@ SummationTest >> testMultiplicationByPartsPerFraction [
     assert: 2000 perMille * sum equals: 6
 ]
 
+{ #category : 'tests - testing' }
+SummationTest >> testNegative [
+
+  self
+    deny: ( Summation ofAll: #( 1 -1 ) ) negative;
+    deny: ( Summation ofAll: #( 2 -1 ) ) negative;
+    assert: ( Summation ofAll: #( 1 -2 ) ) negative
+]
+
+{ #category : 'tests - testing' }
+SummationTest >> testPositive [
+
+  self
+    assert: ( Summation ofAll: #( 1 -1 ) ) positive;
+    assert: ( Summation ofAll: #( 2 -1 ) ) positive;
+    deny: ( Summation ofAll: #( 1 -2 ) ) positive
+]
+
 { #category : 'tests - printing' }
 SummationTest >> testPrintString [
 
@@ -328,4 +364,12 @@ SummationTest >> testSummationOfSquares [
   sum := Summation of: [ :i | i squared ] from: 3 to: 6.
 
   self assert: sum equals: 86
+]
+
+{ #category : 'tests - arithmetic' }
+SummationTest >> testTruncated [
+
+  self
+    assert: ( Summation ofAll: #( 1 2 ) ) truncated equals: 3;
+    assert: ( Summation ofAll: { 3 . ( 3 / 4 ) } ) truncated equals: 3
 ]
